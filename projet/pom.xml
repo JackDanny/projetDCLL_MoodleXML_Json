@@ -28,7 +28,7 @@
 	    <artifactId>pmd</artifactId>
 	    <version>4.3</version>
 	</dependency>
-	
+<!-- TODO -->	
 <!-- 	<dependency>
 	    <groupId>maven</groupId>
 	    <artifactId>maven-pmd-plugin</artifactId>
@@ -43,6 +43,7 @@
 	    <version>5.0</version>
 	</dependency>
 
+<!-- TODO -->	
 <!-- 	 <dependency>
 	    <groupId>maven</groupId>
 	    <artifactId>maven-checkstyle-plugin</artifactId>
