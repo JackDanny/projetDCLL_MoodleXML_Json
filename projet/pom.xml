@@ -1,6 +1,56 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>dcll.proj</groupId>
   <artifactId>projet</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  
+  
+<dependencies>
+<!-- junit -->
+  	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.11</version>
+	</dependency>
+	
+<!-- jcr  -->
+	<dependency>
+	    <groupId>javax.jcr</groupId>
+	    <artifactId>jcr</artifactId>
+	    <version>2.0</version>
+	</dependency>
+
+<!-- pmd -->
+	<dependency>
+	    <groupId>pmd</groupId>
+	    <artifactId>pmd</artifactId>
+	    <version>4.3</version>
+	</dependency>
+<!-- TODO -->	
+<!-- 	<dependency>
+	    <groupId>maven</groupId>
+	    <artifactId>maven-pmd-plugin</artifactId>
+	    <version>1.10</version>
+	</dependency>
+ -->
+ 
+<!-- checkstyle --> 
+	 <dependency>
+	    <groupId>checkstyle</groupId>
+	    <artifactId>checkstyle</artifactId>
+	    <version>5.0</version>
+	</dependency>
+
+<!-- TODO -->	
+<!-- 	 <dependency>
+	    <groupId>maven</groupId>
+	    <artifactId>maven-checkstyle-plugin</artifactId>
+	    <version>3.0.1</version>
+	</dependency>
+ -->
+ 	
+</dependencies>
+  
 </project>
