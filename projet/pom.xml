@@ -22,7 +22,7 @@
 	    <version>2.0</version>
 	</dependency>
 
-<!-- pmd -->
+<!-- pmd  -->
 	<dependency>
 	    <groupId>pmd</groupId>
 	    <artifactId>pmd</artifactId>
