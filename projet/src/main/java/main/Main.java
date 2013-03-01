@@ -3,9 +3,6 @@ package main;
 import xmlParser.XmlParser;
 
 
-
-
-
 public class Main {
 
 	/**
@@ -14,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("deb main");
 		XmlParser xmlparser = new XmlParser();
-	//	xmlparser.parser(args[0]);
+		xmlparser.parser(args[0]);
 		
 		
 	}

@@ -47,6 +47,18 @@ public class XmlParser {
 	
 	public static void exploreNode(Node node) {
 		System.out.println(node);
+		//node.
+//		System.out.println("la "+  node.getLocalName());
+		if(node.getAttributes() != null){
+	//		System.out.println(node.getAttributes().));
+		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		NodeList nodes = node.getChildNodes();
 		for(int i=0; i<nodes.getLength(); i++) {
 			Node n = nodes.item(i);
