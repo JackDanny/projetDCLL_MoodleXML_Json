@@ -2,7 +2,11 @@ package main;
 
 import xmlParser.XmlParser;
 
-
+/**
+ * 
+ * @author Raphaël
+ *
+ */
 public class Main {
 
 	/**
@@ -12,8 +16,6 @@ public class Main {
 		System.out.println("deb main");
 		XmlParser xmlparser = new XmlParser();
 		xmlparser.parser(args[0]);
-		
-		
 	}
 
 }
