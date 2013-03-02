@@ -17,14 +17,14 @@
 	    <version>4.11</version>
 	    <scope>test</scope>
 	</dependency>
-	
-<!-- 	<dependency>
+
+<dependency>
     <groupId>org.jdom</groupId>
     <artifactId>jdom</artifactId>
     <version>2.0.2</version>
 </dependency>
- -->	
-<!-- jcr  -->
+ 
+ <!-- jcr  -->
 <!-- 	<dependency>
 	    <groupId>javax.jcr</groupId>
 	    <artifactId>jcr</artifactId>
