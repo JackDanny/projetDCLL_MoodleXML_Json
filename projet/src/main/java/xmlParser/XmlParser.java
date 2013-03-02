@@ -44,6 +44,10 @@ public class XmlParser {
 		return document;
 	}
 	
+	public static void largeurexplor(Node node){
+		node.getChildNodes();
+	}
+	
 	
 	public static void exploreNode(Node node) {
 		System.out.println(node);
