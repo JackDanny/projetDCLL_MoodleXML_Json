@@ -1,80 +1,68 @@
 package xmlParser;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import nomenclature.QuestionType_enum;
 
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
-import org.w3c.dom.*;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 
 
 
 
 public class XmlParser {
 
+	   private org.jdom2.Document document;
+	   private Element racine;
+
 	
-	public Document parser(String fileName ){
-		// création d'une fabrique de constructeur de documents DOM
-		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
-		// création d'un constructeur de documents DOM
-		DocumentBuilder constructeur;
-		Document document = null;
-		try {
-			constructeur = fabrique.newDocumentBuilder();
-			// lecture du contenu d'un fichier XML avec le constructeur pour
-			// créer le document DOM correspondant
-			File xmlFile = new File(fileName);
-			document = constructeur.parse(xmlFile);
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();	
-		}
-		ExploreDocument(document);
-		return document;
-	}
+	public void parser(String fileName ){
+	      SAXBuilder sxb = new SAXBuilder();
+	      document = null;
+	      try
+	      {
+	         //On crée un nouveau document JDOM avec en argument le fichier XML
+	         //Le parsing est terminé ;)
+	         document = sxb.build(new File(fileName));
+	      }
+	      catch(Exception e){
+	    	  //TODO
+	    	  e.printStackTrace();
+	      }
+	      
+	      //On initialise un nouvel élément racine avec l'élément racine du document.
+	      racine = document.getRootElement();
+
+	      afficheALL(racine);
+	   }
+
 	
-	public static void largeurexplor(Node node){
-		node.getChildNodes();
-	}
-	
-	
-	public static void exploreNode(Node node) {
-		System.out.println(node);
-		//node.
-//		System.out.println("la "+  node.getLocalName());
-		if(node.getAttributes() != null){
-	//		System.out.println(node.getAttributes().));
-		}
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		NodeList nodes = node.getChildNodes();
-		for(int i=0; i<nodes.getLength(); i++) {
-			Node n = nodes.item(i);
-			exploreNode(n);
-		}
-	}
-	
-	public static void ExploreDocument(Document document) {
-		Element racine = document.getDocumentElement();
-		exploreNode(racine);
-	}
-	
+	private void afficheALL(Element racine)
+	   {
+		   QuestionType_enum qType_enum;
+		   List<Element> listQuestion = racine.getChildren("question");
+		   System.out.println(listQuestion.size());
+
+		   Iterator<Element> i = listQuestion.iterator();
+	      while(i.hasNext())
+	      {
+	         Element courant = (Element)i.next();
+	        
+	         qType_enum = QuestionType_enum.valueOf(courant.getAttributeValue("type"));
+	         if(qType_enum.isImplemented()){
+	        	 System.out.println(qType_enum.name() + " traité");
+	        	 List<Element> le= courant.getChildren();
+	         }else{
+	        	 System.out.println("Les questions de type " + qType_enum.name() + " ne peuvent être traités.");
+	         }
+	         
+//	         System.out.println(courant.getAttributeValue("type"));
+	         
+	      }
+	   }
+
 
 	
 	
