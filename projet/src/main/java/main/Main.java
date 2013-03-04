@@ -2,13 +2,17 @@ package main;
 
 import xmlParser.XmlParser;
 
-
+/**
+ * 
+ * @author Rapha�l
+ *
+ */
 public class Main {
 
-	/**
+	/** 
 	 * @param args florent add test
 	 */
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 		System.out.println("deb main");
 		XmlParser xmlparser = new XmlParser();
 		xmlparser.parser(args[0]);

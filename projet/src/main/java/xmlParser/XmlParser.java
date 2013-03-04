@@ -18,7 +18,7 @@ public class XmlParser {
 	   private Element racine;
 
 	
-	public final void parser(final String fileName ){
+	public final Element parser(final String fileName ){
 	      SAXBuilder sxb = new SAXBuilder();
 	      document = null;
 	      try
@@ -36,6 +36,7 @@ public class XmlParser {
 	      racine = document.getRootElement();
 
 	      afficheALL(racine);
+	      return racine;
 	   }
 
 	
