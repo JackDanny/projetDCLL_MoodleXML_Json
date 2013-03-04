@@ -37,9 +37,9 @@ public class XmlParser {
 
 	      afficheALL(racine);
 	   }
-	   
-	 //Ajouter cette méthodes à la classe JDOM2
-	   private void afficheALL(Element racine)
+
+	
+	private void afficheALL(Element racine)
 	   {
 		   QuestionType_enum qType_enum;
 		   List<Element> listQuestion = racine.getChildren("question");
@@ -53,6 +53,7 @@ public class XmlParser {
 	         qType_enum = QuestionType_enum.valueOf(courant.getAttributeValue("type"));
 	         if(qType_enum.isImplemented()){
 	        	 System.out.println(qType_enum.name() + " traité");
+	        	 List<Element> le= courant.getChildren();
 	         }else{
 	        	 System.out.println("Les questions de type " + qType_enum.name() + " ne peuvent être traités.");
 	         }
