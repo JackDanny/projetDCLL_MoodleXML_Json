@@ -18,7 +18,7 @@ public class XmlParser {
 	   private Element racine;
 
 	
-	public void parser(String fileName ){
+	public final void parser(final String fileName ){
 	      SAXBuilder sxb = new SAXBuilder();
 	      document = null;
 	      try
@@ -39,7 +39,7 @@ public class XmlParser {
 	   }
 
 	
-	private void afficheALL(Element racine)
+	private void afficheALL(final Element racine)
 	   {
 		   QuestionType_enum qType_enum;
 		   List<Element> listQuestion = racine.getChildren("question");
