@@ -1,6 +1,6 @@
 package main;
 
-import xmlParser.XmlParser;
+import xmlparser.XmlParserImpl;
 
 /**
  * 
@@ -14,7 +14,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("deb main");
-		XmlParser xmlparser = new XmlParser();
+		XmlParserImpl xmlparser = new XmlParserImpl();
 		xmlparser.parser(args[0]);
 	}
 

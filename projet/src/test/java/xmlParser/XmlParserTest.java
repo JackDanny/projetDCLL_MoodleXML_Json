@@ -1,5 +1,6 @@
 package xmlParser;
 
+import xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
 
 /**
@@ -9,7 +10,7 @@ import junit.framework.TestCase;
  */
 public class XmlParserTest extends TestCase {
 	
-	private XmlParser xmlParser;
+	private XmlParserImpl xmlParser;
 
 	/**
 	 * Constructor
@@ -24,7 +25,7 @@ public class XmlParserTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		xmlParser = new XmlParser();
+		xmlParser = new XmlParserImpl();
 	}
 
 	/**
@@ -36,7 +37,7 @@ public class XmlParserTest extends TestCase {
 	}
 	
 	/**
-	 * tests sur la m�thode parser
+	 * tests sur la méthode parser
 	 */
 	public void testParser(){
 		//Un premier test
