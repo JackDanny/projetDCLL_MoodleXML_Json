@@ -15,7 +15,7 @@ import org.jdom2.input.SAXBuilder;
  * Implementation of XmlParser
  * Parse XMl Moodel file.
  * */
-public class XmlParserImpl implements XmlParser  {
+public class XmlParserImpl implements XmlParser {
 
 
 /**

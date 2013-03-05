@@ -3,7 +3,6 @@ package xmlParser;
 import xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
 
-
 /**
  * Classe de test Junit du parser xml
  * @author Rapha�l
