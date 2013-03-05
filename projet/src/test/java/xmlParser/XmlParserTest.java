@@ -42,7 +42,7 @@ public class XmlParserTest extends TestCase {
 	 */
 	public void testParser(){
 		//Un premier test
-		assertNotNull("Erreur parser : resultat null",xmlParser.parser("exempleCourt.xml"));
+		assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/exempleCourt.xml"));
 		
 	}
 
