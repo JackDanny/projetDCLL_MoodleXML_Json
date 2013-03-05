@@ -9,6 +9,7 @@ import xmlparser.XmlParserImpl;
  */
 public class Main {
 
+	
 	/** 
 	 * @param args florent add test
 	 */
