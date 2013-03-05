@@ -8,9 +8,7 @@ public class GenérerFichierJSon {
 
     public static void main(String[] args) throws Exception {
 
-    	JSONObject json = new JSONObject();
-    	
-    	
+    	JSONObject json = new JSONObject();  	    	
     	
     	// création d'un objet complexe :  
     	JSONObject menu = new JSONObject();
@@ -42,7 +40,9 @@ public class GenérerFichierJSon {
     		menu.put("popup", popup);
     		
      	json.put("menu",menu );
+     	
+    	SauvegarderFichierJson sauv = new SauvegarderFichierJson(json.toString(2));
+    	sauv.sauvegarde();
     	
-    	System.out.println( "" + json.toString(2) );
     }
 }
