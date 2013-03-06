@@ -36,7 +36,7 @@ cloze(false), /***/
 multichoice(false), /***/
 numerical(false), /***/
 shortanswer(false), /***/
-truefalse(false); /***/
+truefalse(true); /***/
 
 /**
  * */
@@ -45,14 +45,14 @@ private boolean isImplement;
  * @param isImplemented value
  * */
 QuestionType_enum(final boolean isImplemented) {
-this.isImplement = isImplemented;
+    this.isImplement = isImplemented;
 }
 
 /**
  * @return indicate if the attribute is implemented
  * */
 public boolean isImplemented() {
-return isImplement;
+    return isImplement;
 }
 
 }
