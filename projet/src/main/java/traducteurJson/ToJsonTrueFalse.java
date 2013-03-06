@@ -73,7 +73,7 @@ public class ToJsonTrueFalse {
               //recupere les attributs de l element
                 attList = fils.getAttributes();
                 System.out.println("                nb attributs : "+attList.size());
-                text = children.getText();
+                text = children.getChildText(fils.getName());
                 System.out.println("                texte contenu : "+text);
                 //TODO traduit cette partie en JSON = element + attributs + texte eventuel
                 
