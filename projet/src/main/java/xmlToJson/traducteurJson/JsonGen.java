@@ -12,24 +12,27 @@ public class JsonGen {
 	public JsonGen (){		
 	}
 	
-	
-	/**
-	 * @param oJson : l'objet, nomBalise : ex : menu 
-	 * la méthode baliseSimple : 
-	 *    exemple : <menu> </menu>  ---> {"menu": {}}     
-	 *    
-	 */
-	
+
 	
 	public JSONObject simpleElement (JSONObject oJson, String nomBalise, String valeurBalise) throws Exception{
-		
+		/*
+		 * cette méthode permet de créer un element simple c'est à dire : 
+		 * <nomBalise>valeurBalise</nomBalise>  --> {"nomBalise": "valeurBalise"}		 
+		 */
 		oJson.put(nomBalise,valeurBalise);
 		return null;	
 	}	
 	
 	
 	public JSONObject baliseObjet (JSONObject oJson, JSONObject object, String nomObject) throws Exception{
-	
+		/*
+		 * cette méthode permet de créer un object c'est à dire : 
+		 * 
+		 *  <menu>										{"menu":
+		 * 		<attribut2>valeur2</attribut2>    --->         {"attribut2": "valeur2"}   
+		 *	</menu>                      				}
+	     *
+		 */
 		oJson.put(nomObject,object);
 		return null;	
 	}
@@ -37,29 +40,39 @@ public class JsonGen {
 
 	
 	
-	/**
-	 * 
-	 * @param oJson : l'élement 
-	 * @param NomVecteur pour cet exemple : menuitem": [
-      									{"value": "New", "onclick": "CreateNewDoc()"},
-      									{"value": "Open", "onclick": "OpenDoc()"},
-      									{"value": "Close", "onclick": "CloseDoc()"}
-      									
-      							nomVecteur c'est "menuitem" 
-    ]
-	 * @param nomElement 
-	 * @return
-	 */
-	
 	
 	public JSONObject VecteurElementSimple (JSONObject oJson, String NomVecteur, String nomElement){
+		
+		/*
+		 * cette méthode permet de créer un vecteur contenant des élements simple c'est à dire : 
+		 * 
+		 *   <NomVecteur>nomElement1</vecteur>                     {"NomVecteur":   [    
+	     *   <NomVecteur>nomElement2</vecteur>            -->   		 "nomElement1", "nomElement2" 
+    	 *			    										                ]	
+    	 *	   													   }
+		 */		
 		
 		oJson.accumulate(NomVecteur,nomElement);				
 		
 		return oJson;		
 	}
 	
+	
+	
+	
 	public JSONObject VecteurListElement (JSONObject oJson, String NomVecteur, JSONObject object){		
+		
+		/*
+		 * Cette méthode permet de créer un vecteur contenant une liste d'élements Objects c'est à dire :
+		 * 
+		 * <NomVecteur>										{ "NomVecteur" :  [
+				<attribut1>valeur1</attribut1>						{"attribut1": "valeur1"},
+		   </NomVecteur>			               ---->	        {"attribut2": "valeur2"}
+		   <NomVecteur>														]
+		        <attribut2>valeur2</attribut2>               }
+           </NomVecteur>
+           
+		 */
 		
 		oJson.accumulate(NomVecteur,object);				
 		
