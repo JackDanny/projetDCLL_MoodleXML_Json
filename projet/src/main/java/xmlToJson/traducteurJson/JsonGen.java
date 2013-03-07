@@ -1,8 +1,5 @@
 package xmlToJson.traducteurJson;
 
-import java.util.ArrayList;
-
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
 
@@ -23,38 +20,52 @@ public class JsonGen {
 	 *    
 	 */
 	
-	public JSONObject baliseSimple (JSONObject oJson, String nomBalise) throws Exception{
+	
+	public JSONObject simpleElement (JSONObject oJson, String nomBalise, String valeurBalise) throws Exception{
 		
-		JSONObject balise = new JSONObject();
-		oJson.put(nomBalise, balise);
+		oJson.put(nomBalise,valeurBalise);
+		return null;	
+	}	
+	
+	
+	public JSONObject baliseObjet (JSONObject oJson, JSONObject object, String nomObject) throws Exception{
+	
+		oJson.put(nomObject,object);
 		return null;	
 	}
 	
+
 	
 	
 	/**
-	 * @param oJson : l'objet ,  ArrayList<ArrayList<String>> : liste de liste : une liste d'attributs
-	 * dans la liste1nivea : c'est un attribut qui est une liste tel que : element 1 : nom de l'attribut, 
-	 * 																	   element 2 : valeur de l'attribut
-	 * [[attribut1, valeurAttribut1],[attribut2, valeurAttribut2], .........]
-	 *   
-	 *    
+	 * 
+	 * @param oJson : l'élement 
+	 * @param NomVecteur pour cet exemple : menuitem": [
+      									{"value": "New", "onclick": "CreateNewDoc()"},
+      									{"value": "Open", "onclick": "OpenDoc()"},
+      									{"value": "Close", "onclick": "CloseDoc()"}
+      									
+      							nomVecteur c'est "menuitem" 
+    ]
+	 * @param nomElement 
+	 * @return
 	 */
 	
-	public JSONObject attribute(JSONObject oJson, ArrayList<ArrayList<String>> listAttributs){
+	
+	public JSONObject VecteurElementSimple (JSONObject oJson, String NomVecteur, String nomElement){
 		
-		for(int i=0; i<listAttributs.size(); i++){
-			oJson.put(listAttributs.get(i).get(0),listAttributs.get(i).get(1));
-		}
+		oJson.accumulate(NomVecteur,nomElement);				
+		
+		return oJson;		
+	}
+	
+	public JSONObject VecteurListElement (JSONObject oJson, String NomVecteur, JSONObject object){		
+		
+		oJson.accumulate(NomVecteur,object);				
+		
 		return oJson;		
 	}
 	
 	
-	public JSONObject Vecteur (JSONObject oJson, String NomVecteur, String nomElement){
-		
-		oJson.accumulate(NomVecteur,nomElement);	
-		oJson.accumulate(NomVecteur,nomElement);	
-		
-		return oJson;		
-	}
+	
 }
