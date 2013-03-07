@@ -1,0 +1,8 @@
+{
+  "attribut": "valeur",
+  "menu": {"attribut2": "valeur2"},
+  "vecteur2":   [
+    {"attribut2": "valeur2"},
+    {"attribut2": "valeur2"}
+  ]
+}
