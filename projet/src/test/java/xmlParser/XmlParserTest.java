@@ -1,11 +1,14 @@
 package xmlParser;
 
+import java.util.List;
+import org.jdom2.Element;
+
 import xmlToJson.xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
 
 /**
  * Classe de test Junit du parser xml
- * @author Rapha�l
+ * @author Rapha�l + Florent
  *
  */
 public class XmlParserTest extends TestCase {
@@ -37,12 +40,31 @@ public class XmlParserTest extends TestCase {
 	}
 	
 	/**
-	 * tests sur la méthode parser
+	 * Tests sur la méthode parser : non null résultat 
 	 */
-	public void testParser(){
-		//Un premier test
-		assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/exempleCourt.xml"));
-		
+	public void testNotNullParser(){
+		assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));	
 	}
+	
+	/**
+	 * Test consistance résultat
+	 * */
+	public void testCountListParser(){
+		assertEquals(1, xmlParser.parser("src/test/resources/shortTest.xml").size());
+	}
+	
+	/**
+	 * Test l'odre des éléments "question" dans la liste.
+	 * Même si ce test risque pas de devenir faux, cette
+	 * propriété est très importante. Si jamais la librairie
+	 * de parsing change il faut réaliser ce test.
+	 * */
+	public void testOrderListtParser(){
+		List<Element> elemntList= xmlParser.parser("src/test/resources/orderTest.xml");
+		assertEquals("category",  elemntList.get(0).getAttributeValue("type"));
+		assertEquals("truefalse", elemntList.get(1).getAttributeValue("type"));
+	}
+
+	
 
 }
