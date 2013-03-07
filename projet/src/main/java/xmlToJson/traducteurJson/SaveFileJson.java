@@ -14,15 +14,16 @@ import java.io.IOException;
 public class SaveFileJson {
 	
 	private String jsonContent; 
+	private String pathFile;
 	
-	public SaveFileJson(String contenu){
+	public SaveFileJson(String contenu, String pathFile){
 		this.jsonContent = contenu;
+		this.pathFile = pathFile;
 	}
 
 	public void sauvegarde (){
-		String cheminDuFichier = "src/test/resources/fichierJsonResultat.txt";		
-		
-		File file = new File(cheminDuFichier);
+				
+		File file = new File(this.pathFile);
 
 		try {
 			if (!file.exists())
@@ -34,7 +35,7 @@ public class SaveFileJson {
 			System.out.println("fichier crée ");
 		} catch (IOException e) {
 			System.out.println("Erreur: impossible de créer le fichier '"
-					+ cheminDuFichier + "'");
+					+ pathFile + "'");
 		}
 	}
 }
