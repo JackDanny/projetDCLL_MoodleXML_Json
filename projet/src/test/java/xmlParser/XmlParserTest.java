@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 /**
  * Classe de test Junit du parser xml
- * @author Rapha�l
+ * @author Rapha�l + Florent
  *
  */
 public class XmlParserTest extends TestCase {
@@ -40,10 +40,9 @@ public class XmlParserTest extends TestCase {
 	}
 	
 	/**
-	 * tests sur la méthode parser : non null résultat 
+	 * Tests sur la méthode parser : non null résultat 
 	 */
 	public void testNotNullParser(){
-		//Vérification non null résultat
 		assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));	
 	}
 	
