@@ -1,4 +1,4 @@
-package jsonToXml.XmlWriter;
+package jsonToXml.xmlWriter;
 
 public class XmlWriter {
 
