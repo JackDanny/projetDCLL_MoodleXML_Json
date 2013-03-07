@@ -1,11 +1,11 @@
-package traducteurJson;
+package xmlToJson.traducteurJson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Element;
 
-import xmlparser.XmlParserImpl;
+import xmlToJson.xmlparser.XmlParserImpl;
 
 public class Test {
     
