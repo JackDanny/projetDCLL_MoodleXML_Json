@@ -1,6 +1,6 @@
-package traducteurJson;
+package xmlToJson.traducteurJson;
 
-import xmlparser.XmlParserImpl;
+import xmlToJson.xmlparser.XmlParserImpl;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

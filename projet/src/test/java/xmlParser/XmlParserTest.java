@@ -1,6 +1,6 @@
 package xmlParser;
 
-import xmlparser.XmlParserImpl;
+import xmlToJson.xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
 
 /**
