@@ -70,17 +70,19 @@ public class ToJson {
         childrens = element.getChildren();
         if(!childrens.isEmpty()){
             //traiter chaque fils en profondeur 
+            //CARE : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
             //TODO gere les [] si nextchildrens identiques, sinon la hash map vire le précédent
             for(Element children : childrens){
-//                if(addChild(children) || addAttributes(children)) {
+//                courante.put(children.getName(), toJson(children));
+                if(addChild(children) || addAttributes(children)) {
                     courante.put(children.getName(), toJson(children));
-//                }
-//                else {
-//                    String text = element.getText();
-//                    if(text!=null){
-//                        courante.put(children.getName(), text);
-//                    }
-//                }
+                }
+                else {
+                    String text = children.getValue();
+                    if(text!=null){
+                        courante.put(children.getName(), text);
+                    }
+                }
                     
             }
         }
