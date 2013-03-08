@@ -157,7 +157,7 @@ public class ToJson {
      * @param e element courant
      * @return a un fils?
      */
-    boolean addChild(Element e){
+    public boolean addChild(Element e){
         return !(e.getChildren().isEmpty());
     }
     
