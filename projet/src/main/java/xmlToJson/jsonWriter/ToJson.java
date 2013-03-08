@@ -18,7 +18,7 @@ import org.jdom2.Element;
 import xmlToJson.xmlparser.XmlParserImpl;
 
 /**
- * Classe pour pouvoir ecrire un fichier Json.
+ * Classe pour pouvoir traduire un fichier Json.
  * @author Raphaël
  *
  */
@@ -58,6 +58,7 @@ public class ToJson {
         //ecrire dans le fichier
         SaveFileJson save = new SaveFileJson(oJson.toString(),pathFile);
         save.sauvegarde();
+        //TODO Re-indempter le fichier.
         
     }
     /**
