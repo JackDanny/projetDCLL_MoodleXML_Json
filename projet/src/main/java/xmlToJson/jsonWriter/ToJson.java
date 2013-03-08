@@ -1,3 +1,8 @@
+/**
+ * Pacjage de gestion traduction/ecriture enJson.
+ * <p>
+ * Utilise principalement la classe { @link org.jdom2.Element }
+ */
 package xmlToJson.jsonWriter;
 
 import java.util.ArrayList;
@@ -12,8 +17,17 @@ import org.jdom2.Element;
 
 import xmlToJson.xmlparser.XmlParserImpl;
 
+/**
+ * Classe pour pouvoir écrire un fichier Json.
+ * @author Raphaël
+ *
+ */
 public class ToJson {
 
+    /**
+     * Constructor ToJson
+     * @param pathFile Chemin du fichier en sortie.
+     */
     public ToJson(String pathFile) {
         super();
         this.pathFile = pathFile;
@@ -23,6 +37,10 @@ public class ToJson {
     private JsonGen jg = new JsonGen();
     private Map balise = new LinkedHashMap();
     
+    /**
+     * Traduire en objet Json et écriture dans le fichier.
+     * @param questions Liste des questions du quiz MoodlXML
+     */
     @SuppressWarnings("unchecked")
     public void toJson(List<Element> questions){
         JSONObject oJson = new JSONObject();
@@ -42,7 +60,11 @@ public class ToJson {
         save.sauvegarde();
         
     }
-    
+    /**
+     * Traduire en objet Json et écriture dans le fichier.
+     * @param element traite une element Jdom2
+     * @return Map contenant l'arborescence du parametre element traite
+     */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public Map toJson(Element element){
         List<Attribute> attList = new ArrayList<Attribute>();
@@ -100,6 +122,12 @@ public class ToJson {
         
     }
     
+    /**
+     * Cree les listes dans le cas de traduction en Json Array
+     * @param childrens Liste des fils de l'element courant
+     * @param cpt compteur nombre de fils identiques
+     * @return Liste de Map des element jdom2 fils identiques
+     */
     private List<Map> creerListes(List<Element> childrens, int cpt) {
         List<Map> list = new ArrayList<Map>();
         for(int i=0; i<cpt;i++){
@@ -110,6 +138,11 @@ public class ToJson {
         
     }
 
+    /**
+     * Compte le nombre de fils identiques
+     * @param childrens Liste des fils de l'element courant
+     * @return nombre de fils identiques au premier de la liste childrens
+     */
     private int cptEquals(List<Element> childrens) {
         int cpt = 0;
         Element children = childrens.get(0);
@@ -119,14 +152,28 @@ public class ToJson {
         return cpt;
     }
 
-    public boolean addChild(Element e){
+    /**
+     * teste si l element courant possede un fils
+     * @param e element courant
+     * @return a un fils?
+     */
+    boolean addChild(Element e){
         return !(e.getChildren().isEmpty());
     }
     
+    /**
+     * Teste si l element courant a un attribut
+     * @param e element courant
+     * @return a un attribut?
+     */
     public boolean addAttributes(Element e){
         return !(e.getAttributes().isEmpty());
     }
     
+    /**
+     * Main pour test
+     * @param args
+     */
     public static void main(String[] args) {    
         List<Element> elems = new ArrayList<Element>();
         
