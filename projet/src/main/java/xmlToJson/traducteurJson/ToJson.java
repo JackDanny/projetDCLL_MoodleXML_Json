@@ -58,31 +58,41 @@ public class ToJson {
             }
         }
         
-        //TODO gérer le contenu textuel
-        //soucis getText recup aussi les retour ligne \n et tab \t
-//        String text = element.getText();
-//        if(text!=null){
-//            System.out.println(text);
-//            courante.put("", text);
-//        }
-        
         //On recupere les fils
         childrens = element.getChildren();
         if(!childrens.isEmpty()){
             //traiter chaque fils en profondeur 
+            
+            
+            //***********************************
+            //Gestion des listes, si fils suivant(s) identique(s)
+            //CARE si les fils identiques ne sont pas les premiers fils problème.
+            int cpt = cptEquals(childrens);
+            if(cpt != 0){
+                cpt++;//maj pour compter le fils courant
+                List<Map> l = creerListes(childrens, cpt);
+                courante.put(childrens.get(0).getName(), l);
+            }
+            
+            
+            
             //CARE : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
             //TODO gere les [] si nextchildrens identiques, sinon la hash map vire le précédent
             for(Element children : childrens){
-//                courante.put(children.getName(), toJson(children));
-                if(addChild(children) || addAttributes(children)) {
-                    courante.put(children.getName(), toJson(children));
-                }
-                else {
-                    String text = children.getValue();
-                    if(text!=null){
-                        courante.put(children.getName(), text);
+
+                //******************************************le if else
+                if(cpt == 0) {//non traité
+                    if(addChild(children) || addAttributes(children)) {
+                        courante.put(children.getName(), toJson(children));
+                    }
+                    else {
+                        String text = children.getValue();
+                        if(text!=null){
+                            courante.put(children.getName(), text);
+                        }
                     }
                 }
+                else cpt--;
                     
             }
         }
@@ -90,6 +100,25 @@ public class ToJson {
         
     }
     
+    private List<Map> creerListes(List<Element> childrens, int cpt) {
+        List<Map> list = new ArrayList<Map>();
+        for(int i=0; i<cpt;i++){
+            list.add(toJson(childrens.get(i)));
+        }
+        
+        return list;
+        
+    }
+
+    private int cptEquals(List<Element> childrens) {
+        int cpt = 0;
+        Element children = childrens.get(0);
+        for(int i=1;i<childrens.size();i++)
+            if(children.getName().equals(childrens.get(i).getName()))
+                cpt++;
+        return cpt;
+    }
+
     public boolean addChild(Element e){
         return !(e.getChildren().isEmpty());
     }

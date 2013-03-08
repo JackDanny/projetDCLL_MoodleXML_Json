@@ -1,1 +1,1 @@
-{"quiz":{"question":{"type":"truefalse","answer":{"fraction":"0","text":"false","feedback":{"text":"Ooops!"}}}}}
+{"quiz":{"question":{"type":"truefalse","answer":[{"fraction":"100","text":"true","feedback":{"text":"Correct!"}},{"fraction":"0","text":"false","feedback":{"text":"Ooops!"}}]}}}
