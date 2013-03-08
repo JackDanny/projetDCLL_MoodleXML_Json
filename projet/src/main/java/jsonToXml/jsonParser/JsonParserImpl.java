@@ -18,8 +18,9 @@ public class JsonParserImpl implements JsonParser {
 		
 		 JsonParserImpl i = new JsonParserImpl();
 		
-		 i.lecture();
-		 
+		// i.lecture();
+		 //i.parser("src/test/resources/user.json");
+		 i.parser(args[0]);
 		 
 	}
 	
@@ -30,7 +31,7 @@ public class JsonParserImpl implements JsonParser {
 
 		
 		try {
-			reader = new FileReader("src/test/resources/user.json");
+			reader = new FileReader("src/test/resources/jsonMoodle.json");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +77,33 @@ public class JsonParserImpl implements JsonParser {
 
 	public JSONArray parser(String filename) {
 		// TODO Auto-generated method stub
-		return null;
+		Reader reader= null;
+		JSONObject o = null;
+		JSONArray i = null;
+		JSONObject o2 = null;
+		
+		try {
+			reader = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
+		
+		JSONTokener jsonT = new JSONTokener(reader);
+		try {
+			o = new JSONObject(jsonT);
+			o = o.getJSONObject("menu");
+			o = o.getJSONObject("popup");
+			i = o.getJSONArray("menuitem");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			
+			
+		e.printStackTrace();
+		}
+		
+		//System.out.println(i);
+		return i;
 	}
 	
 }
