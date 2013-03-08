@@ -1,8 +1,5 @@
 package xmlToJson.traducteurJson;
 
-import java.util.ArrayList;
-
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
 
@@ -15,46 +12,73 @@ public class JsonGen {
 	public JsonGen (){		
 	}
 	
+
 	
-	/**
-	 * @param oJson : l'objet, nomBalise : ex : menu 
-	 * la méthode baliseSimple : 
-	 *    exemple : <menu> </menu>  ---> {"menu": {}}     
-	 *    
-	 */
+	public JSONObject simpleElement (JSONObject oJson, String nomBalise, String valeurBalise) throws Exception{
+		/*
+		 * cette méthode permet de créer un element simple c'est à dire : 
+		 * <nomBalise>valeurBalise</nomBalise>  --> {"nomBalise": "valeurBalise"}		 
+		 */
+		oJson.put(nomBalise,valeurBalise);
+		return null;	
+	}	
 	
-	public JSONObject baliseSimple (JSONObject oJson, String nomBalise) throws Exception{
-		
-		JSONObject balise = new JSONObject();
-		oJson.put(nomBalise, balise);
+	
+	public JSONObject baliseObjet (JSONObject oJson, JSONObject object, String nomObject) throws Exception{
+		/*
+		 * cette méthode permet de créer un object c'est à dire : 
+		 * 
+		 *  <menu>										{"menu":
+		 * 		<attribut2>valeur2</attribut2>    --->         {"attribut2": "valeur2"}   
+		 *	</menu>                      				}
+	     *
+		 */
+		oJson.put(nomObject,object);
 		return null;	
 	}
 	
+
 	
 	
-	/**
-	 * @param oJson : l'objet ,  ArrayList<ArrayList<String>> : liste de liste : une liste d'attributs
-	 * dans la liste1nivea : c'est un attribut qui est une liste tel que : element 1 : nom de l'attribut, 
-	 * 																	   element 2 : valeur de l'attribut
-	 * [[attribut1, valeurAttribut1],[attribut2, valeurAttribut2], .........]
-	 *   
-	 *    
-	 */
 	
-	public JSONObject attribute(JSONObject oJson, ArrayList<ArrayList<String>> listAttributs){
+	public JSONObject VecteurElementSimple (JSONObject oJson, String NomVecteur, String nomElement){
 		
-		for(int i=0; i<listAttributs.size(); i++){
-			oJson.put(listAttributs.get(i).get(0),listAttributs.get(i).get(1));
-		}
+		/*
+		 * cette méthode permet de créer un vecteur contenant des élements simple c'est à dire : 
+		 * 
+		 *   <NomVecteur>nomElement1</vecteur>                     {"NomVecteur":   [    
+	     *   <NomVecteur>nomElement2</vecteur>            -->   		 "nomElement1", "nomElement2" 
+    	 *			    										                ]	
+    	 *	   													   }
+		 */		
+		
+		oJson.accumulate(NomVecteur,nomElement);				
+		
+		return oJson;		
+	}
+	
+	
+	
+	
+	public JSONObject VecteurListElement (JSONObject oJson, String NomVecteur, JSONObject object){		
+		
+		/*
+		 * Cette méthode permet de créer un vecteur contenant une liste d'élements Objects c'est à dire :
+		 * 
+		 * <NomVecteur>										{ "NomVecteur" :  [
+				<attribut1>valeur1</attribut1>						{"attribut1": "valeur1"},
+		   </NomVecteur>			               ---->	        {"attribut2": "valeur2"}
+		   <NomVecteur>														]
+		        <attribut2>valeur2</attribut2>               }
+           </NomVecteur>
+           
+		 */
+		
+		oJson.accumulate(NomVecteur,object);				
+		
 		return oJson;		
 	}
 	
 	
-	public JSONObject Vecteur (JSONObject oJson, String NomVecteur, String nomElement){
-		
-		oJson.accumulate(NomVecteur,nomElement);	
-		oJson.accumulate(NomVecteur,nomElement);	
-		
-		return oJson;		
-	}
+	
 }

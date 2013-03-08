@@ -1,7 +1,8 @@
-{"menu": {
-  "name": {"raphael": "FOURQUET"},
-  "num": 100,
-  "balance": 1000.21,
-  "is_vip": true,
-  "nickname": null
-}}
+{
+  "attribut": "valeur",
+  "menu": {"attribut2": "valeur2"},
+  "vecteur2":   [
+    {"attribut2": "valeur2"},
+    {"attribut2": "valeur2"}
+  ]
+}

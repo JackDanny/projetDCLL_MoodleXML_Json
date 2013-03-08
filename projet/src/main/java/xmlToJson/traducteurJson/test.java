@@ -12,28 +12,55 @@ import net.sf.json.JSONObject;
  *
  */
 public class test {
+    
+	/**
+	 * @param args
+	 * @throws JSONException 
+	 */
+	public static void main(String[] args) throws Exception {
+		String pathFile = "src/test/resources/fichier.json";
+		
+		JsonGen j = new JsonGen();    
+		
+    	JSONObject json = new JSONObject();  
+    	
+    	
 
-    /**
-     * @param args
-     * @throws JSONException 
-     */
-    
-    
-    public static void main(String[] args) throws Exception {
-        String pathFile = "src/test/resources/fichier.json";
-        JSONObject json = new JSONObject();             
-        JsonGen j = new JsonGen();
-        j.baliseSimple(json, "menu");
-        ArrayList<ArrayList<String>> listeAttributs= new ArrayList<ArrayList<String>>();
-        ArrayList<String> l = new ArrayList<String>();        
-        l.add("11");
-        l.add("12");
-        listeAttributs.add(l);
-        j.attribute(json, listeAttributs); 
-        System.out.print(json.toString(2));
+    	
+    	
+    	JSONObject menu = new JSONObject();  
+    	
+    	
+        j.simpleElement(json,"attribut","valeur");  
         
-        SaveFileJson save = new SaveFileJson(json.toString(2),pathFile );
-        save.sauvegarde();
+        j.simpleElement(menu,"attribut2","valeur2");        
+        j.baliseObjet(json,menu,"menu");
+        
+        
+        
+
+    	JSONObject vecteur = new JSONObject(); 
+    	j.VecteurElementSimple(vecteur,"vecteur", "nawal");
+    	j.VecteurElementSimple(vecteur,"vecteur", "nawal"); 
+    	
+        j.baliseObjet(json, menu, "menu");           
+      
+        j.VecteurListElement(json, "vecteur2", menu);
+        j.VecteurListElement(json, "vecteur2", menu);
+    
+    
+    	
+    	
+
+    	//j.VecteurListElement(menu, "vecteur", menu);
+    	
+    //	j.baliseObjet(json, vecteur, "menu");
+    	
+    	System.out.print(json.toString(2));
+    	
+    	
+    	SaveFileJson save = new SaveFileJson(json.toString(2),pathFile );
+    	save.sauvegarde();
 
         
     }
