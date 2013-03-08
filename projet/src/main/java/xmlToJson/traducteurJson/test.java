@@ -12,13 +12,11 @@ import net.sf.json.JSONObject;
  *
  */
 public class test {
-
+    
 	/**
 	 * @param args
 	 * @throws JSONException 
 	 */
-	
-	
 	public static void main(String[] args) throws Exception {
 		String pathFile = "src/test/resources/fichier.json";
 		
@@ -64,7 +62,7 @@ public class test {
     	SaveFileJson save = new SaveFileJson(json.toString(2),pathFile );
     	save.sauvegarde();
 
-    	
+        
     }
 
 }

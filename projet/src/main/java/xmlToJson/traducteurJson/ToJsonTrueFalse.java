@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import net.sf.json.JSONObject;
+
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
@@ -28,7 +30,7 @@ public class ToJsonTrueFalse {
         List<Element> childrens = new ArrayList<Element>();
         
         try {
-            fw = new FileWriter("src/test/resources/TrueFalse.json");
+            fw = new FileWriter("src/test/resources/TrueFalse1.json");
             output = new BufferedWriter(fw);
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -154,7 +156,7 @@ public class ToJsonTrueFalse {
                         }
                     }
                 }
-                else{//TODOSeulement attribut ou texte pas les deux ????
+                else{//TODO Seulement attribut ou texte pas les deux ????
                     try {
                         ajoutTab();
                         output.write("\""+fils.getName()+"\""+" : ");
@@ -212,6 +214,43 @@ public class ToJsonTrueFalse {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+    
+    public static void main(String[] args) {
+        List<Element> elems = new ArrayList<Element>();
+        ToJsonTrueFalse tj =new ToJsonTrueFalse();
+        JSONObject oJson = new JSONObject();
+        
+        System.out.println("deb test ToJsonTF");
+        XmlParserImpl xmlparser = new XmlParserImpl();
+        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
+        //System.out.println(elems.size());
+        tj.toJson(elems.get(0));
+//        System.out.println("TEST!!!!!");
+//        JsonGen jg = new JsonGen();
+//        
+//        ArrayList<ArrayList<String>> attributs = new ArrayList<ArrayList<String>>();
+//        ArrayList<String> att = new ArrayList<String>();
+//        att.add("test");
+//        att.add("true");
+//        attributs.add(att);
+//        att.clear();
+//        att.add("test2");
+//        att.add("false");
+//        try {
+//            jg.baliseSimple(oJson, "quiz");
+//            jg.attribute(oJson, attributs);
+//            attributs.clear();
+//            attributs.add(att);
+//            jg.baliseSimple(oJson, "quiz2");
+//            jg.attribute(oJson, attributs);
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        SaveFileJson sfJ = new SaveFileJson(oJson.toString(), "src/test/resources/TrueFalse.json");
+//        sfJ.sauvegarde();
+        System.out.println("fin test ToJsonTF");
     }
 
 }
