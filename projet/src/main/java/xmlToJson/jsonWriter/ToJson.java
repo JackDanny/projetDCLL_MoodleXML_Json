@@ -155,7 +155,7 @@ public class ToJson {
     /**
      * teste si l element courant possede un fils
      * @param e element courant
-     * @return a un fils?
+     * @return boolean a un fils?
      */
     public boolean addChild(Element e){
         return !(e.getChildren().isEmpty());
@@ -164,7 +164,7 @@ public class ToJson {
     /**
      * Teste si l element courant a un attribut
      * @param e element courant
-     * @return a un attribut?
+     * @return boolean a un attribut?
      */
     public boolean addAttributes(Element e){
         return !(e.getAttributes().isEmpty());
