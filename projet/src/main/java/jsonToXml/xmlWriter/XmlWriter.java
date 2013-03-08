@@ -1,5 +1,9 @@
 package jsonToXml.xmlWriter;
 
-public class XmlWriter {
+import org.json.JSONArray;
 
+public interface XmlWriter {
+
+	public void writeXmlToJson(JSONArray tab);
+	
 }
