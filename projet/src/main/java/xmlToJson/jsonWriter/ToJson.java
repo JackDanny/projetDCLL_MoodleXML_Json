@@ -1,5 +1,5 @@
 /**
- * Pacjage de gestion traduction/ecriture enJson.
+ * Package de gestion traduction/ecriture enJson.
  * <p>
  * Utilise principalement la classe { @link org.jdom2.Element }
  */
@@ -18,7 +18,7 @@ import org.jdom2.Element;
 import xmlToJson.xmlparser.XmlParserImpl;
 
 /**
- * Classe pour pouvoir écrire un fichier Json.
+ * Classe pour pouvoir ecrire un fichier Json.
  * @author Raphaël
  *
  */
@@ -38,8 +38,8 @@ public class ToJson {
     private Map balise = new LinkedHashMap();
     
     /**
-     * Traduire en objet Json et écriture dans le fichier.
-     * @param questions Liste des questions du quiz MoodlXML
+     * Traduire en objet Json et ecriture dans le fichier.
+     * @param questions Liste des questions du quiz MoodleXML
      */
     @SuppressWarnings("unchecked")
     public void toJson(List<Element> questions){
@@ -61,7 +61,7 @@ public class ToJson {
         
     }
     /**
-     * Traduire en objet Json et écriture dans le fichier.
+     * Traduire en objet Json et ecriture dans le fichier.
      * @param element traite une element Jdom2
      * @return Map contenant l'arborescence du parametre element traite
      */
