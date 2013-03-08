@@ -1,4 +1,4 @@
-package xmlToJson.traducteurJson;
+package xmlToJson.jsonWriter;
 
 import net.sf.json.JSONObject;
 

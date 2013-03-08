@@ -1,4 +1,4 @@
-package xmlToJson.traducteurJson;
+package xmlToJson.jsonWriter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

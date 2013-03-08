@@ -3,7 +3,7 @@ package testSuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import xmlParser.XmlParserTest;
-import xmlToJson.traducteurJson.JsonGen;
+import xmlToJson.jsonWriter.JsonGen;
 
 public class AllTests {
 
