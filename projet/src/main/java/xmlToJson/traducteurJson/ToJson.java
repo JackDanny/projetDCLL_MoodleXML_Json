@@ -23,9 +23,6 @@ public class ToJson {
     private JsonGen jg = new JsonGen();
     private Map balise = new LinkedHashMap();
     
-    
-    //TODO rajouter le fichier dans lequel on doit écrire la traduction dans un constructeur
-    
     @SuppressWarnings("unchecked")
     public void toJson(List<Element> questions){
         JSONObject oJson = new JSONObject();
@@ -57,7 +54,6 @@ public class ToJson {
         
         if(!attList.isEmpty()){
             for(Attribute att : attList){
-                //output.write("\""+att.getName()+"\""+" : "+"\""+att.getValue()+"\""+"\r\n");
                 courante.put(att.getName(), att.getValue());
             }
         }
