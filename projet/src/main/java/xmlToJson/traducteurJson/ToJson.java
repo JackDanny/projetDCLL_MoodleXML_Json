@@ -73,13 +73,31 @@ public class ToJson {
         //On recupere les fils
         childrens = element.getChildren();
         if(!childrens.isEmpty()){
-            //traiter chaque fils en profondeur TODO gere les [] si nextchildrens identiques
+            //traiter chaque fils en profondeur 
+            //TODO gere les [] si nextchildrens identiques, sinon la hash map vire le précédent
             for(Element children : childrens){
-                courante.put(children.getName(), toJson(children));
+//                if(addChild(children) || addAttributes(children)) {
+                    courante.put(children.getName(), toJson(children));
+//                }
+//                else {
+//                    String text = element.getText();
+//                    if(text!=null){
+//                        courante.put(children.getName(), text);
+//                    }
+//                }
+                    
             }
         }
         return courante;
         
+    }
+    
+    public boolean addChild(Element e){
+        return !(e.getChildren().isEmpty());
+    }
+    
+    public boolean addAttributes(Element e){
+        return !(e.getAttributes().isEmpty());
     }
     
     public static void main(String[] args) {    

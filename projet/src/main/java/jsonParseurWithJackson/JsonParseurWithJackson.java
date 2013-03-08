@@ -2,7 +2,7 @@ package jsonParseurWithJackson;
 
 import java.io.Serializable;
 
-public class JsonParseurWithJackson implements Serializable, Comparable<Oject>> {
+public class JsonParseurWithJackson implements Serializable, Comparable<Object> {
 	
 	private static final long serialVersionUID = 6726511922105682780L;
 	
