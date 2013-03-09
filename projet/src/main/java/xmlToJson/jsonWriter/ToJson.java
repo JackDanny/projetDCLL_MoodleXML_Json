@@ -86,37 +86,41 @@ public class ToJson {
         if(!childrens.isEmpty()){
             //traiter chaque fils en profondeur 
             
-            
-            //***********************************
-            //Gestion des listes, si fils suivant(s) identique(s)
-            //CARE si les fils identiques ne sont pas les premiers fils problème.
-            int cpt = cptEquals(childrens);
-            if(cpt != 0){
-                cpt++;//maj pour compter le fils courant
-                List<Map> l = creerListes(childrens, cpt);
-                courante.put(childrens.get(0).getName(), l);
-            }
-            
-            
-            
             //CARE : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
-            //TODO gere les [] si nextchildrens identiques, sinon la hash map vire le précédent
+            // i : compteur elem courant
+            int i = 0;
+            int cpt = 0;
             for(Element children : childrens){
 
-                //******************************************le if else
-                if(cpt == 0) {//non traité
-                    if(addChild(children) || addAttributes(children)) {
-                        courante.put(children.getName(), toJson(children));
+                if(cpt == 0) {//non traité si deja fait
+                    
+                    //CARE les fils identiques a gerer en Array doivent se suivre.
+                    cpt = cptEquals(childrens, children, i);
+                    if(cpt != 0){
+                      cpt++;//maj pour compter le fils courant
+                      List<Map> l = creerListes(childrens, cpt, i);
+                      courante.put(childrens.get(0).getName(), l);
+                      
                     }
+                    
                     else {
-                        String text = children.getValue();
-                        if(text!=null){
-                            courante.put(children.getName(), text);
+                    
+                    
+                        if (addChild(children) || addAttributes(children)) {
+                            courante.put(children.getName(), toJson(children));
+                        } else {
+                            String text = children.getValue();
+                            if (text != null) {
+                                courante.put(children.getName(), text);
+                            }
                         }
+                    
                     }
+                    
                 }
                 else cpt--;
                     
+                i++;
             }
         }
         return courante;
@@ -126,12 +130,13 @@ public class ToJson {
     /**
      * Cree les listes dans le cas de traduction en Json Array
      * @param childrens Liste des fils de l'element courant
-     * @param cpt compteur nombre de fils identiques
+     * @param cpt Nombre de fils identiques
+     * @param j position premier fils dans liste
      * @return Liste de Map des element jdom2 fils identiques
      */
-    private List<Map> creerListes(List<Element> childrens, int cpt) {
+    public List<Map> creerListes(List<Element> childrens, int cpt, int j) {
         List<Map> list = new ArrayList<Map>();
-        for(int i=0; i<cpt;i++){
+        for(int i=j; i<cpt+j;i++){
             list.add(toJson(childrens.get(i)));
         }
         
@@ -139,16 +144,18 @@ public class ToJson {
         
     }
 
+
     /**
-     * Compte le nombre de fils identiques
-     * @param childrens Liste des fils de l'element courant
-     * @return nombre de fils identiques au premier de la liste childrens
+     * Compare suivants à partir de courant et renvoie le nombre de balises identiques.
+     * @param childrens Liste des fils de l'element
+     * @param courant fils etudie
+     * @param i position de ce fils
+     * @return nombre de fils identiques a courant dans la suite de la liste childrens
      */
-    private int cptEquals(List<Element> childrens) {
+    public int cptEquals(List<Element> childrens, Element courant, int i){
         int cpt = 0;
-        Element children = childrens.get(0);
-        for(int i=1;i<childrens.size();i++)
-            if(children.getName().equals(childrens.get(i).getName()))
+        for(int j=i+1;j<childrens.size();j++)
+            if(courant.getName().equals(childrens.get(j).getName()))
                 cpt++;
         return cpt;
     }
