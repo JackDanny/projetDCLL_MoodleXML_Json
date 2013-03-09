@@ -45,11 +45,9 @@
 
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
-    <!-- Vérifie que la fin des fichiers avec une nouvelle ligne. -->
-    <module name="NewlineAtEndOfFile"/>
+  
 
-    <!-- Checks that property files contain the same keys.         -->
-    <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
+
   
 
     <module name="FileLength">
@@ -120,7 +118,10 @@
         <!--la longueur de la ligne ne doit pas depasser 120 caractéres -->
         <module name="LineLength">
          	<property name="max" value="120"/>
+         	 <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
         </module>
+        
+        <module name="OneStatementPerLine"/>
         
         <!-- permettre jusqu'à 10 paramétre pour une methode ou un constructeur -->
         <module name="ParameterNumber">
