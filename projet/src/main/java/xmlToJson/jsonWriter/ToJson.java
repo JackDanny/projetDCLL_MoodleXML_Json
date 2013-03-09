@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
 import org.jdom2.Attribute;
@@ -90,8 +89,7 @@ public class ToJson {
         //On recupere les fils
         childrens = element.getChildren();
         if (!childrens.isEmpty()) {
-            //traiter chaque fils en profondeur 
-            
+            //traiter chaque fils en profondeur.
             //CARE:Selon code une balise ne peut avoir texte ET(attribut ou sous balise).
             // i : compteur elem courant
             int i = 0;
@@ -99,7 +97,6 @@ public class ToJson {
             for (Element children : childrens) {
 
                 if (cpt == 0) { //non traité si deja fait
-                    
                     //CARE les fils identiques a gerer en Array doivent se suivre.
                     cpt = cptEquals(childrens, children, i);
                     if (cpt != 0) {
@@ -107,10 +104,7 @@ public class ToJson {
                       List<Map> l = creerListes(childrens, cpt, i);
                       courante.put(childrens.get(0).getName(), l);
                     }
-                    
                     else {
-                    
-                    
                         if (addChild(children) || addAttributes(children)) {
                             courante.put(children.getName(), toJson(children));
                         } else {
@@ -119,17 +113,13 @@ public class ToJson {
                                 courante.put(children.getName(), text);
                             }
                         }
-                    
                     }
-                    
                 }
                 else cpt--;
-                    
                 i++;
             }
         }
         return courante;
-        
     }
     
     /**
@@ -144,9 +134,7 @@ public class ToJson {
         for (int i = j; i < cpt + j; i++) {
             list.add(toJson(childrens.get(i)));
         }
-        
         return list;
-        
     }
 
 
@@ -189,16 +177,11 @@ public class ToJson {
      */
     public static void main(String[] args) {    
         List<Element> elems = new ArrayList<Element>();
-        
         System.out.println("deb test ToJson");
         XmlParserImpl xmlparser = new XmlParserImpl();
         elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
-        
         ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
         tj.toJson(elems);
-        
     }
-    
-    
 
 }
