@@ -2,15 +2,7 @@ package jsonToXml.xmlWriter;
 
 import java.io.FileReader;
 import java.io.Reader;
-//import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-import jsonToXml.jsonParser.JsonParserImpl;
 
 import org.jdom2.Content;
 import org.jdom2.Document;
@@ -33,29 +25,36 @@ public class XmlWriterImpl implements XmlWriter{
 
 		for(int i=0; i < tab.length(); ++i ){
 			try{
-				Class[] paramTypes = new Class[1];
-				paramTypes[0]= Object.class;
 				JSONObject quesObj = (JSONObject) tab.get(i);	
-				String type= quesObj.get("type").toString();
-				String className = convertClassName(type);
-				Class c = Class.forName("jsonToXml.xmlWriter.questionClass."+className);		
-				//Class c = Class.forName("jsonToXml.xmlWriter.questionClass."+"Category");
-				java.lang.reflect.Method getXmlContentMethode = c.getMethod("getXmlContent", paramTypes);
-				racine.addContent( (Content) getXmlContentMethode.invoke(c.newInstance(), tab.get(i)) ); 
+				reflexiveXMLBuild(quesObj); 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
 		
 		enregistre("xml-out.xml");//save the xml document object 
+		//TODO nameXmlFileOut
 	}
 
+	private void reflexiveXMLBuild(JSONObject quesObj){
+		Class<Object>[] paramTypes = new Class[1];
+		paramTypes[0]= Object.class;
+		try{
+			String type= quesObj.get("type").toString();
+			String className = convertClassName(type);
+			Class c = Class.forName("jsonToXml.xmlWriter.questionClass."+className);		
+			java.lang.reflect.Method getXmlContentMethode = c.getMethod("getXmlContent", paramTypes);
+			racine.addContent( (Content) getXmlContentMethode.invoke(c.newInstance(), quesObj ));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public static void main(String args[]){
 		XmlWriterImpl i = new XmlWriterImpl();
-		//JSONArray tab = i.t();		
-     	//i.writeXmlToJson(tab, "outXML-file.xml");	
-     	i.test();
+		JSONArray tab = i.t();		
+     	i.writeXmlToJson(tab, "outXML-file.xml");	
+     	//i.test();
      	
 	}
 
@@ -115,7 +114,8 @@ public class XmlWriterImpl implements XmlWriter{
 		JSONObject tbis= null;
 		
 		try {
-			reader = new FileReader("src/test/resources/description_question.json");		
+			reader = new FileReader("src/test/resources/TrueFalse.json");		
+			//reader = new FileReader("src/test/resources/description_question.json");
 			JSONTokener jsonT = new JSONTokener(reader);			
 			o2 = new  JSONObject(jsonT);
 			tbis = o2.getJSONObject("quiz");
@@ -124,6 +124,14 @@ public class XmlWriterImpl implements XmlWriter{
 			e.printStackTrace();
 		}
 		return t2; 
+	}
+
+
+	public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut) {
+		
+		reflexiveXMLBuild(oneQuestion);
+		enregistre("xml-out.xml");//save the xml document object 
+//TODO nameXmlFileOut
 	}
 	
 	

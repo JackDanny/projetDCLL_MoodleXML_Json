@@ -2,9 +2,13 @@ package jsonToXml.xmlWriter.questionClass;
 
 import org.jdom2.Content;
 
-public class Shortanswer extends Question {
+public class Shortanswer extends CommonTags implements Question {
 
-	@Override
+	public Shortanswer(){
+		super("shortanswer");
+	}
+	
+
 	public Content getXmlContent(Object o) {
 		// TODO Auto-generated method stub
 		return null;

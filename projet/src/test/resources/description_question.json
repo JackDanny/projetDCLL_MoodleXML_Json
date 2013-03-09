@@ -2,9 +2,9 @@
 	"quiz" : {
 		"question" : [
 			{
-				"type" : "description",
+				"type" : "truefalse",
 				"name" : {
-					"text" : "Consigne dispositif électronique"
+				"text" : "Consigne dispositif électronique"
 				},
 				"questiontext" : {
 		 			"format" : "moodle_auto_format",
