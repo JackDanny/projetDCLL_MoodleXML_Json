@@ -7,4 +7,6 @@ public interface XmlWriter {
 
 	public void writeXmlToJson(JSONArray tabQuestions, String nameXmlFileOut);
 
+	public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut);
+
 }
