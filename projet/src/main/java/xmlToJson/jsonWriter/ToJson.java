@@ -10,7 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import org.jdom2.Attribute;
 import org.jdom2.Element;
@@ -40,9 +41,10 @@ public class ToJson {
     /**
      * Traduire en objet Json et ecriture dans le fichier.
      * @param questions Liste des questions du quiz MoodleXML
+     * @throws JSONException 
      */
     @SuppressWarnings("unchecked")
-    public void toJson(List<Element> questions){
+    public void toJson(List<Element> questions) throws JSONException{
         JSONObject oJson = new JSONObject();
         
         
@@ -190,7 +192,12 @@ public class ToJson {
         elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
         
         ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
-        tj.toJson(elems);
+        try {
+            tj.toJson(elems);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
     }
     
