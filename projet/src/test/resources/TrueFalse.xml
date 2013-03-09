@@ -1,6 +1,12 @@
 <?xml version="1.0" ?>
 <quiz>
 	<question type="truefalse">
+		<name>
+        	<text>Name of question</text>
+     	</name>
+   	 	<questiontext format="html">
+    		<text>What is the answer to this question?</text>
+    	</questiontext>
 		<answer fraction="100">
 			<text>true</text>
    	 		<feedback><text>Correct!</text></feedback>

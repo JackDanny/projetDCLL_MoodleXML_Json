@@ -81,7 +81,7 @@ public class ToJson {
         attList = element.getAttributes();
         
         if (!attList.isEmpty()) {
-            for(Attribute att : attList){
+            for (Attribute att : attList) {
                 courante.put(att.getName(), att.getValue());
             }
         }
