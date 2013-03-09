@@ -40,20 +40,24 @@ public class ToJson {
     /**
      * Map d'arborescende du doc Json complété au long du traitement.
      */
+    @SuppressWarnings("rawtypes")
     private Map balise = new LinkedHashMap();
     
     /**
      * Traduire en objet Json et ecriture dans le fichier.
      * @param questions Liste des questions du quiz MoodleXML
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void toJson(List<Element> questions) {
         JSONObject oJson = new JSONObject();
         
         
-        //construire l'arborescence map pour chaque question
-        for (Element elem : questions) {
-            balise.put("question", toJson(elem));
+        //construire l'arborescence Map/List
+        if (questions.size() == 1) { //pour une question
+            balise.put(questions.get(0).getName(), toJson(questions.get(0)));
+        } else { //pour plusieurs questions
+            List<Map> l = creerListes(questions, questions.size(), 0);
+            balise.put(questions.get(0).getName(), l);
         }
         
         //Remplir le JSONObject
@@ -81,7 +85,7 @@ public class ToJson {
         attList = element.getAttributes();
         
         if (!attList.isEmpty()) {
-            for(Attribute att : attList){
+            for (Attribute att : attList) {
                 courante.put(att.getName(), att.getValue());
             }
         }
@@ -102,7 +106,7 @@ public class ToJson {
                     if (cpt != 0) {
                       cpt++; //maj pour compter le fils courant
                       List<Map> l = creerListes(childrens, cpt, i);
-                      courante.put(childrens.get(0).getName(), l);
+                      courante.put(childrens.get(i).getName(), l);
                     }
                     else {
                         if (addChild(children) || addAttributes(children)) {

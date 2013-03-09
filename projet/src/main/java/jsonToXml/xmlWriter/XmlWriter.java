@@ -13,7 +13,7 @@ import org.json.JSONObject;
 public interface XmlWriter {
 
 /**
-	 * Write a MOODLE XML file to a {@link JSONArray}.
+     * Write a MOODLE XML file to a {@link JSONArray}.
 	 *
 	 * @param tabQuestions : a {@link JSONArray} of Moodle questions
 	 * <br> the {@link JSONArray} is ordered </br>
@@ -21,7 +21,6 @@ public interface XmlWriter {
 	 *
 	 * */
 	void writeXmlToJson(JSONArray tabQuestions, String nameXmlFileOut);
-
 
 	/**
 	 * Write a MOODLE XML file to a {@link JSONObject}.
