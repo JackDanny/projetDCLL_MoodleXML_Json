@@ -19,7 +19,7 @@ public class JsonParserImpl implements JsonParser {
 		 JsonParserImpl i = new JsonParserImpl();
 		
 		//i.lecture();
-		i.parser("src/test/resources/user.json");
+		i.parser("src/test/resources/TrueFalse.json");
 		//i.parser(args[0]);
 		 
 	}
@@ -92,9 +92,9 @@ public class JsonParserImpl implements JsonParser {
 		JSONTokener jsonT = new JSONTokener(reader);
 		try {
 			o = new JSONObject(jsonT);
-			o = o.getJSONObject("menu");
-			o = o.getJSONObject("popup");
-			i = o.getJSONArray("menuitem");
+			o = o.getJSONObject("quiz");
+			o = o.getJSONObject("question");
+			i = o.getJSONArray("answer");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			
