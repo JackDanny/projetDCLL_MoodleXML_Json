@@ -3,10 +3,10 @@
  */
 package testSuite;
 
+import jsonWriter.JsonGenTest;
+import jsonWriter.ToJsonTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import traducteurJson.JsonGenTest;
-import traducteurJson.ToJsonTest;
 import xmlParser.XmlParserTest;
 
 /**
