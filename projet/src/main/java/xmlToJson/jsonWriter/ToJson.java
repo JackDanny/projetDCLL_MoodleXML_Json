@@ -86,7 +86,7 @@ public class ToJson {
         if(!childrens.isEmpty()){
             //traiter chaque fils en profondeur 
             
-            //CARE : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
+            //CARE  : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
             // i : compteur elem courant
             int i = 0;
             int cpt = 0;
