@@ -10,8 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
 
 import org.jdom2.Attribute;
 import org.jdom2.Element;
@@ -26,10 +26,10 @@ import xmlToJson.xmlparser.XmlParserImpl;
 public class ToJson {
 
     /**
-     * Constructor ToJson
+     * Constructor ToJson.
      * @param pathFile Chemin du fichier en sortie.
      */
-    public ToJson(String pathFile) {
+    public ToJson(final String pathFile) {
         super();
         this.pathFile = pathFile;
     }
@@ -44,7 +44,7 @@ public class ToJson {
      * @throws JSONException 
      */
     @SuppressWarnings("unchecked")
-    public void toJson(List<Element> questions) throws JSONException{
+    public void toJson(List<Element> questions) throws JSONException {
         JSONObject oJson = new JSONObject();
         
         
@@ -69,7 +69,7 @@ public class ToJson {
      * @return Map contenant l'arborescence du parametre element traite
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public Map toJson(Element element){
+    public Map toJson(Element element) {
         List<Attribute> attList = new ArrayList<Attribute>();
         List<Element> childrens = new ArrayList<Element>();
         Map courante = new LinkedHashMap();
@@ -85,24 +85,23 @@ public class ToJson {
         
         //On recupere les fils
         childrens = element.getChildren();
-        if(!childrens.isEmpty()){
+        if (!childrens.isEmpty()) {
             //traiter chaque fils en profondeur 
             
             //CARE  : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
             // i : compteur elem courant
             int i = 0;
             int cpt = 0;
-            for(Element children : childrens){
+            for (Element children : childrens) {
 
-                if(cpt == 0) {//non traité si deja fait
+                if (cpt == 0) { //non traité si deja fait
                     
                     //CARE les fils identiques a gerer en Array doivent se suivre.
                     cpt = cptEquals(childrens, children, i);
-                    if(cpt != 0){
-                      cpt++;//maj pour compter le fils courant
+                    if (cpt != 0) {
+                      cpt++; //maj pour compter le fils courant
                       List<Map> l = creerListes(childrens, cpt, i);
                       courante.put(childrens.get(0).getName(), l);
-                      
                     }
                     
                     else {
@@ -130,7 +129,7 @@ public class ToJson {
     }
     
     /**
-     * Cree les listes dans le cas de traduction en Json Array
+     * Cree les listes dans le cas de traduction en Json Array.
      * @param childrens Liste des fils de l'element courant
      * @param cpt Nombre de fils identiques
      * @param j position premier fils dans liste
@@ -138,7 +137,7 @@ public class ToJson {
      */
     public List<Map> creerListes(List<Element> childrens, int cpt, int j) {
         List<Map> list = new ArrayList<Map>();
-        for(int i=j; i<cpt+j;i++){
+        for (int i = j; i < cpt + j; i++) {
             list.add(toJson(childrens.get(i)));
         }
         
@@ -154,35 +153,35 @@ public class ToJson {
      * @param i position de ce fils
      * @return nombre de fils identiques a courant dans la suite de la liste childrens
      */
-    public int cptEquals(List<Element> childrens, Element courant, int i){
+    public int cptEquals(List<Element> childrens, Element courant, int i) {
         int cpt = 0;
-        for(int j=i+1;j<childrens.size();j++)
-            if(courant.getName().equals(childrens.get(j).getName()))
+        for (int j = i + 1; j < childrens.size(); j++)
+            if (courant.getName().equals(childrens.get(j).getName()))
                 cpt++;
         return cpt;
     }
 
     /**
-     * teste si l element courant possede un fils
+     * teste si l element courant possede un fils.
      * @param e element courant
      * @return boolean a un fils?
      */
-    public boolean addChild(Element e){
+    public boolean addChild(Element e) {
         return !(e.getChildren().isEmpty());
     }
     
     /**
-     * Teste si l element courant a un attribut
+     * Teste si l element courant a un attribut.
      * @param e element courant
      * @return boolean a un attribut?
      */
-    public boolean addAttributes(Element e){
+    public boolean addAttributes(Element e) {
         return !(e.getAttributes().isEmpty());
     }
     
     /**
-     * Main pour test
-     * @param args
+     * Main pour test.
+     * @param args arguments du main
      */
     public static void main(String[] args) {    
         List<Element> elems = new ArrayList<Element>();
@@ -192,16 +191,10 @@ public class ToJson {
         elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
         
         ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
-        try {
-            tj.toJson(elems);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        tj.toJson(elems);
         
     }
     
     
 
 }
-

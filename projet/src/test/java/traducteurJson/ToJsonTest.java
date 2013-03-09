@@ -32,12 +32,7 @@ public class ToJsonTest extends TestCase {
         XmlParserImpl xmlparser = new XmlParserImpl();
         elems = xmlparser.parser("src/test/resources/TrueFalse.xml");    
         ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
-        try {
-            tj.toJson(elems);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        tj.toJson(elems);
         assertTrue(true);
         //TODO remplacer par comparaison de deux fichiers, resultat et TrueFalseCmp.json
     }
