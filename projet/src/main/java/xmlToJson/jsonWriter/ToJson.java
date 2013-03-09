@@ -34,23 +34,27 @@ public class ToJson {
         this.pathFile = pathFile;
     }
 
+    /**
+     * Chemin fichier en sortie.
+     */
     private String pathFile;
-    private JsonGen jg = new JsonGen();
+    /**
+     * Map d'arborescende du doc Json complété au long du traitement.
+     */
     private Map balise = new LinkedHashMap();
     
     /**
      * Traduire en objet Json et ecriture dans le fichier.
      * @param questions Liste des questions du quiz MoodleXML
-     * @throws JSONException 
      */
     @SuppressWarnings("unchecked")
-    public void toJson(List<Element> questions) throws JSONException {
+    public void toJson(List<Element> questions) {
         JSONObject oJson = new JSONObject();
         
         
         //construire l'arborescence map pour chaque question
-        for(Element elem : questions){
-            balise.put("question",toJson(elem));
+        for (Element elem : questions) {
+            balise.put("question", toJson(elem));
         }
         
         //Remplir le JSONObject
@@ -58,7 +62,7 @@ public class ToJson {
         
         
         //ecrire dans le fichier
-        SaveFileJson save = new SaveFileJson(oJson.toString(),pathFile);
+        SaveFileJson save = new SaveFileJson(oJson.toString(), pathFile);
         save.sauvegarde();
         //TODO Re-indempter le fichier.
         
@@ -77,7 +81,7 @@ public class ToJson {
         //recupere les attributs de la question
         attList = element.getAttributes();
         
-        if(!attList.isEmpty()){
+        if (!attList.isEmpty()) {
             for(Attribute att : attList){
                 courante.put(att.getName(), att.getValue());
             }
@@ -88,7 +92,7 @@ public class ToJson {
         if (!childrens.isEmpty()) {
             //traiter chaque fils en profondeur 
             
-            //CARE  : Selon ce code une balise ne peut avoir texte ET (attributs ou sous balises).
+            //CARE:Selon code une balise ne peut avoir texte ET(attribut ou sous balise).
             // i : compteur elem courant
             int i = 0;
             int cpt = 0;
