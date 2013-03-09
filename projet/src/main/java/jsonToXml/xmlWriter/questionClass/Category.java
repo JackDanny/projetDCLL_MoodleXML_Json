@@ -6,12 +6,16 @@ import org.jdom2.Element;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Category extends Question {
-
-	@Override
+public class Category  extends CommonTags implements Question{
+	
+	public Category(){
+		super("category");
+	}
+	
+	
 	public Content getXmlContent(Object o) {
 		JSONObject jo = (JSONObject) o;
-		Element ques = beginQuestion("category");
+		Element ques = getCommonTags();
 
 		try {
 			final String contJson = ((JSONObject) jo.get("category")).get("text").toString();

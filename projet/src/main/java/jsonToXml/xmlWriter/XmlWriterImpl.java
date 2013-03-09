@@ -53,9 +53,9 @@ public class XmlWriterImpl implements XmlWriter{
 	
 	public static void main(String args[]){
 		XmlWriterImpl i = new XmlWriterImpl();
-		//JSONArray tab = i.t();		
-     	//i.writeXmlToJson(tab, "outXML-file.xml");	
-     	i.test();
+		JSONArray tab = i.t();		
+     	i.writeXmlToJson(tab, "outXML-file.xml");	
+     	//i.test();
      	
 	}
 
