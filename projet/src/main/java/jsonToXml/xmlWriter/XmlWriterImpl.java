@@ -2,15 +2,7 @@ package jsonToXml.xmlWriter;
 
 import java.io.FileReader;
 import java.io.Reader;
-//import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-import jsonToXml.jsonParser.JsonParserImpl;
 
 import org.jdom2.Content;
 import org.jdom2.Document;
