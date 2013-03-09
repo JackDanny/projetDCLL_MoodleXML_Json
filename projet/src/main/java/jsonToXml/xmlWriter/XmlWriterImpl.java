@@ -115,7 +115,8 @@ public class XmlWriterImpl implements XmlWriter{
 		JSONObject tbis= null;
 		
 		try {
-			reader = new FileReader("src/test/resources/description_question.json");		
+			reader = new FileReader("src/test/resources/TrueFalse.json");		
+			//reader = new FileReader("src/test/resources/description_question.json");
 			JSONTokener jsonT = new JSONTokener(reader);			
 			o2 = new  JSONObject(jsonT);
 			tbis = o2.getJSONObject("quiz");

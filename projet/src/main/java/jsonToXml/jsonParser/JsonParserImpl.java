@@ -18,9 +18,9 @@ public class JsonParserImpl implements JsonParser {
 		
 		 JsonParserImpl i = new JsonParserImpl();
 		
-		// i.lecture();
-		 //i.parser("src/test/resources/user.json");
-		 i.parser(args[0]);
+		//i.lecture();
+		i.parser("src/test/resources/user.json");
+		//i.parser(args[0]);
 		 
 	}
 	

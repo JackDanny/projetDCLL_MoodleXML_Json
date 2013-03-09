@@ -10,4 +10,14 @@
    	 		<feedback><text>Ooops!</text></feedback>
  		</answer>
  	</question>
+ 	<!-- <question type="questionTest">
+		<answer fraction="100">
+			<text>true</text>
+   	 		<feedback><text>CorrectTest!</text></feedback>
+ 		</answer>
+ 		<answer fraction="0">
+   			<text>false</text>
+   	 		<feedback><text>OoopsTest!</text></feedback>
+ 		</answer>
+ 	</question> -->
 </quiz>
