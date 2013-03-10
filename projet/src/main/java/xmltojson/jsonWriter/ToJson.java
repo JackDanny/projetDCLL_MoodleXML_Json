@@ -44,6 +44,16 @@ public class ToJson {
     private Map balise = new LinkedHashMap();
     
     /**
+     * Realise les appels aux parseurs, méthodes de traduction, ecriture
+     */
+    public void toJson() {
+        List<Element> elems = new ArrayList<Element>();
+        XmlParserImpl xmlparser = new XmlParserImpl();
+        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
+        toJson(elems);
+    }
+    
+    /**
      * Traduire en objet Json et ecriture dans le fichier.
      * @param questions Liste des questions du quiz MoodleXML
      */
