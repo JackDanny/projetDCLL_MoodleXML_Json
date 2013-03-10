@@ -3,7 +3,7 @@
  * <p>
  * Utilise principalement la classe { @link org.jdom2.Element }
  */
-package xmltojson.jsonWriter;
+package xmlToJson.jsonWriter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

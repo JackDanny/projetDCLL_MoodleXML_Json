@@ -1,4 +1,4 @@
-package jsontoxml.jsonParser;
+package jsonToXml.jsonParser;
 
 
 import java.io.FileNotFoundException;
@@ -19,7 +19,7 @@ public class JsonParserImpl implements JsonParser {
 		 JsonParserImpl i = new JsonParserImpl();
 		
 		//i.lecture();
-		i.parser("src/test/resources/TrueFalse.json");
+		i.parser("src/test/resources/USE_TruefalseOne_RSC.json");
 		//i.parser(args[0]);
 		 
 	}
@@ -93,6 +93,7 @@ public class JsonParserImpl implements JsonParser {
 		try {
 			o = new JSONObject(jsonT);
 			o = o.getJSONObject("quiz");
+			// test pour différencier entre une question (type object) de plusieurs question( type array )
 			if(getBoolean(o.optJSONArray("question"))==false){
 				o = o.getJSONObject("question");
 			}

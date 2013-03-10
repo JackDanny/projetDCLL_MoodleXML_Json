@@ -1,4 +1,4 @@
-package jsontoxml.xmlWriter;
+package jsonToXml.xmlWriter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

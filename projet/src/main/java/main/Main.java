@@ -1,6 +1,6 @@
 package main;
 
-import xmltojson.xmlparser.XmlParserImpl;
+import xmlToJson.xmlparser.XmlParserImpl;
 
 /**
  * 
