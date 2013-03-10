@@ -15,7 +15,7 @@ import net.sf.json.JSONObject;
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
-import xmltojson.xmlparser.XmlParserImpl;
+import xmlToJson.xmlparser.XmlParserImpl;
 
 /**
  * Classe pour pouvoir traduire un fichier Json.

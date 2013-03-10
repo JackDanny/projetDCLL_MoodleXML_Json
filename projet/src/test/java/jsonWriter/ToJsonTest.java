@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Element;
-import xmltojson.jsonWriter.ToJson;
-import xmltojson.xmlparser.XmlParserImpl;
+import xmlToJson.jsonWriter.ToJson;
+import xmlToJson.xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
 
 //TODO JAVADOC + Completer les cas de tests

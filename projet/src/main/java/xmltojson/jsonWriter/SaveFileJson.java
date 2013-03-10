@@ -1,4 +1,4 @@
-package xmltojson.jsonWriter;
+package xmlToJson.jsonWriter;
 
 
 import java.io.File;

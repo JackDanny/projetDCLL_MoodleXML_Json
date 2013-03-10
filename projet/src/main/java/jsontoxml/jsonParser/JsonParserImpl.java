@@ -19,8 +19,14 @@ public class JsonParserImpl implements JsonParser {
 		 JsonParserImpl i = new JsonParserImpl();
 		
 		//i.lecture();
-		i.parser("src/test/resources/USE_TruefalseOne_RSC.json");
-		//i.parser(args[0]);
+		
+		 //Test questionnaire Plusieurs question 
+		 i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+		
+		 // Test questionnaire UNE question 
+		 //i.parser("src/test/resources/USE_TruefalseOne_RSC.json");
+		
+		 //i.parser(args[0]);
 		 
 	}
 	
@@ -94,7 +100,7 @@ public class JsonParserImpl implements JsonParser {
 			o = new JSONObject(jsonT);
 			o = o.getJSONObject("quiz");
 			// test pour différencier entre une question (type object) de plusieurs question( type array )
-			if(getBoolean(o.optJSONArray("question"))==false){
+			if(o.optJSONArray("question")==null){
 				o = o.getJSONObject("question");
 			}
 			else{
@@ -112,9 +118,9 @@ public class JsonParserImpl implements JsonParser {
 		return i;
 	}
 
-	private boolean getBoolean(JSONArray optJSONArray) {
+	/*private boolean getBoolean(JSONArray optJSONArray) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 	
 }
