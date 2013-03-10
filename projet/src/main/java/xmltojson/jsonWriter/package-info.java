@@ -3,4 +3,4 @@
  * <p>
  * Utilise principalement la classe { @link org.jdom2.Element }
  */
-package xmlToJson.jsonWriter;
+package xmltojson.jsonWriter;
