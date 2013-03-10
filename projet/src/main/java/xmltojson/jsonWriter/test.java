@@ -1,4 +1,4 @@
-package xmlToJson.jsonWriter;
+package xmltojson.jsonWriter;
 
 
 import java.sql.Struct;

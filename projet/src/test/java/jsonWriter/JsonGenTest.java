@@ -3,7 +3,7 @@
  */
 package jsonWriter;
 
-import xmlToJson.jsonWriter.JsonGen;
+import xmltojson.jsonWriter.JsonGen;
 import junit.framework.TestCase;
 
 /**

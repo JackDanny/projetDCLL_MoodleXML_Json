@@ -3,7 +3,7 @@ package xmlParser;
 import java.util.List;
 import org.jdom2.Element;
 
-import xmlToJson.xmlparser.XmlParserImpl;
+import xmltojson.xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
 
 /**

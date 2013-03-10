@@ -1,4 +1,4 @@
-package jsonToXml.xmlWriter;
+package jsonttoxml.xmlWriter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +14,7 @@ public interface XmlWriter {
 
 /**
      * Write a MOODLE XML file to a {@link JSONArray}.
-	 *
+     *
 	 * @param tabQuestions : a {@link JSONArray} of Moodle questions
 	 * <br> the {@link JSONArray} is ordered </br>
 	 * @param nameXmlFileOut : the name of XML output file
