@@ -1,4 +1,4 @@
-package jsonToXml.xmlWriter;
+package jsontoxml.xmlWriter;
 
 import java.io.FileOutputStream;
 import java.io.FileReader;

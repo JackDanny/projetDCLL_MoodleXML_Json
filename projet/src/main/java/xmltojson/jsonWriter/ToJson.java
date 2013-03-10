@@ -3,7 +3,7 @@
  * <p>
  * Utilise principalement la classe { @link org.jdom2.Element }
  */
-package xmlToJson.jsonWriter;
+package xmltojson.jsonWriter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -15,7 +15,7 @@ import net.sf.json.JSONObject;
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
-import xmlToJson.xmlparser.XmlParserImpl;
+import xmltojson.xmlparser.XmlParserImpl;
 
 /**
  * Classe pour pouvoir traduire un fichier Json.
