@@ -64,7 +64,7 @@ public class ToJsonTest extends TestCase {
         elems = xmlparser.parser("src/test/resources/USE_TrueFalse_RSC.xml");    
         tj.toJson(elems);
         assertTrue(true);
-        //TODO remplacer par comparaison de deux fichiers, resultat et TrueFalseCmp.json
+        //TODO remplacer par comparaison de deux fichiers ? 
     }
     
     /**
