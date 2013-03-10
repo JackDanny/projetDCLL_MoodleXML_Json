@@ -165,7 +165,7 @@ public class ToJson {
     public boolean addChild(Element e) {
         return !(e.getChildren().isEmpty());
     }
-    
+
     /**
      * Teste si l element courant a un attribut.
      * @param e element courant
