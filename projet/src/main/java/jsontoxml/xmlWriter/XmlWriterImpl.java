@@ -17,10 +17,10 @@ import org.json.JSONTokener;
 
 public class XmlWriterImpl implements XmlWriter{
 
-	 static Element racine = new Element("quiz");
+	 private Element racine = new Element("quiz");
 
 	   //On crée un nouveau Document JDOM basé sur la racine que l'on vient de créer
-	   static org.jdom2.Document document = new Document(racine);
+	   private org.jdom2.Document document = new Document(racine);
 
 	public void writeXmlToJson(JSONArray tab,  String nameXmlFileOut) {
 
@@ -92,7 +92,7 @@ public class XmlWriterImpl implements XmlWriter{
 		}
 	}
 	
-	private static void enregistre(String fichier)
+	private void enregistre(String fichier)
 	{
 	   try
 	   {
