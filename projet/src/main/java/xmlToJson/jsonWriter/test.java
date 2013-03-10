@@ -1,9 +1,5 @@
 package xmlToJson.jsonWriter;
 
-
-import java.sql.Struct;
-import java.util.ArrayList;
-
 import net.sf.json.JSONObject;
 
 /**
