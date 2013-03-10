@@ -1,5 +1,6 @@
 package jsonttoxml.xmlWriter;
 
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.Iterator;
@@ -99,8 +100,8 @@ public class XmlWriterImpl implements XmlWriter{
 	      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 	      //Remarquez qu'il suffit simplement de créer une instance de FileOutputStream
 	      //avec en argument le nom du fichier pour effectuer la sérialisation.
-	      //sortie.output(document, new FileOutputStream(fichier));
-	      sortie.output(document, System.out);
+	      sortie.output(document, new FileOutputStream(fichier));
+	//      sortie.output(document, System.out);
 
 	   }
 	   catch (java.io.IOException e){}
@@ -128,10 +129,9 @@ public class XmlWriterImpl implements XmlWriter{
 
 
 	public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut) {
-		
 		reflexiveXMLBuild(oneQuestion);
-		enregistre("xml-out.xml");//save the xml document object 
-//TODO nameXmlFileOut
+		enregistre(nameXmlFileOut);//save the xml document object 
+
 	}
 	
 	
