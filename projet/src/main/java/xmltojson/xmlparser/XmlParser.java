@@ -1,4 +1,4 @@
-package xmltojson.xmlparser;
+package xmlToJson.xmlparser;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package jsontoxml.xmlWriter.questionClass;
+package jsonToXml.xmlWriter.questionClass;
 
 import org.jdom2.Content;
 import org.jdom2.Content.CType;

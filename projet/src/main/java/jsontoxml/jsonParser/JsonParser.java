@@ -1,4 +1,4 @@
-package jsontoxml.jsonParser;
+package jsonToXml.jsonParser;
 
 import org.json.JSONArray;
 
