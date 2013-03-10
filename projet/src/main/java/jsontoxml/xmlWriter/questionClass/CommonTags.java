@@ -1,4 +1,4 @@
-package jsonToXml.xmlWriter.questionClass;
+package jsontoxml.xmlWriter.questionClass;
 
 import java.util.Iterator;
 import java.util.Set;

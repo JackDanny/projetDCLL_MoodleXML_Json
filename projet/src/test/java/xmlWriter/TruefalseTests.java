@@ -3,8 +3,8 @@ package xmlWriter;
 import java.io.FileReader;
 import java.io.Reader;
 
-import jsonToXml.xmlWriter.XmlWriter;
-import jsonToXml.xmlWriter.XmlWriterImpl;
+import jsontoxml.xmlWriter.XmlWriter;
+import jsontoxml.xmlWriter.XmlWriterImpl;
 import junit.framework.TestCase;
 
 import org.json.JSONObject;
