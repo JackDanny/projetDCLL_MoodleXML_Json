@@ -193,12 +193,10 @@ public class ToJson {
      * @param args arguments du main
      */
     public static void main(String[] args) {    
-//        List<Element> elems = new ArrayList<Element>();
-//        System.out.println("deb test ToJson");
-//        XmlParserImpl xmlparser = new XmlParserImpl();
-//        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
-        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
-        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
+//        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+//        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
+        ToJson tj = new ToJson("src/test/resources/USE_exemple_AUTOGEN.json");
+        tj.toJson("src/test/resources/USE_EXEMPLE_RSC.xml");
     }
 
 }

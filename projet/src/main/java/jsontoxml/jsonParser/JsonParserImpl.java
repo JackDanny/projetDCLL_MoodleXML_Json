@@ -19,12 +19,18 @@ public class JsonParserImpl implements JsonParser {
 		 JsonParserImpl i = new JsonParserImpl();
 		
 		//i.lecture();
-		i.parser("src/test/resources/TrueFalse.json");
-		//i.parser(args[0]);
+		
+		 //Test questionnaire Plusieurs question 
+		 i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+		
+		 // Test questionnaire UNE question 
+		 //i.parser("src/test/resources/USE_TruefalseOne_RSC.json");
+		
+		 //i.parser(args[0]);
 		 
 	}
 	
-	public void lecture(){
+	/* public void lecture(){
 		Reader reader= null;
 		JSONObject o = null;
 		JSONArray i = null;
@@ -73,7 +79,7 @@ public class JsonParserImpl implements JsonParser {
 		}
 		
 		
-	}
+	} */
 
 	public JSONArray parser(String filename) {
 		// TODO Auto-generated method stub
@@ -93,7 +99,13 @@ public class JsonParserImpl implements JsonParser {
 		try {
 			o = new JSONObject(jsonT);
 			o = o.getJSONObject("quiz");
-			o = o.getJSONObject("question");
+			// test pour différencier entre une question (type object) de plusieurs question( type array )
+			if(o.optJSONArray("question")==null){
+				o = o.getJSONObject("question");
+			}
+			else{
+				i = o.getJSONArray("question");
+			}
 			i = o.getJSONArray("answer");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -105,5 +117,10 @@ public class JsonParserImpl implements JsonParser {
 		//System.out.println(i);
 		return i;
 	}
+
+	/*private boolean getBoolean(JSONArray optJSONArray) {
+		// TODO Auto-generated method stub
+		return false;
+	}*/
 	
 }
