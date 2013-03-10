@@ -1,8 +1,7 @@
-package jsontoxml.xmlWriter.questionClass;
+package jsontoxml.xmlWriter;
 
 import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 import nomenclature.CommonFields;
 
@@ -11,16 +10,15 @@ import org.jdom2.Content;
 import org.jdom2.Content.CType;
 import org.jdom2.Element;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CommonTags {
+public class GenXML {
 	
 	private Element quest;
 	
-	protected CommonTags(String type){
+	protected GenXML(){
 		quest = new Element("question"); 
-		Attribute att = new Attribute("type", type );		//<question type="category">
-		quest.setAttribute(att);
 	}
 		
 	protected Element getCommonTags(){
@@ -58,14 +56,7 @@ public class CommonTags {
 	}
 	
 	protected void addGeneralfeedback(JSONObject jsonO){
-		try{
-			Element gfElem = new Element("generalfeedback");
-			Element textElem = createSimpleTags(jsonO, "text");
-			gfElem.addContent(textElem);
-			quest.addContent(gfElem);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	    addComplexTags(jsonO,"generalfeedback" );
 	}
 
    protected void addComplexTags(JSONObject jsonO, String name){
@@ -113,7 +104,15 @@ public class CommonTags {
 			quest.addContent(createSimpleTags(jsonO,imageCode));
 	}
 	
+	protected void addCotegory(JSONObject jsonO) {
+	            Element catElem = new Element("category");
+	            Element textElem  = createSimpleTags(jsonO, "text");
+	            catElem.addContent(textElem);
+	            quest.addContent(catElem);
+	   }
+	        
 
+	
     private void addAnswer(JSONArray answerA){
         try{
             for(int i=0; i<answerA.length() ;++i){/*for 2 answers*/
@@ -139,31 +138,31 @@ public class CommonTags {
     protected void addElments(JSONObject jsonO){
         Iterator<String> it = jsonO.keys();
         CommonFields  commonFields = new CommonFields(); 
-        int cpt = 0;
         String currentField;
-        Class<?>[] paramTypes = new Class[1];
-        paramTypes[0]= JSONObject.class;
         try{
             while(it.hasNext()){
                 currentField = it.next();
-                if( commonFields.contains(currentField)){
-                    if(currentField.equals("name")){
-                        addName( ((JSONObject) jsonO.get("name")) );
-                    }else if(currentField.equals("questiontext")){
-                        addQuestiontext((JSONObject) jsonO.get("questiontext"));
-                    }else if((currentField.equals("image"))){
-                        addImage(jsonO,"image");
-                    }else if((currentField.equals("image_base64"))){
-                        addImage(jsonO,"image_base64");
-                    }else if((currentField.equals("penalty"))){
-                        addPenalty(jsonO) ;
-                    }else if((currentField.equals("generalfeedback"))){
-                        addGeneralfeedback((JSONObject) jsonO.get("generalfeedback")) ;
-                    }else if((currentField.equals("defaultgrade"))){
-                        addDefaultgrade(jsonO);
-                    }else if((currentField.equals("hidden"))){
-                        addHidden(jsonO);
-                    }
+                if(currentField.equals("name")){
+                    Attribute att = new Attribute("type", jsonO.getString("type") );       //<question type="category">
+                    quest.setAttribute(att);
+                }else if(currentField.equals("category")){
+                    addCotegory( ((JSONObject) jsonO.get("category")) );
+                }else if(currentField.equals("name")){
+                    addName( ((JSONObject) jsonO.get("name")) );
+                }else if(currentField.equals("questiontext")){
+                    addQuestiontext((JSONObject) jsonO.get("questiontext"));
+                }else if((currentField.equals("image"))){
+                    addImage(jsonO,"image");
+                }else if((currentField.equals("image_base64"))){
+                    addImage(jsonO,"image_base64");
+                }else if((currentField.equals("penalty"))){
+                    addPenalty(jsonO) ;
+                }else if((currentField.equals("generalfeedback"))){
+                    addGeneralfeedback((JSONObject) jsonO.get("generalfeedback")) ;
+                }else if((currentField.equals("defaultgrade"))){
+                    addDefaultgrade(jsonO);
+                }else if((currentField.equals("hidden"))){
+                    addHidden(jsonO);
                 }else if(currentField.equals("answer")){
                     addAnswer(jsonO.getJSONArray("answer"));/*get the answers*/
                 }else if(currentField.equals("shuffleanswers")){

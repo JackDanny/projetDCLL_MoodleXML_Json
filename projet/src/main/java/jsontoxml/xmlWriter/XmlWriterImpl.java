@@ -1,19 +1,12 @@
 package jsontoxml.xmlWriter;
 
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.Reader;
-import java.util.Iterator;
-
-import org.jdom2.Content;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 public class XmlWriterImpl implements XmlWriter{
 
@@ -23,7 +16,6 @@ public class XmlWriterImpl implements XmlWriter{
 	   private org.jdom2.Document document = new Document(racine);
 
 	public void writeXmlToJson(JSONArray tab,  String nameXmlFileOut) {
-
 		for(int i=0; i < tab.length(); ++i ){
 			try{
 				JSONObject quesObj = (JSONObject) tab.get(i);	
@@ -32,14 +24,14 @@ public class XmlWriterImpl implements XmlWriter{
 				e.printStackTrace();
 			}
 		}
-		
 		enregistre("xml-out.xml");//save the xml document object 
 		//TODO nameXmlFileOut
 	}
 
 	private void buildXML(JSONObject quesObj){
-	    
-	    
+	    GenXML generator = new GenXML();
+	    generator.addElments(quesObj);
+	    racine.addContent( generator.getCommonTags());
 	}
 	
 	private void enregistre(String fichier)
@@ -48,8 +40,6 @@ public class XmlWriterImpl implements XmlWriter{
 	   {
 	      //On utilise ici un affichage classique avec getPrettyFormat()
 	      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-	      //Remarquez qu'il suffit simplement de créer une instance de FileOutputStream
-	      //avec en argument le nom du fichier pour effectuer la sérialisation.
 	      sortie.output(document, new FileOutputStream(fichier));
 	//      sortie.output(document, System.out);
 
@@ -57,17 +47,11 @@ public class XmlWriterImpl implements XmlWriter{
 	   catch (java.io.IOException e){}
 	}
 	
-	
-
-
-
 	public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut) {
 		buildXML(oneQuestion);
 		enregistre(nameXmlFileOut);//save the xml document object 
 
 	}
-	
-	
  
 
 }
