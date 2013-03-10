@@ -196,7 +196,7 @@ public class ToJson {
 //        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
 //        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
         ToJson tj = new ToJson("src/test/resources/USE_exemple_AUTOGEN.json");
-        tj.toJson("src/test/resources/TEST_EXEMPLE_RSC.xml");
+        tj.toJson("src/test/resources/USE_EXEMPLE_RSC.xml");
     }
 
 }
