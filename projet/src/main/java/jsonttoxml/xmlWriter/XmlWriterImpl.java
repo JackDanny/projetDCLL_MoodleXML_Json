@@ -42,7 +42,7 @@ public class XmlWriterImpl implements XmlWriter{
 		try{
 			String type= quesObj.get("type").toString();
 			String className = convertClassName(type);
-			Class c = Class.forName("jsonToXml.xmlWriter.questionClass."+className);		
+			Class c = Class.forName("jsontoxml.xmlWriter.questionClass."+className);		
 			java.lang.reflect.Method getXmlContentMethode = c.getMethod("getXmlContent", paramTypes);
 			racine.addContent( (Content) getXmlContentMethode.invoke(c.newInstance(), quesObj ));
 		}catch(Exception e){
