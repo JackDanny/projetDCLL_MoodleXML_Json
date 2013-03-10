@@ -45,11 +45,12 @@ public class ToJson {
     
     /**
      * Realise les appels aux parseurs, méthodes de traduction, ecriture
+     * @param inPathFile Chemin fichier entrée
      */
-    public void toJson() {
+    public void toJson(String inPathFile) {
         List<Element> elems = new ArrayList<Element>();
         XmlParserImpl xmlparser = new XmlParserImpl();
-        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
+        elems = xmlparser.parser(inPathFile);
         toJson(elems);
     }
     
@@ -191,12 +192,12 @@ public class ToJson {
      * @param args arguments du main
      */
     public static void main(String[] args) {    
-        List<Element> elems = new ArrayList<Element>();
-        System.out.println("deb test ToJson");
-        XmlParserImpl xmlparser = new XmlParserImpl();
-        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
+//        List<Element> elems = new ArrayList<Element>();
+//        System.out.println("deb test ToJson");
+//        XmlParserImpl xmlparser = new XmlParserImpl();
+//        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
         ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
-        tj.toJson(elems);
+        tj.toJson("src/test/resources/TrueFalse.xml");
     }
 
 }
