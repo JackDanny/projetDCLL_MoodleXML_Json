@@ -76,7 +76,7 @@ public class ToJson {
         
         
         //ecrire dans le fichier
-        SaveFileJson save = new SaveFileJson(oJson.toString(), pathFile);
+        SaveFileJson save = new SaveFileJson(oJson.toString(1), pathFile);
         save.sauvegarde();
         //TODO Re-indempter le fichier.
         //save.indempter();

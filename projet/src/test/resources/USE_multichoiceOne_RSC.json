@@ -36,7 +36,13 @@
 		 		],
 		 		"shuffleanswers" : "1",
 		 		"single" : "true",
-		 		"answernumbering" : "abc"
+		 		"answernumbering" : "abc",
+		 		"correctfeedback" : {
+					"text" : "texte correctfeedback"
+				},
+				"partiallycorrectfeedback" : {
+					"text" : null
+				}
 			}
 	} 
 }
