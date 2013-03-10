@@ -3,10 +3,10 @@
  */
 package testSuite;
 
+import jsonWriter.JsonGenTest;
+import jsonWriter.ToJsonTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import traducteurJson.JsonGenTest;
-import traducteurJson.ToJsonTest;
 import xmlParser.XmlParserTest;
 
 /**
@@ -27,7 +27,7 @@ public class AllTests {
 		suite.addTest(new TestSuite(XmlParserTest.class));
 		suite.addTest(new TestSuite(JsonGenTest.class));
 		suite.addTest(new TestSuite(ToJsonTest.class));
-		
+		suite.addTest(new xmlWriter.AllTests().suite());
 		//$JUnit-END$
 		return suite;
 	}
