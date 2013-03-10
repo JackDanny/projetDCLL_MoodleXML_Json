@@ -197,13 +197,8 @@ public class ToJson {
 //        System.out.println("deb test ToJson");
 //        XmlParserImpl xmlparser = new XmlParserImpl();
 //        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
-//<<<<<<< HEAD
-//        ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
-//        tj.toJson("src/test/resources/TrueFalse.xml");
-//=======
-//        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
-//        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
-//>>>>>>> cf478dd681a6905ee6977b9dbb7f9cb5549d3fc2
+        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
     }
 
 }

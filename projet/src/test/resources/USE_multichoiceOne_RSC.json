@@ -34,14 +34,9 @@
 		 		  }
 		 		  
 		 		],
-		 		shuffleanswers
+		 		"shuffleanswers" : "1",
+		 		"single" : "true",
+		 		"answernumbering" : "abc"
 			}
 	} 
 }
-
-
- <shuffleanswers>1</shuffleanswers>
- <single>true</single>
- <answernumbering>abc</answernumbering>
- 
- }

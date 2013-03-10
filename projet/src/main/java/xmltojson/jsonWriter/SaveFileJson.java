@@ -50,7 +50,7 @@ public class SaveFileJson {
 	    FileWriter fw;
         try {
             fr = new FileReader(file);
-            fw = new FileWriter(file);
+            fw = new FileWriter(file, true);
             int c = fr.read();
             while (c != -1) {
                 indLvl = traitementCar((char)c, indLvl, fw);
@@ -91,11 +91,9 @@ public class SaveFileJson {
         if ( (car == '{') || (car == '[') ) {
             try {
                 fw.write("\n");
-                fw.flush();
                 indLvl++;
                 for (int i = 0; i < indLvl; i++) {
                     fw.write("\t");
-                    fw.flush();
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -106,11 +104,9 @@ public class SaveFileJson {
         if ( (car == '}') || (car == ']') ) {
             try {
                 fw.write("\n");
-                fw.flush();
                 indLvl--;
                 for (int i = 0; i < indLvl; i++) {
                     fw.write("\t");
-                    fw.flush();
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
