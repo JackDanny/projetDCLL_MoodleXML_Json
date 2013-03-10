@@ -79,6 +79,7 @@ public class ToJson {
         SaveFileJson save = new SaveFileJson(oJson.toString(), pathFile);
         save.sauvegarde();
         //TODO Re-indempter le fichier.
+        //save.indempter();
         
     }
     /**
@@ -196,8 +197,8 @@ public class ToJson {
 //        System.out.println("deb test ToJson");
 //        XmlParserImpl xmlparser = new XmlParserImpl();
 //        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");
-        ToJson tj = new ToJson("src/test/resources/TrueFalse.json");
-        tj.toJson("src/test/resources/TrueFalse.xml");
+        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
     }
 
 }

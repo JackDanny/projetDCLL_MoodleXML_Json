@@ -61,7 +61,7 @@ public class ToJsonTest extends TestCase {
     public void testTraductionJson1() {
         List<Element> elems = new ArrayList<Element>();
         XmlParserImpl xmlparser = new XmlParserImpl();
-        elems = xmlparser.parser("src/test/resources/TrueFalse.xml");    
+        elems = xmlparser.parser("src/test/resources/USE_TrueFalse_RSC.xml");    
         tj.toJson(elems);
         assertTrue(true);
         //TODO remplacer par comparaison de deux fichiers, resultat et TrueFalseCmp.json
