@@ -40,7 +40,7 @@ public class ToJson {
     /**
      * Map d'arborescende du doc Json complété au long du traitement.
      */
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes" })
     private Map balise = new LinkedHashMap();
     
     /**
@@ -133,6 +133,7 @@ public class ToJson {
      * @param j position premier fils dans liste
      * @return Liste de Map des element jdom2 fils identiques
      */
+    @SuppressWarnings("rawtypes")
     public List<Map> creerListes(List<Element> childrens, int cpt, int j) {
         List<Map> list = new ArrayList<Map>();
         for (int i = j; i < cpt + j; i++) {
