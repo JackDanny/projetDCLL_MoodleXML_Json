@@ -23,6 +23,12 @@
 		 <shuffleanswers>1</shuffleanswers>
 		 <single>true</single>
 		 <answernumbering>abc</answernumbering>
+		 <correctfeedback>
+      		<text>texte correctfeedback</text>
+    	</correctfeedback>
+    	<partiallycorrectfeedback>
+      		<text />
+    	</partiallycorrectfeedback>
 	</question>
 </quiz>
 

@@ -67,7 +67,18 @@ public class CommonTags {
 			e.printStackTrace();
 		}
 	}
-	
+
+   protected void addComplexTags(JSONObject jsonO, String name){
+        try{
+            Element gfElem = new Element(name);
+            Element textElem = createSimpleTags(jsonO, "text");
+            gfElem.addContent(textElem);
+            quest.addContent(gfElem);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 	protected void addDefaultgrade(JSONObject jsonO){
 		quest.addContent(createSimpleTags(jsonO, "defaultgrade"));
 	}
@@ -105,7 +116,7 @@ public class CommonTags {
 
     private void addAnswer(JSONArray answerA){
         try{
-            for(int i=0; i<2 ;++i){/*for 2 answers*/
+            for(int i=0; i<answerA.length() ;++i){/*for 2 answers*/
                 Element answer1 = new Element("answer");/*create answer Jdom element*/
                 JSONObject answerO = answerA.getJSONObject(i);/*get the iéme JSON oject*/
                 JSONObject fbO = answerO.getJSONObject("feedback");/*get the feedback object*/
@@ -157,6 +168,12 @@ public class CommonTags {
                     addAnswer(jsonO.getJSONArray("answer"));/*get the answers*/
                 }else if(currentField.equals("shuffleanswers")){
                     addElementToRoot( createSimpleTags(jsonO, "shuffleanswers"));
+                }else if(currentField.equals("single")){
+                    addElementToRoot( createSimpleTags(jsonO, "single"));
+                }else if(currentField.equals("answernumbering")){
+                    addElementToRoot( createSimpleTags(jsonO, "answernumbering"));
+                }else if( currentField.equals("correctfeedback") || currentField.equals("partiallycorrectfeedback") || currentField.equals("incorrectfeedback")){  
+                    addComplexTags((JSONObject) jsonO.get(currentField),currentField) ;
                 }
             }
         }catch(Exception e){

@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class Multichoice extends CommonTags implements Question {
 
-    protected Multichoice() {
+    public Multichoice() {
         super("multichoice");
     }
 
@@ -13,7 +13,7 @@ public class Multichoice extends CommonTags implements Question {
         JSONObject jo = (JSONObject) o;
         addElments(jo);
         
-        return null;
+        return getCommonTags();
     }
 
 }
