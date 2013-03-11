@@ -1,0 +1,22 @@
+{
+	"quiz" : {
+		"question" : {
+			
+				"type" : "matching",
+				"subquestion" : [ 
+					{
+	    				"text" : "This is the 1st item in the 1st pair.",
+				    	"answer" : {
+	         				"text" : "This is the 2nd item in the 1st pair."
+	     				}
+					},{
+	     				"text" : "This is the 1st item in the 2nd pair.",
+	     				"answer" : {
+	         				"text" : "This is the 2nd item in the 2nd pair."
+	     				}
+					}
+				],
+		 		"shuffleanswers" : "1",
+			}
+	} 
+}

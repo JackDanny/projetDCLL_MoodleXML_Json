@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+	<question type="matching">
+	 <subquestion>
+	     <text>This is the 1st item in the 1st pair.</text>
+	     <answer>
+	         <text>This is the 2nd item in the 1st pair.</text>
+	     </answer>
+	 </subquestion>
+	 <subquestion>
+	     <text>This is the 1st item in the 2nd pair.</text>
+	     <answer>
+	         <text>This is the 2nd item in the 2nd pair.</text>
+	     </answer>
+	 </subquestion>
+	 <shuffleanswers>true</shuffleanswers>
+	</question>
+</quiz>
+
