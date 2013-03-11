@@ -149,9 +149,11 @@ public class GenXML {
         try{
             while(it.hasNext()){
                 currentField = it.next();
-                if(currentField.equals("name")){
+                if(currentField.equals("type")){
                     Attribute att = new Attribute("type", jsonO.getString("type") );       //<question type="category">
                     quest.setAttribute(att);
+                }if(currentField.equals("name")){
+                    addComplexTags((JSONObject) jsonO.get(currentField),currentField) ;
                 }else if(currentField.equals("questiontext")){
                     addQuestiontext( jsonO.getJSONObject("questiontext"));
                 }else if(currentField.equals("answer")){

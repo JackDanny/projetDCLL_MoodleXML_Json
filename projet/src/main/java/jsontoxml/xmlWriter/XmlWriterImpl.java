@@ -13,9 +13,15 @@ public class XmlWriterImpl implements XmlWriter{
 
 	 private Element racine = new Element("quiz");
 
-	   //On crée un nouveau Document JDOM basé sur la racine que l'on vient de créer
-	   private org.jdom2.Document document = new Document(racine);
+	 private org.jdom2.Document document = new Document(racine);
 
+	 
+	 public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut) {
+	        buildXML(oneQuestion);
+	        enregistre(nameXmlFileOut);//save the xml document object 
+	  }
+	 	   
+	 
 	public void writeXmlToJson(JSONArray tab,  String nameXmlFileOut) {
 		for(int i=0; i < tab.length(); ++i ){
 			try{
@@ -25,16 +31,9 @@ public class XmlWriterImpl implements XmlWriter{
 				e.printStackTrace();
 			}
 		}
-		enregistre("xml-out.xml");//save the xml document object 
-		//TODO nameXmlFileOut
+		enregistre(nameXmlFileOut);//save the xml document object 
 	}
 
-
-	private String convertClassName(String type) {
-		char [] tab = type.toCharArray();
-		tab[0] = type.toUpperCase().toCharArray()[0];
-		return new String(tab);
-	}
 
 	private void buildXML(JSONObject quesObj){
 	    GenXML generator = new GenXML();
@@ -46,7 +45,6 @@ public class XmlWriterImpl implements XmlWriter{
 	{
 	   try
 	   {
-	      //On utilise ici un affichage classique avec getPrettyFormat()
 	      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 	      sortie.output(document, new FileOutputStream(fichier));
 	//      sortie.output(document, System.out);
@@ -55,12 +53,6 @@ public class XmlWriterImpl implements XmlWriter{
 	   catch (java.io.IOException e){}
 	}
 	
-	public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut) {
-		buildXML(oneQuestion);
-		enregistre(nameXmlFileOut);//save the xml document object 
-
-	}
- 
 
 }
 
