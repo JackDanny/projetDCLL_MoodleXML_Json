@@ -1,0 +1,29 @@
+{"quiz": {"question": {
+ "type": "multichoice",
+ "name": {"text": "Architecture à 3 niveaux ?"},
+ "questiontext":  {
+  "format": "html",
+  "text": "Que désigne une architecture à 3 niveaux ?"
+ },
+ "generalfeedback": {"text": null},
+ "defaultgrade": "1",
+ "penalty": "0.1",
+ "hidden": "0",
+ "shuffleanswers":  [
+  {"1": null},
+  {"true": null}
+ ],
+ "single": "true",
+ "answernumbering": "none",
+ "answer":  [
+    {
+   "fraction": "-100",
+   "text": "\nUne architecture MVC\n        ",
+   "feedback": {"text": "\nUne application  non distribuée peut implémentée MVC.\n          "}
+  },
+    {
+   "fraction": "100",
+   "text": "\nUne architecture N tiers ou N vaut 3\n        "
+  }
+ ]
+}}}
