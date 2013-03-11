@@ -1,61 +1,3 @@
-
-{
-	"quiz":{
-		"question":[{
-			"type":"truefalse",
-			"name":{
-				"text":"Name of question"
-				},
-			"questiontext":{
-				"format":"html",
-				"text":"What is the answer to this question?"
-			},
-			"answer":[
-			{
-				"fraction":"100",
-				"text":"true",
-				"feedback":{
-					"text":"Correct!"
-					}
-				},
-				{
-				"fraction":"0",
-				"text":"false",
-				"feedback":{
-					"text":"Ooops!"
-						}
-					}
-				]
-				},
-				{
-				"type":"truefalse",
-				"name":{
-					"text":"Name of question"
-						},
-				"questiontext":{
-					"format":"html",
-					"text":"What is the answer to this question?"
-							},
-				"answer":[{
-					"fraction":"100",
-					"text":"true",
-					"feedback":{
-						"text":"Correct!"
-								}
-							},
-				{
-					"fraction":"0",
-					"text":"false",
-					"feedback":{
-						"text":"Ooops!"
-							}
-						}
-					]
-				}
-			]
-		}
-	}
-=======
 {"quiz": {"question": [
   {
   "type": "truefalse",
@@ -98,4 +40,3 @@
   ]
  }
 ]}}
-

@@ -193,10 +193,11 @@ public class ToJson {
      * @param args arguments du main
      */
     public static void main(String[] args) {    
-//        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
-//        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
-        ToJson tj = new ToJson("src/test/resources/USE_exemple_AUTOGEN.json");
-        tj.toJson("src/test/resources/USE_EXEMPLE_RSC.xml");
+        ToJson tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
+        
+        ToJson tj2 = new ToJson("src/test/resources/USE_exemple_AUTOGEN.json");
+        tj2.toJson("src/test/resources/USE_EXEMPLE_RSC.xml");
     }
 
 }
