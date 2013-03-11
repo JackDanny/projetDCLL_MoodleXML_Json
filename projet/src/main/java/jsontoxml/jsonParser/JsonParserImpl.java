@@ -20,7 +20,8 @@ public class JsonParserImpl implements JsonParser {
 	public static void main(String[] args) {
 		
 		 JsonParserImpl i = new JsonParserImpl();
-		 i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+		 //i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+		i.parser(args[0]);
 	}
 	
 
@@ -29,7 +30,6 @@ public class JsonParserImpl implements JsonParser {
 		Reader reader= null;
 		JSONObject o = null;
 		JSONArray i = null;
-		JSONObject o2 = null;
 		XmlWriter xmlWriter = new XmlWriterImpl();
 		
 		try {
@@ -61,7 +61,14 @@ public class JsonParserImpl implements JsonParser {
 
 	private String renomFile(String filename) {
 	    // TODO modif filename -> X.json -> X.xml
-	    return "src/test/resources/USE_TruefalseArray_AUTOGEN.xml";
+		
+		
+		//on recupere le nom du fichier sans son extension
+		String nomCourt = filename.substring(0,filename.indexOf('.'));
+		//on rajoute l'extension xml
+		String nomxml=nomCourt+".xml";
+		
+		return nomxml;
 	}
 	
 }
