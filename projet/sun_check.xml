@@ -51,7 +51,7 @@
   
 
     <module name="FileLength">
-      <property name="max" value="1500"/>
+      <property name="max" value="1300"/>
     </module>
 
     <!-- Following interprets the header file as regular expressions. -->

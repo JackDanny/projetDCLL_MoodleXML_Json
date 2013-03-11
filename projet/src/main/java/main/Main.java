@@ -6,8 +6,9 @@ import java.util.List;
 
 import org.jdom2.Element;
 
-import xmltoJson.jsonWriter.ToJson;
-import xmltoJson.xmlparser.XmlParserImpl;
+import xmltojson.jsonWriter.ToJson;
+import xmltojson.xmlparser.XmlParserImpl;
+
 
 public class Main {
 
