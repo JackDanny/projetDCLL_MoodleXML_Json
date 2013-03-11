@@ -1,5 +1,5 @@
 
-package jsonToXml.jsonParser;
+package jsontoxml.jsonParser;
 
 
 import java.io.FileNotFoundException;
