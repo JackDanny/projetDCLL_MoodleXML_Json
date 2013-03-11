@@ -1,4 +1,4 @@
 /**
  * Permet de parser n document XML.
  */
-package xmltojson.xmlparser;
+package xmltoJson.xmlparser;
