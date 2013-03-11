@@ -8,8 +8,8 @@ import xmltoJson.xmlparser.XmlParserImpl;
 
 
 
-import xmlToJson.jsonWriter.ToJson;
-import xmlToJson.xmlparser.XmlParserImpl;
+import xmltoJson.jsonWriter.ToJson;
+import xmltoJson.xmlparser.XmlParserImpl;
 import org.jdom2.Element;
 
 public class Main {
