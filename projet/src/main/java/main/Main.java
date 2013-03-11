@@ -4,15 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import xmltojson.xmlparser.XmlParserImpl;
-
-
-
+import org.jdom2.Element;
 
 import xmltojson.jsonWriter.ToJson;
+import xmltojson.xmlparser.XmlParserImpl;
 
-
-import org.jdom2.Element;
 
 public class Main {
 

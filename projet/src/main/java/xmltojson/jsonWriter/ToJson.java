@@ -233,6 +233,21 @@ public class ToJson {
                 cpt++;
         return cpt > 0;
     }
+    
+    /**
+     * Compare suivants à partir de courant et renvoie le nombre de balises identiques.
+     * @param childrens Liste des fils de l'element
+     * @param courant fils etudie
+     * @param i position de ce fils
+     * @return nombre de fils identiques a courant dans la suite de la liste childrens
+     */
+    public int cptEquals(List<Element> childrens, Element courant, int i) {
+        int cpt = 0;
+        for (int j = i + 1; j < childrens.size(); j++)
+            if (courant.getName().equals(childrens.get(j).getName()))
+                cpt++;
+        return cpt;
+    }
 
     /**
      * Teste si l element courant possede un fils.
