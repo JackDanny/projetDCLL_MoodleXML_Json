@@ -35,7 +35,7 @@ public class Comparateur {
 		ext1=filename1.substring(filename1.lastIndexOf('.'));
 		ext2=filename2.substring(filename2.lastIndexOf('.'));
 		/*si on a affaire à deux fichiers Json*/
-		if(ext1.equals(".json") && ext2.equals(".json")){
+		if( (ext1.equals(".json") || ext1.equals(".JSON")) && (ext2.equals(".json") || ext2.equals(".JSON"))){
 			Reader reader1= null;
 			Reader reader2= null;
 			JSONObject o1 = null;
@@ -62,7 +62,7 @@ public class Comparateur {
 			}
 				
 		}
-		/*else if(ext1.equals(".xml") && ext2.equals(".xml")){
+		else if((ext1.equals(".xml") ||ext1.equals(".XML")) && (ext2.equals(".xml") || ext2.equals(".XML"))){
 			org.jdom2.Document doc1;
 			org.jdom2.Document doc2;
 			
@@ -81,7 +81,7 @@ public class Comparateur {
 			  racine1 = doc1.getRootElement();
 			  racine2 = doc2.getRootElement();
 			
-		}*/
+		}
 		else{
 			System.out.println("cas non pris en compte");
 		}
