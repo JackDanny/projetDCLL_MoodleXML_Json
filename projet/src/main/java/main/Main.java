@@ -4,12 +4,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import xmltoJson.xmlparser.XmlParserImpl;
+import xmltojson.xmlparser.XmlParserImpl;
 
 
 
-import xmltoJson.jsonWriter.ToJson;
-import xmltoJson.xmlparser.XmlParserImpl;
+import xmltojson.jsonWriter.ToJson;
+import xmltojson.xmlparser.XmlParserImpl;
 import org.jdom2.Element;
 
 public class Main {
