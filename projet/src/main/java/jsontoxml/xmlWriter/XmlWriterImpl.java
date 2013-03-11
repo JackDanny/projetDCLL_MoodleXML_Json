@@ -18,41 +18,40 @@ public class XmlWriterImpl implements XmlWriter{
 	 
 	 public void writeXmlToJson(JSONObject oneQuestion, String nameXmlFileOut) {
 	        buildXML(oneQuestion);
-	        enregistre(nameXmlFileOut);//save the xml document object 
+	        enregistre(nameXmlFileOut); //save the xml document object 
 	  }
 	 	   
 	 
 	public void writeXmlToJson(JSONArray tab,  String nameXmlFileOut) {
 		for(int i=0; i < tab.length(); ++i ){
-			try{
+			try {
 				JSONObject quesObj = (JSONObject) tab.get(i);	
 				buildXML(quesObj); 
-			}catch(Exception e){
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		enregistre(nameXmlFileOut);//save the xml document object 
+		enregistre(nameXmlFileOut); //save the xml document object 
 	}
 
 
 	private void buildXML(JSONObject quesObj){
 	    GenXML generator = new GenXML();
 	    generator.addElments(quesObj);
-	    racine.addContent( generator.getCommonTags());
+	    racine.addContent(generator.getCommonTags());
 	}
-	
-	private void enregistre(String fichier)
-	{
-	   try
-	   {
+
+	private void enregistre(String fichier) {
+	   try {
 	      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 	      sortie.output(document, new FileOutputStream(fichier));
 	//      sortie.output(document, System.out);
 
+	   } catch (java.io.IOException e) {
+	       e.printStackTrace();
 	   }
-	   catch (java.io.IOException e){}
 	}
-	
+
 
 }
 
