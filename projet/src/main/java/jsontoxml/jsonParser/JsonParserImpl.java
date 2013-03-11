@@ -67,6 +67,7 @@ public class JsonParserImpl implements JsonParser {
 		//on recupere le nom du fichier sans son extension
 		String nomCourt = filename.substring(0,filename.indexOf('.'));
 		//on rajoute l'extension xml
+		
 		String nomxml=nomCourt+".xml";
 		
 		return nomxml;
