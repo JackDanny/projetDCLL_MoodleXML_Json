@@ -6,7 +6,6 @@ import java.io.Reader;
 
 import jsontoxml.xmlWriter.XmlWriter;
 import jsontoxml.xmlWriter.XmlWriterImpl;
-import main.Main;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
