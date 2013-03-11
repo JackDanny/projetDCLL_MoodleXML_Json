@@ -74,29 +74,31 @@ public class GenXML {
 	
 	
 	private void addComplexTags(JSONObject jsonO, String name) throws JSONException{
-        quest.addContent(createComplexTags(jsonO, name));
+	    addElementToRoot(createComplexTags(jsonO, name));
     }
 
 
    private void addQuestiontext(JSONObject jsonO) throws JSONException{
-			String fomatValue = jsonO.getString("format");
-			Element questionText = new Element("questiontext");
-			Element textquestionText  = createSimpleTags(jsonO, "text");
-			Attribute att = new Attribute("format", fomatValue);
-			questionText.setAttribute(att);
-			questionText.addContent(textquestionText);
-			quest.addContent(questionText);
+       String fomatValue = jsonO.getString("format");
+       Element questionText = new Element("questiontext");
+       Element textquestionText  = createSimpleTags(jsonO, "text");
+       Attribute att = new Attribute("format", fomatValue);
+       questionText.setAttribute(att);
+       questionText.addContent(textquestionText);
+       addElementToRoot(questionText);
 	}
 	
 
-    private void addSubquestion(JSONObject jsonO) throws JSONException {
-        Element complexElem = createComplexTags(jsonO, "subquestion");
-        Element textElem = createSimpleTags(jsonO, "text");
-        complexElem.addContent(textElem);
-        Element answer = createSimpleAnswer(jsonO);
-        complexElem.addContent(answer);
-        quest.addContent(answer);
-    }
+   private void addSubquestion(JSONArray jsonA) throws JSONException {
+       for(int i = 0 ; i < jsonA.length() ; ++i){
+           System.out.println("là");
+           JSONObject jsonO = jsonA.getJSONObject(i);
+           Element complexElem = createComplexTags(jsonO, "subquestion");
+           Element answer = createSimpleAnswer(jsonO.getJSONObject("answer"));
+           complexElem.addContent(answer);
+           addElementToRoot(complexElem);
+       }
+   }
            
     private Element createSimpleAnswer(JSONObject answerO) throws JSONException{
         Element answer1 = new Element("answer");/*create answer Jdom element*/
@@ -153,7 +155,7 @@ public class GenXML {
                     addAnswer(jsonO.getJSONArray("answer"));/*get the answers*/
                  //   addAnswerBis(jsonO);
                 }else if(currentField.equals("subquestion")){
-                    addSubquestion( jsonO.getJSONObject("subquestion") );
+                    addSubquestion( jsonO.getJSONArray("subquestion") );
                 }else if(complexTags.contains(currentField)){
                     addComplexTags((JSONObject) jsonO.get(currentField),currentField) ;         
                 }else if(simpleTags.contains(currentField)){
@@ -165,10 +167,7 @@ public class GenXML {
         }
     }
 
-    private void addAnswerBis(JSONObject jsonO) throws JSONException {
-      JSONArray tab = jsonO.optJSONArray("answer");
-      System.out.println("> " + jsonO.getString("type") + " " + tab!=null);  
-    }
+
 
 
 
