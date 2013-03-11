@@ -1,10 +1,12 @@
 package xmlParser;
 
 import java.util.List;
+
+import junit.framework.TestCase;
+
 import org.jdom2.Element;
 
-import xmltojson.xmlparser.XmlParserImpl;
-import junit.framework.TestCase;
+import xmltoJson.xmlparser.XmlParserImpl;
 
 /**
  * Classe de test Junit du parser xml

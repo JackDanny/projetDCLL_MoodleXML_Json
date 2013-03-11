@@ -6,10 +6,12 @@ package jsonWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jdom2.Element;
-import xmltojson.jsonWriter.ToJson;
-import xmltojson.xmlparser.XmlParserImpl;
 import junit.framework.TestCase;
+
+import org.jdom2.Element;
+
+import xmltoJson.jsonWriter.ToJson;
+import xmltoJson.xmlparser.XmlParserImpl;
 
 //TODO JAVADOC + Completer les cas de tests
 

@@ -3,8 +3,9 @@
  */
 package jsonWriter;
 
-import xmltojson.jsonWriter.JsonGen;
 import junit.framework.TestCase;
+import xmltoJson.jsonWriter.JsonGen;
+
 
 /**
  * Casse de Test JsonGen.
