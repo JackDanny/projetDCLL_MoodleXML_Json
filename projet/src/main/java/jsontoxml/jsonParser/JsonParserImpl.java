@@ -6,11 +6,12 @@ import java.io.Reader;
 
 import jsontoxml.xmlWriter.XmlWriter;
 import jsontoxml.xmlWriter.XmlWriterImpl;
-
+import main.Main;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
 
 
 
@@ -46,11 +47,11 @@ public class JsonParserImpl implements JsonParser {
 			// test pour différencier entre une question (type object) de plusieurs question( type array )
 			if(o.optJSONArray("question")==null){
 				o = o.getJSONObject("question");
-				xmlWriter.writeXmlToJson(o, renomFile(filename));
+				xmlWriter.writeXmlToJson(o, renomeFile(filename));
 			}
 			else{
 				i = o.getJSONArray("question");
-                xmlWriter.writeXmlToJson(i, renomFile(filename));
+                xmlWriter.writeXmlToJson(i, renomeFile(filename));
 			}
 		} catch (JSONException e) {
 		    e.printStackTrace();
@@ -69,6 +70,6 @@ public class JsonParserImpl implements JsonParser {
 		String nomxml=nomCourt+".xml";
 		
 		return nomxml;
-	}
+
 	
 }
