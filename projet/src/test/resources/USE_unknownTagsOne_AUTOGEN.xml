@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question>
+    <AA>
+      <B>X</B>
+    </AA>
+    <BB>
+      <C />
+      <D>
+        <E />
+        <F>
+          <H />
+        </F>
+        <F>
+          <H>L</H>
+        </F>
+      </D>
+      <D>
+        <L>
+          <M />
+        </L>
+        <L>
+          <N>
+            <O>fin</O>
+          </N>
+        </L>
+      </D>
+    </BB>
+  </question>
+</quiz>
