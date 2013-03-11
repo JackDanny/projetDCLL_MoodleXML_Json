@@ -1,5 +1,4 @@
-
-package jsonToXml.jsonParser;
+package jsontoxml.jsonParser;
 
 
 import java.io.FileNotFoundException;
@@ -20,25 +19,23 @@ public class JsonParserImpl implements JsonParser {
 		 JsonParserImpl i = new JsonParserImpl();
 		
 		// i.lecture();
-		 //i.parser("src/test/resources/jsonMoodle.json");
-		
+		 //i.parser("src/test/resources/user.json");
 		 i.parser(args[0]);
 		 
 	}
 	
-	public void lecture(String filename){
+	public void lecture(){
 		Reader reader= null;
 		JSONObject o = null;
 		JSONArray i = null;
 
 		
-		//try {
-			//reader = new FileReader("src/test/resources/jsonMoodle.json");
-			 
-		//} catch (FileNotFoundException e) {
+		try {
+			reader = new FileReader("src/test/resources/jsonMoodle.json");
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}				
+			e.printStackTrace();
+		}				
 		
 		JSONTokener jsonT = new JSONTokener(reader);
 
@@ -77,22 +74,13 @@ public class JsonParserImpl implements JsonParser {
 		
 		
 	}
-	
-	/**
-	 * 
-	 * @author Daniel
-	 * 
-	 * @param filename : le nom du fichier que l'on veut parser
-	 * renvoie un JSONArray contenant tous les noeuds JSON du mot clef "question"
-	 *   
-	 *    
-	 */
 
 	public JSONArray parser(String filename) {
 		// TODO Auto-generated method stub
 		Reader reader= null;
 		JSONObject o = null;
-		JSONArray a = null;
+		JSONArray i = null;
+		JSONObject o2 = null;
 		
 		try {
 			reader = new FileReader(filename);
@@ -104,9 +92,9 @@ public class JsonParserImpl implements JsonParser {
 		JSONTokener jsonT = new JSONTokener(reader);
 		try {
 			o = new JSONObject(jsonT);
-			
-			o = o.getJSONObject("quizz");
-			a = o.getJSONArray("question");
+			o = o.getJSONObject("menu");
+			o = o.getJSONObject("popup");
+			i = o.getJSONArray("menuitem");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			
@@ -114,8 +102,8 @@ public class JsonParserImpl implements JsonParser {
 		e.printStackTrace();
 		}
 		
-		//System.out.println(a);
-		return a;
+		//System.out.println(i);
+		return i;
 	}
 	
 }
