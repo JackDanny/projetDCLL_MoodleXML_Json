@@ -23,7 +23,7 @@ public class Comparateur {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Comparateur cmp=new Comparateur();
-		cmp.compare("src/test/resources/fulltest.xml","src/test/resources/fulltest.xml");
+		cmp.compare("src/test/resources/fulltest.xml","src/test/resources/fulltest-2.xml");
 
 
 	}
@@ -84,52 +84,83 @@ public class Comparateur {
 			  racine1 = doc1.getRootElement();
 			  racine2 = doc2.getRootElement();
 			  
-			  compareDeuxElements(racine1,racine2);
+			  b=compareDeuxElements(racine1,racine2);
 		}
 		else{
 			System.out.println("cas non pris en compte");
 		}
-		
-		
-		
+		//System.out.println(b);
 		return b;
 	}
+	
+	//fonction qui compare deux éléments
 	public boolean compareDeuxElements(Element elem1, Element elem2){
-		boolean b=false;
-		//System.out.println(elem1.get);
+		boolean b=true;
+		
+		
+		
+		
 		if(! elem1.getName().equals(elem2.getName())){
 			
 			return false;
 		}
+		
+		//ici, si elem1 n'a pas de fils, on va comparer les getvalue de elem1 et elem2.
+		//!! si on fait ça pour n'importe quel élément, le moindre saut à la ligne dans le fichier retournera faux
+		//mais en procédant ainsi, on restreint ce problème aux balises n'ayant pas de fils 
+		
+		if(elem1.getChildren().toString().equals("[]")){
+			if(!elem1.getChildren().toString().equals("[]"))
+				return false;
+			if(!elem1.getValue().toString().equals(elem2.getValue().toString())){
+				return false;
+			}
+		}
+		
 		else{
 			
+			//on verifie que tous les attributs sont identiques et dans le même ordre
+			List<Attribute> listeAttributs1 = elem1.getAttributes();
+			List<Attribute> listeAttributs2 = elem2.getAttributes();
+			Iterator<Attribute> ia1 = listeAttributs1.iterator();
+			Iterator<Attribute> ia2 = listeAttributs2.iterator();
 			
-			/*List<Attribute> listeAttributs1 = elem1.getAttributes();
-			List<Attribute> listeAttributs2 = elem2.getAttributes();*/
-			System.out.println(elem1.getChildren());
+			while(ia1.hasNext() && ia2.hasNext()){
+				 Attribute aCourant1 = (Attribute) ia1.next();
+				 Attribute aCourant2 = (Attribute) ia2.next();
+				 if(!aCourant1.toString().equals(aCourant2.toString())){
+					 return false;
+				 }
+				
+			}
+			if(ia1.hasNext()||ia2.hasNext()){
+				return false;
+			}
+			
+			//on vérifie que tous les sous-éléments ont les mêmes noms et sont dans le même ordre
 			List<Element> listEnfant1 = elem1.getChildren();
 			List<Element> listEnfant2 = elem2.getChildren();
 			Iterator<Element> i1 = listEnfant1.iterator();
 			Iterator<Element> i2 = listEnfant2.iterator();
+			
 			
 			while(i1.hasNext() && i2.hasNext()){
 				 Element courant1 = (Element) i1.next();
 				 Element courant2 = (Element) i2.next();
 				 
 				 if(!compareDeuxElements(courant1, courant2)){
-					 System.out.println(b);
+					// System.out.println(b);
 					 return false;
 				 }
 				
 			}
-			b=true;
-			
+			if(i1.hasNext()||i2.hasNext()){
+				return false;
+			}
 			
 			
 		}
 		
-		
-		System.out.println(b);
 		return b;
 	}
 
