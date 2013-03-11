@@ -113,7 +113,7 @@ public class ToJson {
             // i : compteur elem courant
             int i = 0;
             for (Element children : childrens) {
-                if (children.getName().equals("shuffleanswers")) {
+                if (children.getName().equals("answer")) {
                     System.out.println("Debug");
                     // Point arret debug
                 }
@@ -174,7 +174,17 @@ public class ToJson {
             //CARE:Selon code une balise ne peut avoir texte ET(attribut ou sous balise).
             for (Element children : childrens) {
                 //appel au toJson normal
-                courante.put(children.getName(), toJson(children));
+                //courante.put(children.getName(), toJson(children));
+                
+                if (addChild(children) || addAttributes(children)) {
+                    courante.put(children.getName(), toJson(children));
+                } else {
+                    String text = children.getValue();
+                    if (!text.equals("")) {
+                        courante.put(children.getName(), text);
+                    }  else { courante.put(children.getName(), null); }
+                }
+                
             }
         } else {
             String text = element.getValue();

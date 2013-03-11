@@ -168,8 +168,8 @@
   "penalty": "0.1",
   "hidden": "0",
   "shuffleanswers":   [
-   {},
-   {}
+   {"1": null},
+   {"true": null}
   ],
   "single": "true",
   "correctfeedback": {"text": null},
@@ -203,8 +203,8 @@
   "penalty": "0.1",
   "hidden": "0",
   "shuffleanswers":   [
-   {},
-   {}
+   {"1": null},
+   {"true": null}
   ],
   "single": "false",
   "correctfeedback": {"text": "OK"},
