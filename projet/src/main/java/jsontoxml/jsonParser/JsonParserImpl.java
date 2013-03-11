@@ -62,7 +62,8 @@ public class JsonParserImpl implements JsonParser {
 // renomage du fichier .json -> .xml
 	private String renomeFile(String filename) {
 		// TODO Auto-generated method stub
-		return (Main.getFileName(filename)+".xml");
+		//System.out.println(Main.getFileName(filename));
+		return Main.getFileName(filename)+".xml";
 		
 	}
 	

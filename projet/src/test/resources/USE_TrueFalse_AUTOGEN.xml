@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="truefalse">
+    <name>
+      <text>Name of question</text>
+    </name>
+    <questiontext format="html">
+      <text>What is the answer to this question?</text>
+    </questiontext>
+    <answer fraction="100">
+      <text>true</text>
+      <feedback>
+        <text>Correct!</text>
+      </feedback>
+    </answer>
+    <answer fraction="0">
+      <text>false</text>
+      <feedback>
+        <text>Ooops!</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>Name of question</text>
+    </name>
+    <questiontext format="html">
+      <text>What is the answer to this question?</text>
+    </questiontext>
+    <answer fraction="100">
+      <text>true</text>
+      <feedback>
+        <text>Correct!</text>
+      </feedback>
+    </answer>
+    <answer fraction="0">
+      <text>false</text>
+      <feedback>
+        <text>Ooops!</text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>
