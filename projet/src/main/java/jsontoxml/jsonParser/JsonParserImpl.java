@@ -64,7 +64,7 @@ public class JsonParserImpl implements JsonParser {
 		// TODO Auto-generated method stub
 		//System.out.println(Main.getFileName(filename));
 		
-		// getFileName() est une méthode créer dans le MAIN !
+		// getFileName() est une méthode créer dans le MAIN qui récupere le fichhier sans l'extension !
 		return Main.getFileName(filename)+".xml";
 		
 	}
