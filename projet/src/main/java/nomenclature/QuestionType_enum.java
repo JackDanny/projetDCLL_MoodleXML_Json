@@ -29,13 +29,13 @@ public enum QuestionType_enum {
  * */
 category(true), /***/
 calculated(true), /***/
-description(false), /***/
-essay(false),  /***/
-matching(false), /***/
-cloze(false), /***/
-multichoice(false), /***/
-numerical(false), /***/
-shortanswer(false), /***/
+description(true), /***/
+essay(true),  /***/
+matching(true), /***/
+cloze(true), /***/
+multichoice(true), /***/
+numerical(true), /***/
+shortanswer(true), /***/
 truefalse(true); /***/
 
 /**

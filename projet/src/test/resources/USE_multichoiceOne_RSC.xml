@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<quiz>
+	<question type="multichoice">
+	    	<name>
+	      		<text>Consigne dispositif électronique</text>
+	    	</name>
+		    <questiontext format="moodle_auto_format">
+		      <text>Quel est le premier langage Orienté Objet ?</text>
+	    	</questiontext>
+		
+		 <answer fraction="100">
+		     <text>The correct answer</text>
+		    <feedback><text>Correct!</text></feedback>
+		 </answer>
+		 <answer fraction="0">
+		     <text>A distractor</text>
+		    <feedback><text>Ooops!</text></feedback>
+		 </answer>
+		 <answer fraction="0">
+		     <text>Another distractor</text>
+		    <feedback><text>Ooops!</text></feedback>
+		 </answer>
+		 <shuffleanswers>1</shuffleanswers>
+		 <single>true</single>
+		 <answernumbering>abc</answernumbering>
+		 <correctfeedback>
+      		<text>texte correctfeedback</text>
+    	</correctfeedback>
+    	<partiallycorrectfeedback>
+      		<text />
+    	</partiallycorrectfeedback>
+	</question>
+</quiz>
+
