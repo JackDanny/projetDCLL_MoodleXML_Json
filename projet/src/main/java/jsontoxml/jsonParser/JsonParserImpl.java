@@ -63,6 +63,8 @@ public class JsonParserImpl implements JsonParser {
 	private String renomeFile(String filename) {
 		// TODO Auto-generated method stub
 		//System.out.println(Main.getFileName(filename));
+		
+		// getFileName() est une méthode créer dans le MAIN !
 		return Main.getFileName(filename)+".xml";
 		
 	}
