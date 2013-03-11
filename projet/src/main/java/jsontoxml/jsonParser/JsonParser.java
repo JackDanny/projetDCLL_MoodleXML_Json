@@ -9,6 +9,6 @@ public interface JsonParser {
  * 
  * @return a {@link JSONArray} of questions
  * */
-	public JSONArray parser(String filename);
+	public void parser(String filename);
 	
 }

@@ -49,45 +49,36 @@ public class GenXML {
 		quest.addContent(content);
     }
 	
-	private  Element createSimpleTags(JSONObject jsonO, String name){
+	private  Element createSimpleTags(JSONObject jsonO, String name) throws JSONException{
 		Element elemRet=null;
-		try{
-			elemRet = new Element(name);
-			if(!jsonO.isNull(name)){
-				final String text = jsonO.getString(name);
-				Content textCont = new Content(CType.Text) {
-					@Override
-					public String getValue() {
-						return text;
-					}
-				};
-				elemRet.addContent(textCont);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
+		elemRet = new Element(name);
+		if(!jsonO.isNull(name)){
+			final String text = jsonO.getString(name);
+			Content textCont = new Content(CType.Text) {
+				@Override
+				public String getValue() {
+					return text;
+				}
+			};
+			elemRet.addContent(textCont);
 		}
 		return elemRet;
 	}
 
-	private Element createComplexTags(JSONObject jsonO, String name){
+	private Element createComplexTags(JSONObject jsonO, String name) throws JSONException{
         Element gfElem = new Element(name);
-	    try{
-            Element textElem = createSimpleTags(jsonO, "text");
-            gfElem.addContent(textElem);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        Element textElem = createSimpleTags(jsonO, "text");
+        gfElem.addContent(textElem);
 	    return gfElem;
 	}
 	
 	
-	private void addComplexTags(JSONObject jsonO, String name){
+	private void addComplexTags(JSONObject jsonO, String name) throws JSONException{
         quest.addContent(createComplexTags(jsonO, name));
     }
 
 
-   private void addQuestiontext(JSONObject jsonO){
-		try{
+   private void addQuestiontext(JSONObject jsonO) throws JSONException{
 			String fomatValue = jsonO.getString("format");
 			Element questionText = new Element("questiontext");
 			Element textquestionText  = createSimpleTags(jsonO, "text");
@@ -95,15 +86,16 @@ public class GenXML {
 			questionText.setAttribute(att);
 			questionText.addContent(textquestionText);
 			quest.addContent(questionText);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 	
 
-    private void addSubquestion(JSONObject jsonObject) {
-        Element complexElem = createComplexTags(jsonObject, "subquestion");
-        
+    private void addSubquestion(JSONObject jsonO) throws JSONException {
+        Element complexElem = createComplexTags(jsonO, "subquestion");
+        Element textElem = createSimpleTags(jsonO, "text");
+        complexElem.addContent(textElem);
+        Element answer = createSimpleAnswer(jsonO);
+        complexElem.addContent(answer);
+        quest.addContent(answer);
     }
            
     private Element createSimpleAnswer(JSONObject answerO) throws JSONException{
@@ -150,6 +142,7 @@ public class GenXML {
             while(it.hasNext()){
                 currentField = it.next();
                 if(currentField.equals("type")){
+                 //   System.out.println( jsonO.getString("type") );
                     Attribute att = new Attribute("type", jsonO.getString("type") );       //<question type="category">
                     quest.setAttribute(att);
                 }if(currentField.equals("name")){
@@ -158,6 +151,7 @@ public class GenXML {
                     addQuestiontext( jsonO.getJSONObject("questiontext"));
                 }else if(currentField.equals("answer")){
                     addAnswer(jsonO.getJSONArray("answer"));/*get the answers*/
+                 //   addAnswerBis(jsonO);
                 }else if(currentField.equals("subquestion")){
                     addSubquestion( jsonO.getJSONObject("subquestion") );
                 }else if(complexTags.contains(currentField)){
@@ -169,6 +163,11 @@ public class GenXML {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void addAnswerBis(JSONObject jsonO) throws JSONException {
+      JSONArray tab = jsonO.optJSONArray("answer");
+      System.out.println("> " + jsonO.getString("type") + " " + tab!=null);  
     }
 
 

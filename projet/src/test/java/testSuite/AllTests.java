@@ -28,6 +28,7 @@ public class AllTests {
 		suite.addTest(new TestSuite(JsonGenTest.class));
 		suite.addTest(new TestSuite(ToJsonTest.class));
 		suite.addTest(new xmlWriter.AllTests().suite());
+	    suite.addTest(new jsonParser.AllTests().suite());
 		//$JUnit-END$
 		return suite;
 	}
