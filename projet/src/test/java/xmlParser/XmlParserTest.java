@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 import org.jdom2.Element;
 
-import xmltoJson.xmlparser.XmlParserImpl;
+import xmltojson.xmlparser.XmlParserImpl;
 
 /**
  * Classe de test Junit du parser xml

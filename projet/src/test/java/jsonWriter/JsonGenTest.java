@@ -4,7 +4,7 @@
 package jsonWriter;
 
 import junit.framework.TestCase;
-import xmltoJson.jsonWriter.JsonGen;
+import xmltojson.jsonWriter.JsonGen;
 
 
 /**
