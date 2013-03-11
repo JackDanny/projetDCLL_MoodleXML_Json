@@ -1,0 +1,48 @@
+{
+	"quiz" : {
+		"question" : {
+			
+				"type" : "multichoice",
+				"name" : {
+					"text" : "Consigne dispositif électronique"
+				},
+				"questiontext" : {
+		 			"format" : "moodle_auto_format",
+		 			"text" : "Quel est le premier langage Orienté Objet ?"
+		 		},
+		 		"answer" : [
+		 		 {
+		 			"fraction" : "100",
+		 			"text" : "The correct answer",
+		 			"feedback" :{
+		 				"text" : "Correct!"
+		 			}
+     	 		 },
+     	 		 {
+		 			"fraction" : "0",
+		 			"text" : "A distractor",
+		 			"feedback" : {
+		 				"text" : "Ooops!"
+		 		 	}
+		 		  },
+		 		  {
+		 			"fraction" : "0",
+		 			"text" : "Another distractor",
+		 			"feedback" : {
+		 				"text" : "Ooops!"
+		 		 	}
+		 		  }
+		 		  
+		 		],
+		 		"shuffleanswers" : "1",
+		 		"single" : "true",
+		 		"answernumbering" : "abc",
+		 		"correctfeedback" : {
+					"text" : "texte correctfeedback"
+				},
+				"partiallycorrectfeedback" : {
+					"text" : null
+				}
+			}
+	} 
+}

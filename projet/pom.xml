@@ -1,169 +1,149 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>dcll.proj</groupId>
-  <artifactId>projet</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
- 
- 
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dcll.proj</groupId>
+	<artifactId>projet</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<compileSource>1.6</compileSource>
+	</properties>
+
+
+	<dependencies>
 		<!-- junit -->
 
-			<dependency>
-	 		 	  <groupId>junit</groupId>
-	  			  <artifactId>junit</artifactId>
-	  			  <version>3.8.2</version>
-			</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.2</version>
+		</dependency>
 
 
-			<dependency>
-	    		  <groupId>org.jdom</groupId>
-	   			  <artifactId>jdom</artifactId>
-	    		  <version>2.0.2</version>
-			</dependency>
-	
-	
-	
-	
-		     <!--  Début ajouté par nawal -->
-			<dependency>
-				  <groupId>org.codehaus.jackson</groupId>
-		    	  <artifactId>jackson-core-asl</artifactId>
-		          <version>1.9.12</version>
-			</dependency> 
-	
-	        <dependency> 
-    	          <groupId>net.sf.json-lib</groupId>
-    	          <artifactId>json-lib</artifactId>
-    			  <version>2.4</version>
-    	          <type>jar</type>
-    	          <classifier>jdk15</classifier>
-    	          <scope>compile</scope>
-            </dependency>
-   
-            
-        <!--     <dependency>
-				  <groupId>com.googlecode.json-simple</groupId>
-	              <artifactId>json-simple</artifactId>
-	              <version>1.1</version>
-            </dependency>
-     -->
-    
- 			<!-- Finjouté par nawal -->
- <!-- 
-<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>org.json</artifactId>
-    <version>chargebee-1.0</version>
-</dependency> -->
- 
-</dependencies>
- 
-
-
-<!-- jcr --> 
-<!-- 	<dependency>
-	    <groupId>javax.jcr</groupId>
-	    <artifactId>jcr</artifactId>
-	    <version>2.0</version>
-	</dependency> -->
-
-<!-- pmd  -->
-<!-- 	<dependency>
-	    <groupId>pmd</groupId>
-	    <artifactId>pmd</artifactId>
-	    <version>4.3</version>
-	</dependency>
-	
- --><!-- 	<dependency>
-	    <groupId>maven</groupId>
-	    <artifactId>maven-pmd-plugin</artifactId>
-	    <version>1.10</version>
-	</dependency>
- -->
- 
-<!-- checkstyle --> 
-<!-- 	 <dependency>
-	    <groupId>checkstyle</groupId>
-	    <artifactId>checkstyle</artifactId>
-	    <version>5.0</version>
-	</dependency>
-
- --><!-- 	 <dependency>
-	    <groupId>maven</groupId>
-	    <artifactId>maven-checkstyle-plugin</artifactId>
-	    <version>3.0.1</version>
-	</dependency>
- -->
- 
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>2.0.2</version>
+		</dependency>
 
 
 
- 	
-  <build>
-	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-site-plugin</artifactId>	
-			<version>3.0</version>
-			<configuration>	
-				<reportPlugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jxr-plugin</artifactId>
-						<version>2.1</version>	
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>2.5</version>
-						<configuration>
-							<configLocation>config/sun_checks.xml</configLocation>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-pmd-plugin</artifactId>
-						<version>2.4</version>
-					</plugin>
-				</reportPlugins>	
-			</configuration>	
-		</plugin>	
-	</plugins>	
-</build>
-  
-  
-  
-  
-  
-  
-  <!-- 
-    <build>
-  		<plugins>
+
+		<!-- Début ajouté par nawal -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<type>jar</type>
+			<classifier>jdk15</classifier>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>com.googlecode.json-simple</groupId> <artifactId>json-simple</artifactId> 
+			<version>1.1</version> </dependency> -->
+
+		<!-- Finjouté par nawal -->
+		<!-- <dependency> <groupId>org.json</groupId> <artifactId>org.json</artifactId> 
+			<version>chargebee-1.0</version> </dependency> -->
+
+	</dependencies>
+
+
+
+	<!-- jcr -->
+	<!-- <dependency> <groupId>javax.jcr</groupId> <artifactId>jcr</artifactId> 
+		<version>2.0</version> </dependency> -->
+
+	<!-- pmd -->
+	<!-- <dependency> <groupId>pmd</groupId> <artifactId>pmd</artifactId> <version>4.3</version> 
+		</dependency> --><!-- <dependency> <groupId>maven</groupId> <artifactId>maven-pmd-plugin</artifactId> 
+		<version>1.10</version> </dependency> -->
+
+	<!-- checkstyle -->
+	<!-- <dependency> <groupId>checkstyle</groupId> <artifactId>checkstyle</artifactId> 
+		<version>5.0</version> </dependency> --><!-- <dependency> <groupId>maven</groupId> <artifactId>maven-checkstyle-plugin</artifactId> 
+		<version>3.0.1</version> </dependency> -->
+
+
+
+
+
+	<build>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.3</version>				
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jxr-plugin</artifactId>
+							<version>2.1</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-checkstyle-plugin</artifactId>
+							<version>2.5</version>
+							<configuration>
+								<configLocation>config/sun_checks.xml</configLocation>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-pmd-plugin</artifactId>
+							<version>2.4</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
 			</plugin>
-			
+
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.6</source>
+				</configuration>
+			</plugin>
+
+
+
+
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.0</version>
+				<configuration>
+					<targetJdk>1.6</targetJdk>
+				</configuration>
 			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.9.1</version>
-			</plugin>
-		
 		</plugins>
-  </build> -->
-  
-  
+	</reporting>
+	<!--  <properties>
+		
+	</properties>
+	-->
+
+
+
+	<!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+		<artifactId>maven-jxr-plugin</artifactId> <version>2.3</version> </plugin> 
+		<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
+		<version>3.0</version> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+		<artifactId>maven-checkstyle-plugin</artifactId> <version>2.9.1</version> 
+		</plugin> </plugins> </build> -->
+
+
 </project>
 

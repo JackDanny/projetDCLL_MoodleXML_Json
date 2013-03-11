@@ -4,14 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import xmltoJson.xmlparser.XmlParserImpl;
+
+
+
 import xmlToJson.jsonWriter.ToJson;
 import xmlToJson.xmlparser.XmlParserImpl;
 import org.jdom2.Element;
-/**
- * 
- * @author Rapha�l
- *
- */
+
 public class Main {
 
 	public static String getFileExtension(String NomFichier) {
@@ -33,6 +33,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
+
 	
 		
 		
@@ -54,6 +55,7 @@ public class Main {
 		else {
 		System.out.println("fichier non pris en charge");
 		}
+
 	}
 
 }

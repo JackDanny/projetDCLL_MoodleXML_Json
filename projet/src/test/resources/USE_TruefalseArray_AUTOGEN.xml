@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="truefalse">
+    <name>
+      <text>Consigne dispositif électronique</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Quel est le premier langage Orienté Objet ?</text>
+    </questiontext>
+    <answer fraction="100">
+      <text>true</text>
+      <feedback>
+        <text>Correct!</text>
+      </feedback>
+    </answer>
+    <answer fraction="0">
+      <text>false</text>
+      <feedback>
+        <text>Ooops!</text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>Consigne dispositif électronique</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Quel est le premier langage Orienté Objet ?</text>
+    </questiontext>
+    <answer fraction="100">
+      <text>true</text>
+      <feedback>
+        <text>Correct!</text>
+      </feedback>
+    </answer>
+    <answer fraction="0">
+      <text>false</text>
+      <feedback>
+        <text>Ooops!</text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>
