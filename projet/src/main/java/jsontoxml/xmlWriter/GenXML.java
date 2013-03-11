@@ -118,28 +118,40 @@ public class GenXML {
         return feedElem;
     }
     
+    private void preAddAnswer(JSONObject jsonO) throws JSONException {
+        if(jsonO.optJSONArray("answer") != null){
+            addAnswers(jsonO.getJSONArray("answer"));
+        }else{
+            addAnswer(jsonO.getJSONObject("answer"));
+        }
+        
+    }
+
+    private void addAnswer(JSONObject answerO) throws JSONException {
+        Element answerElem = createSimpleAnswer(answerO);
+        Attribute att = new Attribute("fraction", answerO.getString("fraction"));/*create a new attribute*/
+        answerElem.setAttribute(att);
+        if(answerO.has("feedback")){
+            answerElem.addContent(createFeedBack(answerO));
+        }
+        addElementToRoot(answerElem);/*add the answer element to the questionRoot*/
+    }
+
+
+
     /**
      * "Answer" complete avec attribut fraction + feedback + text
+     * @throws JSONException 
      * */
-    private void addAnswer(JSONArray answerA){
-        try{
-            for(int i=0; i<answerA.length() ;++i){/*for 2 answers*/
-                JSONObject answerO = answerA.getJSONObject(i);/*get the iéme JSON oject*/
-                Element answerElem = createSimpleAnswer(answerO);
-                Attribute att = new Attribute("fraction", answerO.getString("fraction"));/*create a new attribute*/
-                answerElem.setAttribute(att);
-                if(answerO.has("feedback")){
-                    answerElem.addContent(createFeedBack(answerO));
-                }
-                addElementToRoot(answerElem);/*add the answer element to the questionRoot*/
-            }
-        }catch(Exception e){
-            e.printStackTrace();
+    private void addAnswers(JSONArray answerA) throws JSONException{
+        for(int i=0; i<answerA.length() ;++i){/*for 2 answers*/
+            JSONObject answerO = answerA.getJSONObject(i);/*get the iéme JSON oject*/
+            addAnswer(answerO);
         }
     }
     
     
-    public void addElments(JSONObject jsonO){
+    protected void addElments(JSONObject jsonO){
         Iterator<String> it = jsonO.keys();
         String currentField;
         try{
@@ -154,7 +166,7 @@ public class GenXML {
                 }else if(currentField.equals("questiontext")){
                     addQuestiontext( jsonO.getJSONObject("questiontext"));
                 }else if(currentField.equals("answer")){
-                    addAnswer(jsonO.getJSONArray("answer"));/*get the answers*/
+                    preAddAnswer(jsonO);/*get the answers*/                    
                 }else if(currentField.equals("subquestion")){
                     addSubquestion( jsonO.getJSONArray("subquestion") );
                 }else if(complexTags.contains(currentField)){
@@ -168,7 +180,7 @@ public class GenXML {
         }
     }
 
-
+ 
 
 
 

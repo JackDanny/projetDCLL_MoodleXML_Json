@@ -1,0 +1,11 @@
+{
+	"quiz" : {
+	"question" : { 
+		 "type" : "essay",
+    	 "answer" : {
+    		"fraction" : "0",
+ 	       "text": null
+ 	       }
+		}
+	}
+}
