@@ -110,7 +110,7 @@ public class GenXML {
     /**
      * "Answer" simple que avec text
      * */
-    private Element createFeldBack(JSONObject answerO ) throws JSONException{
+    private Element createFeedBack(JSONObject answerO ) throws JSONException{
         JSONObject fbO = answerO.getJSONObject("feedback");/*get the feedback object*/
         Element feedElem = new Element("feedback");
         Element textElemFB = createSimpleTags(fbO, "text");
@@ -128,7 +128,9 @@ public class GenXML {
                 Element answerElem = createSimpleAnswer(answerO);
                 Attribute att = new Attribute("fraction", answerO.getString("fraction"));/*create a new attribute*/
                 answerElem.setAttribute(att);
-                answerElem.addContent(createFeldBack(answerO));
+                if(answerO.has("feedback")){
+                    answerElem.addContent(createFeedBack(answerO));
+                }
                 addElementToRoot(answerElem);/*add the answer element to the questionRoot*/
             }
         }catch(Exception e){
@@ -153,7 +155,6 @@ public class GenXML {
                     addQuestiontext( jsonO.getJSONObject("questiontext"));
                 }else if(currentField.equals("answer")){
                     addAnswer(jsonO.getJSONArray("answer"));/*get the answers*/
-                 //   addAnswerBis(jsonO);
                 }else if(currentField.equals("subquestion")){
                     addSubquestion( jsonO.getJSONArray("subquestion") );
                 }else if(complexTags.contains(currentField)){
