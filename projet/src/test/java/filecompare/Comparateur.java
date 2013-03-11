@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.Iterator;
+import java.util.List;
 
 
+import org.jdom2.Attribute;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.json.JSONException;
@@ -80,7 +83,8 @@ public class Comparateur {
 			 
 			  racine1 = doc1.getRootElement();
 			  racine2 = doc2.getRootElement();
-			
+			  
+			  compareDeuxElements(racine1,racine2);
 		}
 		else{
 			System.out.println("cas non pris en compte");
@@ -90,7 +94,44 @@ public class Comparateur {
 		
 		return b;
 	}
-	
+	public boolean compareDeuxElements(Element elem1, Element elem2){
+		boolean b=false;
+		//System.out.println(elem1.get);
+		if(! elem1.getName().equals(elem2.getName())){
+			
+			return false;
+		}
+		else{
+			
+			
+			/*List<Attribute> listeAttributs1 = elem1.getAttributes();
+			List<Attribute> listeAttributs2 = elem2.getAttributes();*/
+			System.out.println(elem1.getChildren());
+			List<Element> listEnfant1 = elem1.getChildren();
+			List<Element> listEnfant2 = elem2.getChildren();
+			Iterator<Element> i1 = listEnfant1.iterator();
+			Iterator<Element> i2 = listEnfant2.iterator();
+			
+			while(i1.hasNext() && i2.hasNext()){
+				 Element courant1 = (Element) i1.next();
+				 Element courant2 = (Element) i2.next();
+				 
+				 if(!compareDeuxElements(courant1, courant2)){
+					 System.out.println(b);
+					 return false;
+				 }
+				
+			}
+			b=true;
+			
+			
+			
+		}
+		
+		
+		System.out.println(b);
+		return b;
+	}
 
 
 
