@@ -1,19 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-<!-- <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
- -->
- 	<modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>dcll.proj</groupId>
 	<artifactId>projet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!-- 		<compileSource>1.6</compileSource>
- -->
- 	</properties>
+		<compileSource>1.6</compileSource>
+	</properties>
 
 
 	<dependencies>
@@ -36,12 +31,12 @@
 
 
 		<!-- Début ajouté par nawal -->
- 	 	<dependency>
+		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.12</version>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -50,7 +45,7 @@
 			<classifier>jdk15</classifier>
 			<scope>compile</scope>
 		</dependency>
- 
+
 
 		<!-- <dependency> <groupId>com.googlecode.json-simple</groupId> <artifactId>json-simple</artifactId> 
 			<version>1.1</version> </dependency> -->
@@ -111,20 +106,20 @@
 				</configuration>
 			</plugin>
 
-<!-- 			<plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.0.2</version>
 				<configuration>
 					<source>1.6</source>
 				</configuration>
 			</plugin>
- -->
+
 
 
 
 		</plugins>
 	</build>
-<!-- 	<reporting>
+	<reporting>
 		<plugins>
 			<plugin>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -135,7 +130,7 @@
 			</plugin>
 		</plugins>
 	</reporting>
- -->	<!--  <properties>
+	<!--  <properties>
 		
 	</properties>
 	-->
