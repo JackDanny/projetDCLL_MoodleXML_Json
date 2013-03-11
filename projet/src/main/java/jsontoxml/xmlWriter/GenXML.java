@@ -48,21 +48,18 @@ public class GenXML {
 	private void addElementToRoot(Content content){
 		quest.addContent(content);
     }
-	
+
 	private  Element createSimpleTags(JSONObject jsonO, String name) throws JSONException{
-		Element elemRet=null;
-		elemRet = new Element(name);
-		if(!jsonO.isNull(name)){
-			final String text = jsonO.getString(name);
-			Content textCont = new Content(CType.Text) {
-				@Override
-				public String getValue() {
-					return text;
-				}
-			};
-			elemRet.addContent(textCont);
-		}
-		return elemRet;
+	    Element elemRet=null;
+	    elemRet = new Element(name);
+	    final String text;
+	    if(!jsonO.isNull(name)){
+	        text = new String("");
+	    }else{
+	        text = jsonO.getString(name);
+	    }
+	    elemRet.setText(text);
+	    return elemRet;
 	}
 
 	private Element createComplexTags(JSONObject jsonO, String name) throws JSONException{
