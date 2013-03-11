@@ -59,9 +59,9 @@ public class JsonParserImpl implements JsonParser {
 
 
 
-    private String renomFile(String filename) {
-        // TODO modif filename -> X.json -> X.xml
-        return "src/test/resources/USE_TruefalseArray_AUTOGEN.xml";
-    }
+	private String renomFile(String filename) {
+	    // TODO modif filename -> X.json -> X.xml
+	    return "src/test/resources/USE_TruefalseArray_AUTOGEN.xml";
+	}
 	
 }
