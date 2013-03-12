@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import net.sf.json.JSONObject;
 
@@ -73,14 +74,19 @@ public class Main {
 		// XML TO JSON
 		  
 	    
-	    JFrame frame = new JFrame("projetDCLL_MoodleXML_Json");	    
-	    frame.setLayout(new FlowLayout());	    
-	    frame.setBounds(10,10,10,10); 
+	    JFrame frame = new JFrame("projetDCLL_MoodleXML_Json");	 
+	    frame.setSize(500, 500);
+	    frame.setBounds(500, 500, 400, 200);
+	    
+	    JPanel panel = new JPanel();
+	    
+	    
+	    frame.setLayout(new FlowLayout());	
 	    frame.setLocationRelativeTo(null);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 	    
-	    JButton xmlToJson = new JButton("xmlToJson");
+	    JButton xmlToJson = new JButton("xmlToJson");	  
 	    xmlToJson.addActionListener(new ActionListener() {
 	      public void actionPerformed(ActionEvent ae) {
 	        JFileChooser fileChooser = new JFileChooser();
@@ -94,13 +100,14 @@ public class Main {
 	        }
 	      }
 	    });
-	    frame.add(xmlToJson);
+	    
+	    panel.add(xmlToJson);
+	    frame.add(panel);
 	    
 	    
 	    // JSON TO XML
 	    
-	    JButton jsonToXml = new JButton("jsonToXml");
-	    jsonToXml.setBounds(10,10,10,10); 
+	    JButton jsonToXml = new JButton("jsonToXml"); 
 	    jsonToXml.addActionListener(new ActionListener() {
 	      public void actionPerformed(ActionEvent ae) {
 	        JFileChooser fileChooser = new JFileChooser();
@@ -114,9 +121,11 @@ public class Main {
 	      }
 	    });
 	    
-	    frame.add(jsonToXml);
+	    panel.add(jsonToXml);
+	    frame.add(panel);
 	    
-	    frame.pack();
+	    
+	   // frame.pack();
 	    frame.setVisible(true);
 	}
 
