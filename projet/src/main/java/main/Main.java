@@ -1,17 +1,14 @@
 package main;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import net.sf.json.JSONObject;
 
 
 import jsontoxml.jsonParser.JsonParserImpl;
@@ -76,12 +73,8 @@ public class Main {
 	    
 	    JFrame frame = new JFrame("projetDCLL_MoodleXML_Json");	 
 	    frame.setSize(500, 500);
-	    frame.setBounds(500, 500, 400, 200);
-	    
-	    JPanel panel = new JPanel();
-	    
-	    
-	    frame.setLayout(new FlowLayout());	
+	    frame.setBounds(500, 500, 400, 200);	    
+	    JPanel panel = new JPanel();	   	    
 	    frame.setLocationRelativeTo(null);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
@@ -122,10 +115,7 @@ public class Main {
 	    });
 	    
 	    panel.add(jsonToXml);
-	    frame.add(panel);
-	    
-	    
-	   // frame.pack();
+	    frame.add(panel);	    
 	    frame.setVisible(true);
 	}
 
