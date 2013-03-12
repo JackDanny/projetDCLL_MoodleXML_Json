@@ -10,6 +10,8 @@ import junit.framework.TestCase;
 
 import org.jdom2.Element;
 
+import filecompare.ComparateurImpl;
+
 import xmltojson.jsonWriter.ToJson;
 import xmltojson.xmlparser.XmlParserImpl;
 
@@ -44,7 +46,7 @@ public class ToJsonTest extends TestCase {
      */
     protected void setUp() throws Exception {
         super.setUp();
-        tj = new ToJson("src/test/resources/TrueFalse.json");
+        tj = new ToJson("src/test/resources/USE_TrueFalse_AUTOGEN.json");
         e = new Element("Test");
     }
 
@@ -61,12 +63,11 @@ public class ToJsonTest extends TestCase {
      * Premier Test.
      */
     public void testTraductionJson1() {
-        List<Element> elems = new ArrayList<Element>();
-        XmlParserImpl xmlparser = new XmlParserImpl();
-        elems = xmlparser.parser("src/test/resources/USE_TrueFalse_RSC.xml");    
-        tj.toJson(elems);
-        assertTrue(true);
-        //TODO remplacer par comparaison de deux fichiers ? 
+        tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
+        ComparateurImpl comparator = new ComparateurImpl();
+        String path1 = new String("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+        String path2 = new String("src/test/resources/USE_TrueFalseCompare_RSC.json");
+        assertTrue(comparator.compare(path1, path2));
     }
     
     /**
