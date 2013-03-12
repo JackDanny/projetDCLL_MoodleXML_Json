@@ -61,7 +61,6 @@ public class Main {
 	        int returnValue = fileChooser.showOpenDialog(null);
 	        if (returnValue == JFileChooser.APPROVE_OPTION) {
 	          File selectedFile = fileChooser.getSelectedFile();
-	          System.out.println(selectedFile.getName());
 	          XmlParserImpl xmlparser1 = new XmlParserImpl();			 
 			ToJson tj = new ToJson(getFileName(path+selectedFile.getName()));
 			  tj.toJson(xmlparser1.parser(path+selectedFile.getName()));
@@ -82,7 +81,6 @@ public class Main {
 	        int returnValue = fileChooser.showOpenDialog(null);
 	        if (returnValue == JFileChooser.APPROVE_OPTION) {
 	          File selectedFile = fileChooser.getSelectedFile();
-	          System.out.println(path+selectedFile.getName());
 	          JsonParserImpl i = new JsonParserImpl();
 			    i.parser(path+selectedFile.getName());
 	        }
