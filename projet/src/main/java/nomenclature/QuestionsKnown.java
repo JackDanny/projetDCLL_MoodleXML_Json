@@ -1,12 +1,22 @@
 package nomenclature;
 
 import java.util.Set;
+import java.util.TreeSet;
 
+/**
+*
+ * */
 public class QuestionsKnown {
+    /**
+    *
+     * */
     private Set<String> questionType;
 
-    
-    public QuestionsKnown(){
+    /**
+    *
+     * */
+    public QuestionsKnown() {
+        questionType = new TreeSet<String>();
         questionType.add("category");
         questionType.add("calculated");
         questionType.add("description");
@@ -16,12 +26,17 @@ public class QuestionsKnown {
         questionType.add("shortanswer");
         questionType.add("truefalse");
         questionType.add("numerical");
-        questionType.add("cloze");    
+        questionType.add("cloze");
     }
 
-    
- public boolean isKnownQuestion(String type){
+/**
+* Indique si une balise type est connue.
+* @param type : la balise
+* @return true si la balise est connue.
+* false si la balise est inconnue.
+ * */
+ public boolean isKnownQuestion(final String type) {
     return questionType.contains(type);
  }
-    
+
 }

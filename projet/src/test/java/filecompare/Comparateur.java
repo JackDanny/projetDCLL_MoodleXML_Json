@@ -14,6 +14,6 @@ public interface Comparateur {
 * @return a boolean: true if the two files are the same else false
 *
 */
-boolean compare(String filename1, String filename2);
+   boolean compare(final String filename1, final String filename2);
 
 }
