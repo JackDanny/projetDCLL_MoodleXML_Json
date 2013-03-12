@@ -31,7 +31,6 @@ public class XmlParserImpl implements XmlParser {
         SAXBuilder sxb = new SAXBuilder();
         document = null;
         try {
-            System.out.println(fileName);
             document = sxb.build(new File(fileName));
         } catch (Exception e) {
             e.printStackTrace(); //TODO gestion erreur

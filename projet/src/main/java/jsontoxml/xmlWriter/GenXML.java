@@ -162,7 +162,7 @@ public class GenXML {
 
     }
 
-    private void addAnswer(JSONObject answerO) throws JSONException {
+    private void addAnswer(final JSONObject answerO) throws JSONException {
         Element answerElem = createSimpleAnswer(answerO);
         Attribute att = new Attribute("fraction",
                 answerO.getString("fraction")); /*create a new attribute*/
@@ -233,7 +233,7 @@ public class GenXML {
      * @param jsonO : l'objet JSON de la question Moodle en cours
      * @param key : le nom de la clé inconnue
      * */
-    private void genBaseComplexElem(JSONObject jsonO, String key) throws JSONException {
+    private void genBaseComplexElem(final JSONObject jsonO, final String key) throws JSONException {
         if (null != jsonO.optJSONArray(key)) { //si tableau
             genRecComplexElemArray(jsonO.getJSONArray(key), key, quest);
         } else { //sinon

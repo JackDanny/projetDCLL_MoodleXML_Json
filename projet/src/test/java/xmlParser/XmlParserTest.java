@@ -62,9 +62,9 @@ public class XmlParserTest extends TestCase {
 	 * de parsing change il faut réaliser ce test.
 	 * */
 	public void testOrderListtParser(){
-		List<Element> elemntList= xmlParser.parser("src/test/resources/USE_TruefalseOne_RSC.xml");
-		assertEquals("category",  elemntList.get(0).getAttributeValue("type"));
-		assertEquals("truefalse", elemntList.get(1).getAttributeValue("type"));
+		List<Element> elemntList= xmlParser.parser("src/test/resources/USE_QuestionArray_RSC.xml");
+		assertEquals("truefalse",  elemntList.get(0).getAttributeValue("type"));
+		assertEquals("category", elemntList.get(1).getAttributeValue("type"));
 	}
 
 	

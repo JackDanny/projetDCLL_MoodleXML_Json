@@ -50,7 +50,8 @@ public class CategoryTests extends TestCase {
         JSONObject o2 = null;
         JSONObject tbis = null;
         try {
-            reader = new FileReader("src/test/resources/USE_categoryOne_RSC.json");
+            reader = new FileReader("src/test/resources"
+            		+ "/USE_categoryOne_RSC.json");
             JSONTokener jsonT = new JSONTokener(reader);
             o2 = new  JSONObject(jsonT);
             tbis = o2.getJSONObject("quiz");
@@ -75,7 +76,7 @@ public class CategoryTests extends TestCase {
      */
     public void testDiff(){
        xmlWriter.writeXmlToJson(categoryQuestion, "src/test/resources/USE_categoryOne_AUTOGEN.xml");
-       assertTrue(comparator.compare("src/test/resources/USE_categoryOne_AUTOGEN.xml","src/test/resources/USE_categoryOne_RSC.xml"));
+       assertTrue(comparator.compare("src/test/resources/USE_categoryOne_AUTOGEN.xml", "src/test/resources/USE_categoryOne_RSC.xml"));
     }
 
 }
