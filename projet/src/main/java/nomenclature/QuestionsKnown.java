@@ -33,7 +33,7 @@ public class QuestionsKnown {
 * @return true si la balise est connue.
 * false si la balise est inconnue.
  * */
- final boolean isKnownQuestion(final String type) {
+ public boolean isKnownQuestion(final String type) {
     return questionType.contains(type);
  }
 
