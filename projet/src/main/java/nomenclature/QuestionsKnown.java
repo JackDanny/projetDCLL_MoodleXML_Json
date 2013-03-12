@@ -1,6 +1,7 @@
 package nomenclature;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
 *
@@ -15,6 +16,7 @@ public class QuestionsKnown {
     *
      * */
     public QuestionsKnown() {
+        questionType = new TreeSet<String>();
         questionType.add("category");
         questionType.add("calculated");
         questionType.add("description");

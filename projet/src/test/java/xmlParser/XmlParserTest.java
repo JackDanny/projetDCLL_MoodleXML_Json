@@ -45,14 +45,14 @@ public class XmlParserTest extends TestCase {
 	 * Tests sur la méthode parser : non null résultat 
 	 */
 	public void testNotNullParser(){
-		assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));	
+		assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/USE_TruefalseOne_RSC.xml"));	
 	}
 	
 	/**
 	 * Test consistance résultat
 	 * */
 	public void testCountListParser(){
-		assertEquals(1, xmlParser.parser("src/test/resources/shortTest.xml").size());
+		assertEquals(1, xmlParser.parser("src/test/resources/USE_TruefalseOne_RSC.xml").size());
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class XmlParserTest extends TestCase {
 	 * de parsing change il faut réaliser ce test.
 	 * */
 	public void testOrderListtParser(){
-		List<Element> elemntList= xmlParser.parser("src/test/resources/orderTest.xml");
+		List<Element> elemntList= xmlParser.parser("src/test/resources/USE_TruefalseOne_RSC.xml");
 		assertEquals("category",  elemntList.get(0).getAttributeValue("type"));
 		assertEquals("truefalse", elemntList.get(1).getAttributeValue("type"));
 	}

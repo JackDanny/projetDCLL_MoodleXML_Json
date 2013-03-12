@@ -31,12 +31,12 @@
 
 
 		<!-- Début ajouté par nawal -->
-		<dependency>
+<!--  		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.12</version>
-		</dependency>
-
+		</dependency> -->
+ 
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
