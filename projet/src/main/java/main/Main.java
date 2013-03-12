@@ -1,18 +1,15 @@
 package main;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import xmltojson.xmlparser.XmlParserImpl;
+
+import jsontoxml.jsonParser.JsonParserImpl;
 
 
 
 import xmltojson.jsonWriter.ToJson;
 import xmltojson.xmlparser.XmlParserImpl;
-import xmltojson.jsonWriter.ToJson;
-import xmltojson.xmlparser.XmlParserImpl;
-import org.jdom2.Element;
+
 
 public class Main {
 
@@ -36,28 +33,29 @@ public class Main {
 	
 	public static void main(String[] args) {
 
-	
-		
-		
 		String ext=getFileExtension(args[0]);
-		System.out.println(ext);
-		System.out.println(args[0]);
-		System.out.println(getFileName(args[0]));
-
-	if (ext.equals("xml") || ext.equals("XML")){
-		        List<Element> elems = new ArrayList<Element>();
-		        XmlParserImpl xmlparser1 = new XmlParserImpl();
-		        elems = xmlparser1.parser(args[0]);
-		        ToJson tj = new ToJson(getFileName(args[0])+"2.json");
-		        tj.toJson(elems);
-		}
-		else if (ext.equals("json") || ext.equals("JSON")){
+		
+		try{
+			if (ext.toUpperCase().equals("XML") ){
 				
-		}
-		else {
-		System.out.println("fichier non pris en charge");
-		}
-
+				    XmlParserImpl xmlparser1 = new XmlParserImpl();
+					ToJson tj = new ToJson(getFileName(args[0])+".json");
+					tj.toJson(xmlparser1.parser(args[0]));
+				       }
+			
+				else if (ext.toUpperCase().equals("JSON")){
+					
+				    JsonParserImpl i = new JsonParserImpl();
+				    i.parser(args[0]);		
+				}
+				else {
+					
+					System.out.println("fichier non pris en charge");
+				}
+		     }
+		catch(Exception e){
+				System.out.println("fichier inexistant");
+				 }		
 	}
 
 }

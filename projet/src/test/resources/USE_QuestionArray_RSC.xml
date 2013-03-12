@@ -20,7 +20,7 @@
       </feedback>
     </answer>
   </question>
-  <question type="truefalse">
+  <question type="category">
     <name>
       <text>Consigne dispositif électronique</text>
     </name>

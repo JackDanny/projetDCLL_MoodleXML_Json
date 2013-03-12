@@ -83,6 +83,7 @@ public class ToJson {
         //save.indempter();
         
     }
+    
     /**
      * Traduire en objet Json et ecriture dans le fichier.
      * @param element traite une element Jdom2
@@ -92,6 +93,7 @@ public class ToJson {
     public Map toJson(Element element) {
         List<Attribute> attList = new ArrayList<Attribute>();
         List<Element> childrens = new ArrayList<Element>();
+        List<String> isDone = new ArrayList<String>();
         Map courante = new LinkedHashMap();
         
         //recupere les attributs de la question
@@ -110,15 +112,17 @@ public class ToJson {
             //CARE:Selon code une balise ne peut avoir texte ET(attribut ou sous balise).
             // i : compteur elem courant
             int i = 0;
-            int cpt = 0;
             for (Element children : childrens) {
+//                if (children.getName().equals("answer")) {
+//                    System.out.println("Debug");
+//                    // Point arret debug
+//                }
 
-                if (cpt == 0) { //non traité si deja fait
+                if (!isDone.contains(children.getName())) { //non traité si deja fait
                     //CARE les fils identiques a gerer en Array doivent se suivre.
-                    cpt = cptEquals(childrens, children, i);
-                    if (cpt != 0) {
-                      cpt++; //maj pour compter le fils courant
-                      List<Map> l = creerListes(childrens, cpt, i);
+                    if (getEqualsChildrens(childrens, children, i)) { //plus d'un fils de même nom
+                      isDone.add(children.getName());
+                      List<Map> l = creerListes(element, children);
                       courante.put(childrens.get(i).getName(), l);
                     }
                     else {
@@ -126,21 +130,77 @@ public class ToJson {
                             courante.put(children.getName(), toJson(children));
                         } else {
                             String text = children.getValue();
-                            if (text != null) {
+                            text = text.replaceAll("[\n]+", "");//*************
+                            if (!text.equals("")) {
                                 courante.put(children.getName(), text);
-                            }
+                            }  else { courante.put(children.getName(), null); }
                         }
                     }
                 }
-                else cpt--;
                 i++;
             }
+        } else {
+            String text = element.getValue();
+            text = text.replaceAll("[\n]+", "");//*************
+            if (!text.equals("")) {
+                courante.put(element.getName(), text);
+            }  else { courante.put(element.getName(), null); }
         }
         return courante;
     }
     
     /**
-     * Cree les listes dans le cas de traduction en Json Array.
+     * Traite le contenu d'un element.
+     * @param element elem courant
+     * @return Map du contenu de l'element
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public Map toJsonContenu(Element element) {
+        List<Element> childrens = new ArrayList<Element>();
+        List<Attribute> attList = new ArrayList<Attribute>();
+        Map courante = new LinkedHashMap();
+        
+        //recupere les attributs de la question
+        attList = element.getAttributes();
+        
+        if (!attList.isEmpty()) {
+            for (Attribute att : attList) {
+                courante.put(att.getName(), att.getValue());
+            }
+        }
+        
+        //On recupere les fils
+        childrens = element.getChildren();
+        if (!childrens.isEmpty()) {
+            //traiter chaque fils en profondeur.
+            //CARE:Selon code une balise ne peut avoir texte ET(attribut ou sous balise).
+            for (Element children : childrens) {
+                //appel au toJson normal
+                //courante.put(children.getName(), toJson(children));
+                
+                if (addChild(children) || addAttributes(children)) {
+                    courante.put(children.getName(), toJson(children));
+                } else {
+                    String text = children.getValue();
+                    text = text.replaceAll("[\n]+", "");//*************
+                    if (!text.equals("")) {
+                        courante.put(children.getName(), text);
+                    }  else { courante.put(children.getName(), null); }
+                }
+                
+            }
+        } else {
+            String text = element.getValue();
+            text = text.replaceAll("[\n]+", "");//*****************
+            if (!text.equals("")) {
+                courante.put(text, null);
+            }  //else { courante.put(element.getName(), null); }
+        }
+        return courante;
+    }
+    
+    /**
+     * Cree les listes dans un cas particulier de traduction en Json Array.
      * @param childrens Liste des fils de l'element courant
      * @param cpt Nombre de fils identiques
      * @param j position premier fils dans liste
@@ -154,8 +214,40 @@ public class ToJson {
         }
         return list;
     }
+    
+    /**
+     * Creer une liste dans le cas général de trad JsonArray.
+     * @param father element pere
+     * @param children element courant
+     * @return La liste de map du courant
+     */
+    @SuppressWarnings("rawtypes")
+    public List<Map> creerListes(Element father, Element children) {
+        List<Map> list = new ArrayList<Map>();
+        List<Element> sameChildrens = new ArrayList<Element>();
+        sameChildrens = father.getChildren(children.getName());
+        for (Element child : sameChildrens) {
+            list.add(toJsonContenu(child));
+        }
+        return list;
+    }
 
 
+    /**
+     * Teste si la liste possede plusieurs elements courant
+     * @param childrens liste des fils
+     * @param courant element à tester
+     * @param i position de courant dans la liste
+     * @return boolean possede plusieurs elements courants.
+     */
+    public boolean getEqualsChildrens(List<Element> childrens, Element courant, int i) {
+        int cpt = 0;
+        for (int j = i + 1; j < childrens.size(); j++)
+            if (courant.getName().equals(childrens.get(j).getName()))
+                cpt++;
+        return cpt > 0;
+    }
+    
     /**
      * Compare suivants à partir de courant et renvoie le nombre de balises identiques.
      * @param childrens Liste des fils de l'element
@@ -172,7 +264,7 @@ public class ToJson {
     }
 
     /**
-     * teste si l element courant possede un fils.
+     * Teste si l element courant possede un fils.
      * @param e element courant
      * @return boolean a un fils?
      */
@@ -198,7 +290,13 @@ public class ToJson {
         tj.toJson("src/test/resources/USE_TrueFalse_RSC.xml");
         
         ToJson tj2 = new ToJson("src/test/resources/USE_exemple_AUTOGEN.json");
-        tj2.toJson("src/test/resources/USE_EXEMPLE_RSC.xml");
+        tj2.toJson("src/test/resources/USE_Exemple_RSC.xml");
+        
+        ToJson tj3 = new ToJson("src/test/resources/USE_TestLimite_AUTOGEN.json");
+        tj3.toJson("src/test/resources/USE_TestLimite_RSC.xml");
+        
+        ToJson tj4 = new ToJson("src/test/resources/USE_XmlWriterTest_AUTOGEN.json");
+        tj4.toJson("src/test/resources/USE_XmlWriterTest_RSC.xml");
     }
 
 }

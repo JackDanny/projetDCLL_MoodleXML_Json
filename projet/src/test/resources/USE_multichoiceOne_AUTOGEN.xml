@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-  <question type="truefalse">
+  <question type="multichoice">
     <name>
       <text>Consigne dispositif électronique</text>
     </name>
@@ -8,36 +8,31 @@
       <text>Quel est le premier langage Orienté Objet ?</text>
     </questiontext>
     <answer fraction="100">
-      <text>true</text>
+      <text>The correct answer</text>
       <feedback>
         <text>Correct!</text>
       </feedback>
     </answer>
     <answer fraction="0">
-      <text>false</text>
+      <text>A distractor</text>
       <feedback>
         <text>Ooops!</text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="truefalse">
-    <name>
-      <text>Consigne dispositif électronique</text>
-    </name>
-    <questiontext format="moodle_auto_format">
-      <text>Quel est le premier langage Orienté Objet ?</text>
-    </questiontext>
-    <answer fraction="100">
-      <text>true</text>
-      <feedback>
-        <text>Correct!</text>
       </feedback>
     </answer>
     <answer fraction="0">
-      <text>false</text>
+      <text>Another distractor</text>
       <feedback>
         <text>Ooops!</text>
       </feedback>
     </answer>
+    <shuffleanswers>1</shuffleanswers>
+    <single>true</single>
+    <answernumbering>abc</answernumbering>
+    <correctfeedback>
+      <text>texte correctfeedback</text>
+    </correctfeedback>
+    <partiallycorrectfeedback>
+      <text />
+    </partiallycorrectfeedback>
   </question>
 </quiz>

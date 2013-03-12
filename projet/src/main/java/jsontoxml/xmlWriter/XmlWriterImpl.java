@@ -68,7 +68,7 @@ public class XmlWriterImpl implements XmlWriter {
     private void buildXML(final JSONObject quesObj) {
         GenXML generator = new GenXML();
         generator.addElments(quesObj);
-        root.addContent(generator.getCommonTags());
+        root.addContent(generator.getQuestionElem());
     }
 
 /**
@@ -77,7 +77,6 @@ public class XmlWriterImpl implements XmlWriter {
  * */
     private void save(final String file) {
         try {
-            System.out.println("ee save");
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
             sortie.output(document, new FileOutputStream(file));
           } catch (java.io.IOException e) {
