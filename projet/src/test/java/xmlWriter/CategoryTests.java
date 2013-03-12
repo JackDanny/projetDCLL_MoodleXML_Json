@@ -78,8 +78,8 @@ public class CategoryTests extends TestCase {
        xmlWriter.writeXmlToJson(categoryQuestion
                , "src/test/resources/USE_categoryOne_AUTOGEN.xml");
        assertTrue(comparator.compare("src/"
-       		+ "test/resources/USE_categoryOne_AUTOGEN.xml"
-            ,"src/test/resources/USE_categoryOne_RSC.xml"));
+        + "test/resources/USE_categoryOne_AUTOGEN.xml"
+        , "src/test/resources/USE_categoryOne_RSC.xml"));
     }
 
 }
