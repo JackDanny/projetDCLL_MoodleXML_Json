@@ -12,19 +12,19 @@ import org.jdom2.input.SAXBuilder;
 
 
 /**
- * Implementation of XmlParser
- * Parse XMl Moodel file.
- * */
+* Implementation of XmlParser
+* Parse XMl Moodel file.
+* */
 public class XmlParserImpl implements XmlParser {
 
 
     /**
-     * @param fileName the XML file name
-     * @return an Element list. Element : Jdom Type.
-     * Each Element is a "Moodle question" implemented.
-     * ie the attribute "type" of question is define like
-     * implemented in QuestionType_enum.
-     * */
+* @param fileName the XML file name
+* @return an Element list. Element : Jdom Type.
+* Each Element is a "Moodle question" implemented.
+* ie the attribute "type" of question is define like
+* implemented in QuestionType_enum.
+* */
     public final List<Element> parser(final String fileName) {
         org.jdom2.Document document;
         Element racine;
@@ -41,12 +41,12 @@ public class XmlParserImpl implements XmlParser {
     }
 
     /**
-     * @param root : the root element of Moodel xml document
-     * @return an Element list. Element : Jdom Type.
-     * Each Element is a "Moodle question" implemented.
-     * ie the attribute "type" of question is define like
-     * implemented in QuestionType_enum.
-     * */
+* @param root : the root element of Moodel xml document
+* @return an Element list. Element : Jdom Type.
+* Each Element is a "Moodle question" implemented.
+* ie the attribute "type" of question is define like
+* implemented in QuestionType_enum.
+* */
     private static List<Element> getQestionList(final Element root) {
         List<Element> listQuestion = root.getChildren("question");
         List<Element> listeQuestion = new ArrayList<Element>();

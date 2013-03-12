@@ -3,8 +3,15 @@ package xmlWriter;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+/**
+* Tous les tests.
+* */
 public class AllTests {
 
+    /**
+    *
+    * @return retourne un test.
+    * */
     public static Test suite() {
         TestSuite suite = new TestSuite(AllTests.class.getName());
         //$JUnit-BEGIN$
@@ -18,3 +25,4 @@ public class AllTests {
     }
 
 }
+

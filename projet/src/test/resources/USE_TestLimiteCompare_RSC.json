@@ -1,0 +1,15 @@
+{"quiz": {"question": {
+ "type": "truefalse",
+ "answer":  [
+    {
+   "fraction": "100",
+   "text": "true",
+   "feedback": {"text": "Correct!"}
+  },
+    {
+   "fraction": "0",
+   "text": null,
+   "feedback": {"text": "Ooops!"}
+  }
+ ]
+}}}

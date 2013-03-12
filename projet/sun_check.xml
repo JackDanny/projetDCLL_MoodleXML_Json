@@ -103,7 +103,7 @@
 
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
-        <!-- Vérifie qu'il n'y a pas des importation qui utilisent la notation * -->
+        <!-- Vérifie qu'il n'y a pas des importations qui utilisent la notation * -->
         <module name="AvoidStarImport"/>
         
         <!-- Vérifie les importation redondantes -->
@@ -123,7 +123,7 @@
         
         <module name="OneStatementPerLine"/>
         
-        <!-- permettre jusqu'à 10 paramétre pour une methode ou un constructeur -->
+        <!-- permettre jusqu'à 10 paramètres pour une methode ou un constructeur -->
         <module name="ParameterNumber">
    			 <property name="max" value="10"/>
   			 <property name="tokens" value="METHOD_DEF"/>

@@ -1,6 +1,14 @@
 package main;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 
 
 import jsontoxml.jsonParser.JsonParserImpl;
@@ -39,32 +47,67 @@ public class Main {
 	    }    
 	    return "";
 	}
+
 	/**
      * @param args the file name
      * Generates an xml file if the file parameter is a json file .
      * Generates a json file if the file parameter is an xml file .
-     * */	
-	public static void main(final String[] args) {
-		String ext = getFileExtension(args[0]);	
-		try {
-			if (ext.toUpperCase().equals("XML")){
-				XmlParserImpl xmlparser1 = new XmlParserImpl();
-				ToJson tj = new ToJson(
-					 getFileName(args[0]) + ".json");
-				tj.toJson(xmlparser1.parser(args[0]));
-				       }
-			else if (ext.toUpperCase().equals("JSON")) {
-				JsonParserImpl i = new JsonParserImpl();
-				i.parser(args[0]); 
-				}					       
-			else {
-				System.out.println(
-						"fichier non pris en charge");
-				}
-		     }
-		catch (Exception e){
-				System.out.println("fichier inexistant");
-				}		
+     * */		
+	public static void main(String[] args) {
+
+	
+		
+		
+		// XML TO JSON
+		  
+	    
+	    JFrame frame = new JFrame("projetDCLL_MoodleXML_Json");	 
+	    frame.setSize(500, 500);
+	    frame.setBounds(500, 500, 400, 200);	    
+	    JPanel panel = new JPanel();	   	    
+	    frame.setLocationRelativeTo(null);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+	    
+	    JButton xmlToJson = new JButton("xmlToJson");	  
+	    xmlToJson.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent ae) {
+	        JFileChooser fileChooser = new JFileChooser();
+	        int returnValue = fileChooser.showOpenDialog(null);
+	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	          File selectedFile = fileChooser.getSelectedFile();
+	          System.out.println(selectedFile.getName());
+	          XmlParserImpl xmlparser1 = new XmlParserImpl();
+			  ToJson tj = new ToJson(getFileName(selectedFile.getName()));
+			  tj.toJson(xmlparser1.parser(selectedFile.getName()));
+	        }
+	      }
+	    });
+	    
+	    panel.add(xmlToJson);
+	    frame.add(panel);
+	    
+	    
+	    // JSON TO XML
+	    
+	    JButton jsonToXml = new JButton("jsonToXml"); 
+	    jsonToXml.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent ae) {
+	        JFileChooser fileChooser = new JFileChooser();
+	        int returnValue = fileChooser.showOpenDialog(null);
+	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	          File selectedFile = fileChooser.getSelectedFile();
+	          System.out.println(selectedFile.getName());
+	          JsonParserImpl i = new JsonParserImpl();
+			    i.parser(selectedFile.getName());
+	        }
+	      }
+	    });
+	    
+	    panel.add(jsonToXml);
+	    frame.add(panel);	    
+	    frame.setVisible(true);
+
 	}
 
 }
