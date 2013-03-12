@@ -10,11 +10,15 @@ import junit.framework.TestCase;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import filecompare.Comparateur;
+import filecompare.ComparateurImpl;
+
 public class MultichoiceTests extends TestCase {
 
     private JSONObject multichoiceQuestion;      
     private XmlWriter xmlWriter;
-    
+    private Comparateur comparator;
+
     /**
      * Constructor
      * @param name
@@ -29,6 +33,7 @@ public class MultichoiceTests extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         this.xmlWriter = new XmlWriterImpl();
+        comparator = new ComparateurImpl();
         Reader reader= null;
         JSONObject o2 = null;
         JSONObject tbis= null;
@@ -50,6 +55,7 @@ public class MultichoiceTests extends TestCase {
         super.tearDown();
         xmlWriter = null;
         multichoiceQuestion = null;
+        comparator = null;
     }
     
     /**
@@ -57,10 +63,7 @@ public class MultichoiceTests extends TestCase {
      */
     public void testDiff(){
        xmlWriter.writeXmlToJson(multichoiceQuestion, "src/test/resources/USE_multichoiceOne_AUTOGEN.xml");
-       
-       
-       
-      //  assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));    
+       assertTrue(comparator.compare("src/test/resources/USE_multichoiceOne_AUTOGEN.xml","src/test/resources/USE_multichoiceOne_RSC.xml"));
     }
     
       

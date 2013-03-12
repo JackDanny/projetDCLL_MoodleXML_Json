@@ -10,10 +10,15 @@ import junit.framework.TestCase;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import filecompare.Comparateur;
+import filecompare.ComparateurImpl;
+
 public class EssayTests extends TestCase {
 
     private JSONObject essayQuestion;      
     private XmlWriter xmlWriter;
+    private Comparateur comparator;
+
     
     /**
      * Constructor
@@ -29,6 +34,7 @@ public class EssayTests extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         this.xmlWriter = new XmlWriterImpl();
+        comparator = new ComparateurImpl();
         Reader reader= null;
         JSONObject o2 = null;
         JSONObject tbis= null;
@@ -50,6 +56,7 @@ public class EssayTests extends TestCase {
         super.tearDown();
         xmlWriter = null;
         essayQuestion = null;
+        comparator = null;
     }
     
     /**
@@ -57,10 +64,7 @@ public class EssayTests extends TestCase {
      */
     public void testDiff(){
        xmlWriter.writeXmlToJson(essayQuestion, "src/test/resources/USE_essayOne_AUTOGEN.xml");
-       System.out.println("lll");
-       
-       
-      //  assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));    
+       assertTrue(comparator.compare("src/test/resources/USE_essayOne_AUTOGEN.xml","src/test/resources/USE_essayOne_RSC.xml"));
     }
     
       

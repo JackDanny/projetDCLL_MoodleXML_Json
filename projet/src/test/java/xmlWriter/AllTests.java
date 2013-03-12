@@ -12,6 +12,7 @@ public class AllTests {
         suite.addTestSuite(CategoryTests.class);
         suite.addTestSuite(TruefalseTests.class);
    //     suite.addTestSuite(FullExempleTest.class);
+        suite.addTestSuite(UnknownTagsTests.class);
         //$JUnit-END$
         return suite;
     }

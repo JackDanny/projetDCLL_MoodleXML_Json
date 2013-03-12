@@ -55,7 +55,7 @@ public class GenXML {
 	    Element elemRet=null;
 	    elemRet = new Element(name);
 	    final String text;
-	    if(!jsonO.isNull(name)){
+	    if(jsonO.isNull(name)){
 	        text = new String("");
 	    }else{
 	        text = jsonO.getString(name);
@@ -182,8 +182,8 @@ public class GenXML {
                     addComplexTags(jsonO.getJSONObject(currentField),currentField) ;         
                 }else if(simpleTags.contains(currentField)){
                     addElementToRoot((createSimpleTags(jsonO,currentField)));
-                }else{//balise inconnue (non repertoriée)
-                 // TODO   warning();
+                }else if(!currentField.equals("type")){//balise inconnue (non repertoriée)
+                     warning();
                     genBaseComplexElem(jsonO, currentField);
                 }
             }
