@@ -14,15 +14,13 @@ import org.json.JSONTokener;
 
 /**
  * Implementation of JsonParserImpl.
- * compare two files Json or two files xml
+ * parse a Json File
  * */
 
 
 public class JsonParserImpl implements JsonParser {
     /**
-     * @param filename Json filename
-     *
-     * @return a {@link JSONArray} of questions
+     * @param filename le fichier Json
      * */
 
     public final void parser(String filename) {
@@ -56,7 +54,11 @@ public class JsonParserImpl implements JsonParser {
     }
 
 
-
+    /**
+     * 
+     * @param filename nom de fichier Json
+     * @return le fichier avec maintenant l'extension xml
+     */
     private String renomFile(String filename) {
         //on recupere le nom du fichier sans son extension
         String nomCourt = filename.substring(0,filename.indexOf('.'));
