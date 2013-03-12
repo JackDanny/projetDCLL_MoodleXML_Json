@@ -41,34 +41,7 @@ public class Main {
     
     public static void main(String[] args) {
 
-         final String path = "src/test/resources/";
-        /*
-        String ext=getFileExtension(args[0]);
-        
-        try{
-            if (ext.toUpperCase().equals("XML") ){
-                
-                    XmlParserImpl xmlparser1 = new XmlParserImpl();
-                    ToJson tj = new ToJson(getFileName(args[0])+".json");
-                    tj.toJson(xmlparser1.parser(args[0]));
-                       }
-            
-                else if (ext.toUpperCase().equals("JSON")){
-                    
-                    JsonParserImpl i = new JsonParserImpl();
-                    i.parser(args[0]);      
-                }
-                else {
-                    
-                    System.out.println("fichier non pris en charge");
-                }
-             }
-        catch(Exception e){
-                System.out.println("fichier inexistant");
-                 }      */
-        
-        
-        
+         
         // XML TO JSON
           
         
@@ -87,7 +60,6 @@ public class Main {
             int returnValue = fileChooser.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
               File selectedFile = fileChooser.getSelectedFile();
-              System.out.println(selectedFile.getName());
               XmlParserImpl xmlparser1 = new XmlParserImpl();            
             ToJson tj = new ToJson(getFileName(selectedFile.getPath())+".json");
               tj.toJson(xmlparser1.parser(selectedFile.getPath()));
@@ -108,7 +80,6 @@ public class Main {
             int returnValue = fileChooser.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
               File selectedFile = fileChooser.getSelectedFile();
-              System.out.println(path+selectedFile.getName());
               JsonParserImpl i = new JsonParserImpl();
                 i.parser(selectedFile.getPath());
             }
