@@ -68,7 +68,7 @@ public class XmlWriterImpl implements XmlWriter {
     private void buildXML(final JSONObject quesObj) {
         GenXML generator = new GenXML();
         generator.addElments(quesObj);
-        root.addContent(generator.getCommonTags());
+        root.addContent(generator.getQuestionElem());
     }
 
 /**
