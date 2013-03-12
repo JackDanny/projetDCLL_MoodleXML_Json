@@ -76,7 +76,7 @@ public class GenXML {
         elemRet = new Element(name);
         final String text;
         if (jsonO.isNull(name)) {
-            text = new String("");
+            text = "";
         } else {
             text = jsonO.getString(name);
         }
@@ -104,16 +104,16 @@ public class GenXML {
 /**
  * Ajoute une balise complexe : name + sous balise "text"
  * */
-    private void addComplexTags(JSONObject jsonO, String name)
+    private void addComplexTags(final JSONObject jsonO, final String name)
             throws JSONException {
         addElementToRoot(createComplexTags(jsonO, name));
     }
 
 
     private void addQuestiontext(final JSONObject jsonO) throws JSONException {
-        String fomatValue = jsonO.getString("format");
-        Element questionText = new Element("questiontext");
-        Element textquestionText  = createSimpleTags(jsonO, "text");
+        final String fomatValue = jsonO.getString("format");
+        final Element questionText = new Element("questiontext");
+        final Element textquestionText  = createSimpleTags(jsonO, "text");
         Attribute att = new Attribute("format", fomatValue);
         questionText.setAttribute(att);
         questionText.addContent(textquestionText);
@@ -193,11 +193,11 @@ public class GenXML {
      * @param jsonO
      * */
     protected void addElments(JSONObject jsonO) {
-        Iterator<String> it = jsonO.keys();
+        Iterator<String> itera = jsonO.keys();
         String currentField;
         try {
-            while (it.hasNext()) {
-                currentField = it.next();
+            while (itera.hasNext()) {
+                currentField = itera.next();
                 if (currentField.equals("type")) {
                     Attribute att = new Attribute("type",
                             jsonO.getString("type"));
@@ -245,7 +245,7 @@ public class GenXML {
                 if (!jsonO.isNull(key)) { //si valeur non null
                     root.addContent(jsonO.getString(key)); //ajout de la valeur
                 } else {
-                    root.addContent(new String("")); //sinon ajout vide
+                    root.addContent(""); //sinon ajout vide
                 }
             }
             addElementToRoot(root); //si pas tableau ajout à la racine
@@ -272,7 +272,7 @@ public class GenXML {
                     if (!jsonO.isNull(key)) {
                         child.addContent(jsonO.getString(key));
                     } else {
-                        child.addContent(new String(""));
+                        child.addContent("");
                     }
                 }
                 root.addContent(child);
@@ -281,7 +281,7 @@ public class GenXML {
     }
 
 
-    private void genRecComplexElemArray(JSONArray jsonA, String name,
+    private void genRecComplexElemArray(final JSONArray jsonA, final String name,
             final Element root) throws JSONException {
         Element child;
         for (int i = 0; jsonA.length() > i; ++i) {
@@ -294,7 +294,7 @@ public class GenXML {
                 if (!jsonA.isNull(i)) {
                     child.addContent(jsonA.getString(i));
                 } else {
-                    child.addContent(new String(""));
+                    child.addContent("");
                 }
             }
             root.addContent(child);
@@ -306,11 +306,11 @@ public class GenXML {
      * Affiche un warning sur la sortie standard si une
      * balise inconnue est trouvé.
      * */
-    private static void warning() {
-        System.out.println("WARNING :\nUne balise non répertorié "
-                + "a été trouvée.\n La conversion continue mais "
-                + "aucun attribut ne peut être créé pour cette "
-                + "balise.");
+    private void warning() {
+        System.out.println("WARNING : ");
+        System.out.println("Une balise non répertorié a été trouvée.");
+        System.out.println("La conversion continue mais aucun attribut");
+        System.out.println("ne peut être créé pour cette balise.");
     }
 
 
