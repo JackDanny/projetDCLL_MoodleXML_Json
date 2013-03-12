@@ -20,15 +20,14 @@ public class AllTests {
      * @return TestSuite JUnit
      */
     public static Test suite() {
-		TestSuite suite = new TestSuite("Suite de test générale");
-		//$JUnit-BEGIN$
+        TestSuite suite = new TestSuite("Suite de test générale");
+        //$JUnit-BEGIN$
 
-		suite.addTest(new TestSuite(XmlParserTest.class));
-		suite.addTest(new TestSuite(ToJsonTest.class));
-		suite.addTest(new xmlWriter.AllTests().suite());
-	    suite.addTest(new jsonParser.AllTests().suite());
-		//$JUnit-END$
-		return suite;
-	}
-
+        suite.addTest(new TestSuite(XmlParserTest.class));
+        suite.addTest(new TestSuite(ToJsonTest.class));
+        suite.addTest(new xmlWriter.AllTests().suite());
+        suite.addTest(new jsonParser.AllTests().suite());
+        //$JUnit-END$
+        return suite;
+    }
 }
