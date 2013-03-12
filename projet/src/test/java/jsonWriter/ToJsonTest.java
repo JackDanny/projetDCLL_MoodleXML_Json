@@ -74,7 +74,7 @@ public class ToJsonTest extends TestCase {
 
         tj = null;
         tj = new ToJson("src/test/resources/USE_exemple_AUTOGEN.json");
-        tj.toJson("src/test/resources/USE_Exemple_RSC.xml");
+        tj.toJson("src/test/resources/USE_exemple_RSC.xml");
         path1 = new String("src/test/resources/USE_exemple_AUTOGEN.json");
         path2 = new String("src/test/resources/USE_exempleCompare_RSC.json");
         assertTrue(comparator.compare(path1, path2));
