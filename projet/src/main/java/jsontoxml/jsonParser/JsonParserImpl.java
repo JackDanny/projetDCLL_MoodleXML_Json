@@ -28,7 +28,7 @@ public class JsonParserImpl implements JsonParser {
 **/
 public static void main(String[] args) {
 JsonParserImpl i = new JsonParserImpl();
-	i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
+i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
 }
 public void parser(String filename){
 /**
