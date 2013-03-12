@@ -41,7 +41,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 
-		
+		 final String path = "src/test/resources/";
 		/*
 		String ext=getFileExtension(args[0]);
 		
@@ -68,6 +68,7 @@ public class Main {
 				 }		*/
 		
 		
+		
 		// XML TO JSON
 		  
 	    
@@ -87,9 +88,9 @@ public class Main {
 	        if (returnValue == JFileChooser.APPROVE_OPTION) {
 	          File selectedFile = fileChooser.getSelectedFile();
 	          System.out.println(selectedFile.getName());
-	          XmlParserImpl xmlparser1 = new XmlParserImpl();
-			  ToJson tj = new ToJson(getFileName(selectedFile.getName()));
-			  tj.toJson(xmlparser1.parser(selectedFile.getName()));
+	          XmlParserImpl xmlparser1 = new XmlParserImpl();			 
+			ToJson tj = new ToJson(getFileName(path+selectedFile.getName()));
+			  tj.toJson(xmlparser1.parser(path+selectedFile.getName()));
 	        }
 	      }
 	    });
@@ -107,9 +108,9 @@ public class Main {
 	        int returnValue = fileChooser.showOpenDialog(null);
 	        if (returnValue == JFileChooser.APPROVE_OPTION) {
 	          File selectedFile = fileChooser.getSelectedFile();
-	          System.out.println(selectedFile.getName());
+	          System.out.println(path+selectedFile.getName());
 	          JsonParserImpl i = new JsonParserImpl();
-			    i.parser(selectedFile.getName());
+			    i.parser(path+selectedFile.getName());
 	        }
 	      }
 	    });
