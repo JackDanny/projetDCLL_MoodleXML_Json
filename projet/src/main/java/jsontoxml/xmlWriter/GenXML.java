@@ -15,52 +15,52 @@ import org.json.JSONObject;
 import sun.nio.cs.Surrogate;
 
 public class GenXML {
-	
-	private Element quest;
-	private Set<String> simpleTags;
-	private Set<String> complexTags;
-	
-	public GenXML(){
-		quest = new Element("question");
-		simpleTags = new TreeSet<String>();
-		complexTags = new TreeSet<String>();
-		simpleTags.add("image");
-		simpleTags.add("image_base64");
-		simpleTags.add("penalty");
-		simpleTags.add("hidden");
-		simpleTags.add("defaultgrade");
-		simpleTags.add("single");
-		simpleTags.add("answernumbering");
-		simpleTags.add("shuffleanswers");
-		simpleTags.add("usecase");
-		
-		complexTags.add("generalfeedback");
-		complexTags.add("name");
-		complexTags.add("correctfeedback");
-		complexTags.add("partiallycorrectfeedback");
-		complexTags.add("incorrectfeedback");
-		complexTags.add("category");
-		
-	}
-		
-	public Element getCommonTags(){
-		return quest;
-	}
-
-	private void addElementToRoot(Content content){
-		quest.addContent(content);
+    
+    private Element quest;
+    private Set<String> simpleTags;
+    private Set<String> complexTags;
+    
+    public GenXML(){
+        quest = new Element("question");
+        simpleTags = new TreeSet<String>();
+        complexTags = new TreeSet<String>();
+        simpleTags.add("image");
+        simpleTags.add("image_base64");
+        simpleTags.add("penalty");
+        simpleTags.add("hidden");
+        simpleTags.add("defaultgrade");
+        simpleTags.add("single");
+        simpleTags.add("answernumbering");
+        simpleTags.add("shuffleanswers");
+        simpleTags.add("usecase");
+        
+        complexTags.add("generalfeedback");
+        complexTags.add("name");
+        complexTags.add("correctfeedback");
+        complexTags.add("partiallycorrectfeedback");
+        complexTags.add("incorrectfeedback");
+        complexTags.add("category");
+        
+    }
+        
+    public Element getCommonTags(){
+        return quest;
     }
 
-	private  Element createSimpleTags(JSONObject jsonO, String name) throws JSONException{
-	    Element elemRet=null;
-	    elemRet = new Element(name);
-	    final String text;
-	    if(jsonO.isNull(name)){
-	        text = new String("");
-	    }else{
-	        text = jsonO.getString(name);
-	    }
-	    Content cont = new Content(CType.Text) {
+    private void addElementToRoot(Content content){
+        quest.addContent(content);
+    }
+
+    private  Element createSimpleTags(JSONObject jsonO, String name) throws JSONException{
+        Element elemRet=null;
+        elemRet = new Element(name);
+        final String text;
+        if(jsonO.isNull(name)){
+            text = new String("");
+        }else{
+            text = jsonO.getString(name);
+        }
+        Content cont = new Content(CType.Text) {
             
             @Override
             public String getValue() {
@@ -68,22 +68,22 @@ public class GenXML {
                 return text;
             }
         };
-	    
-	    //elemRet.setText(text);
+        
+        //elemRet.setText(text);
         elemRet.addContent(cont);
-	    return elemRet;
-	}
+        return elemRet;
+    }
 
-	private Element createComplexTags(JSONObject jsonO, String name) throws JSONException{
+    private Element createComplexTags(JSONObject jsonO, String name) throws JSONException{
         Element gfElem = new Element(name);
         Element textElem = createSimpleTags(jsonO, "text");
         gfElem.addContent(textElem);
-	    return gfElem;
-	}
-	
-	
-	private void addComplexTags(JSONObject jsonO, String name) throws JSONException{
-	    addElementToRoot(createComplexTags(jsonO, name));
+        return gfElem;
+    }
+    
+    
+    private void addComplexTags(JSONObject jsonO, String name) throws JSONException{
+        addElementToRoot(createComplexTags(jsonO, name));
     }
 
 
@@ -95,8 +95,8 @@ public class GenXML {
        questionText.setAttribute(att);
        questionText.addContent(textquestionText);
        addElementToRoot(questionText);
-	}
-	
+    }
+    
 
    private void addSubquestion(JSONArray jsonA) throws JSONException {
        for(int i = 0 ; i < jsonA.length() ; ++i){
