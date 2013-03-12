@@ -629,7 +629,7 @@ public class JSONArray {
      * @param value A Map value.
      * @return      this.
      */
-    public JSONArray put(Map value) {
+    public JSONArray put(Map<?, ?> value) {
         this.put(new JSONObject(value));
         return this;
     }

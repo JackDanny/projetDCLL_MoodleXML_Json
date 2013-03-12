@@ -3,10 +3,10 @@
  */
 package testSuite;
 
+import xmlParser.XmlParserTest;
 import jsonWriter.ToJsonTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import xmlParser.XmlParserTest;
 
 /**
  * Comporte tous nos tests.

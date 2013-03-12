@@ -77,7 +77,9 @@ public class CategoryTests extends TestCase {
     public void testDiff(){
        xmlWriter.writeXmlToJson(categoryQuestion
                , "src/test/resources/USE_categoryOne_AUTOGEN.xml");
-       assertTrue(comparator.compare("src/test/resources/USE_categoryOne_AUTOGEN.xml", "src/test/resources/USE_categoryOne_RSC.xml"));
+       assertTrue(comparator.compare("src/"
+       		+ "test/resources/USE_categoryOne_AUTOGEN.xml"
+            ,"src/test/resources/USE_categoryOne_RSC.xml"));
     }
 
 }

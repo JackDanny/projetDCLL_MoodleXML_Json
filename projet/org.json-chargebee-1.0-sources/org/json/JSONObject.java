@@ -1076,7 +1076,7 @@ public class JSONObject {
      * @return      this.
      * @throws JSONException
      */
-    public JSONObject put(String key, Map value) throws JSONException {
+    public JSONObject put(String key, Map<?, ?> value) throws JSONException {
         this.put(key, new JSONObject(value));
         return this;
     }
@@ -1467,7 +1467,7 @@ public class JSONObject {
             return value.toString();
         }
         if (value instanceof Map) {
-            return new JSONObject((Map)value).toString();
+            return new JSONObject((Map<?, ?>)value).toString();
         }
         if (value instanceof Collection) {
             return new JSONArray((Collection<?>)value).toString();

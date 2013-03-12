@@ -110,7 +110,7 @@ public class GenXML {
     }
 
 
-    private void addQuestiontext(JSONObject jsonO) throws JSONException {
+    private void addQuestiontext(final JSONObject jsonO) throws JSONException {
         String fomatValue = jsonO.getString("format");
         Element questionText = new Element("questiontext");
         Element textquestionText  = createSimpleTags(jsonO, "text");
@@ -121,7 +121,7 @@ public class GenXML {
     }
 
 
-    private void addSubquestion(JSONArray jsonA) throws JSONException {
+    private void addSubquestion(final JSONArray jsonA) throws JSONException {
         for (int i = 0; i < jsonA.length(); ++i) {
             JSONObject jsonO = jsonA.getJSONObject(i);
             Element complexElem = createComplexTags(jsonO, "subquestion");
@@ -131,7 +131,7 @@ public class GenXML {
         }
     }
 
-    private Element createSimpleAnswer(JSONObject answerO)
+    private Element createSimpleAnswer(final JSONObject answerO)
             throws JSONException {
         /*create answer Jdom element*/
         Element answer1 = new Element("answer");
@@ -143,7 +143,7 @@ public class GenXML {
     /**
      * "Answer" simple que avec text.
      * */
-    private Element createFeedBack(JSONObject answerO)
+    private Element createFeedBack(final JSONObject answerO)
             throws JSONException {
         /*get the feedback object*/
         JSONObject fbO = answerO.getJSONObject("feedback");
@@ -180,7 +180,7 @@ public class GenXML {
      * "Answer" complete avec attribut fraction + feedback + text.
      * @throws JSONException 
      * */
-    private void addAnswers(JSONArray answerA)
+    private void addAnswers(final JSONArray answerA)
             throws JSONException {
         for (int i = 0; i < answerA.length(); ++i) { /*for 2 answers*/
             /*get the iéme JSON oject*/
@@ -190,7 +190,7 @@ public class GenXML {
     }
 
     /**
-     * @param jsonO 
+     * @param jsonO
      * */
     protected void addElments(JSONObject jsonO) {
         Iterator<String> it = jsonO.keys();
@@ -256,7 +256,8 @@ public class GenXML {
      * Ajoute récursivement les éléments à un élément racine XML à partir d'un object JSON.
      * @param jsonO
      * */
-    private void genRecComplexElem(final JSONObject jsonO, String name, Element root) throws JSONException {
+    private void genRecComplexElem(final JSONObject jsonO
+             ,String name, Element root) throws JSONException {
         Element child = null;
         Iterator<String> it = jsonO.keys();
         while (it.hasNext()) {
@@ -281,7 +282,7 @@ public class GenXML {
 
 
     private void genRecComplexElemArray(JSONArray jsonA, String name,
-            Element root) throws JSONException {
+            final Element root) throws JSONException {
         Element child;
         for (int i = 0; jsonA.length() > i; ++i) {
             child = new Element(name);
