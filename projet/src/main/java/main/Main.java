@@ -93,10 +93,11 @@ public class Main {
 	        int returnValue = fileChooser.showOpenDialog(null);
 	        if (returnValue == JFileChooser.APPROVE_OPTION) {
 	          File selectedFile = fileChooser.getSelectedFile();
-	          System.out.println(selectedFile.getName());
+	          System.out.println(selectedFile.getPath() + " " + selectedFile.getName());
+	          System.out.println(  getFileName(selectedFile.getName()));
 	          XmlParserImpl xmlparser1 = new XmlParserImpl();
-			  ToJson tj = new ToJson(getFileName(selectedFile.getName()));
-			  tj.toJson(xmlparser1.parser(selectedFile.getName()));
+			  ToJson tj = new ToJson(getFileName(selectedFile.getName())+".json");
+			  tj.toJson(xmlparser1.parser(selectedFile.getPath()));
 	        }
 	      }
 	    });

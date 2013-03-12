@@ -102,7 +102,10 @@ public class GenXML {
     }
 
 /**
- * Ajoute une balise complexe : name + sous balise "text"
+ * Ajoute une balise complexe : name + sous balise "text".
+ * @param jsonO l'objet json.
+ * @param name le nom de l'objet
+ * @throws JSONException peut être levé.
  * */
     private void addComplexTags(final JSONObject jsonO, final String name)
             throws JSONException {
@@ -190,9 +193,11 @@ public class GenXML {
     }
 
     /**
-     * @param jsonO
+     * Ajoute les balises XML à partir une JSON objet.
+     * @param jsonO : un JSON objet correspondant à
+     * une moodle question
      * */
-    protected void addElments(JSONObject jsonO) {
+    protected void addElments(final JSONObject jsonO) {
         Iterator<String> itera = jsonO.keys();
         String currentField;
         try {
@@ -232,8 +237,10 @@ public class GenXML {
      * N'est utilisé que pour les balises (clé) inconnues.
      * @param jsonO : l'objet JSON de la question Moodle en cours
      * @param key : le nom de la clé inconnue
+     * @throws JSONException JSON exception
      * */
-    private void genBaseComplexElem(final JSONObject jsonO, final String key) throws JSONException {
+    private void genBaseComplexElem(final JSONObject jsonO, final String key)
+            throws JSONException {
         if (null != jsonO.optJSONArray(key)) { //si tableau
             genRecComplexElemArray(jsonO.getJSONArray(key), key, quest);
         } else { //sinon
@@ -253,7 +260,8 @@ public class GenXML {
     }
 
     /**
-     * Ajoute récursivement les éléments à un élément racine XML à partir d'un object JSON.
+     * Ajoute récursivement les éléments à un élément
+     * racine XML à partir d'un object JSON.
      * @param jsonO
      * */
     private void genRecComplexElem(final JSONObject jsonO
