@@ -20,14 +20,14 @@ public class JsonParserImpl implements JsonParser {
 /**
 *@main
 *
-*@param pyblic String args 
+*@param args 
 *
 *En entrée un fichier Json
 *
 *En sortie un fichier XML
 **/
 public static void main(String[] args) {
-	JsonParserImpl i = new JsonParserImpl();
+JsonParserImpl i = new JsonParserImpl();
 	i.parser("src/test/resources/USE_TrueFalse_AUTOGEN.json");
 }
 public void parser(String filename){

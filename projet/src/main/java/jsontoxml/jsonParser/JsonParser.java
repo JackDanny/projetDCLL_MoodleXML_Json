@@ -1,12 +1,13 @@
 package jsontoxml.jsonParser;
 
-import org.json.JSONArray;
-
 public interface JsonParser {
 
 /**
+<<<<<<< HEAD
  * @param filename : Json filename
  *
  **/
 public void parser(String filename);
+
+	
 }

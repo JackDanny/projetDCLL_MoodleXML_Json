@@ -32,7 +32,7 @@ public class SaveFileJson {
             writer.write(this.jsonContent);
             writer.flush();
             writer.close();
-            System.out.println("fichier crée ");
+            //System.out.println("fichier crée ");
         } catch (IOException e) {
             System.out.println("Erreur: impossible de créer le fichier '"
                     + pathFile + "'");

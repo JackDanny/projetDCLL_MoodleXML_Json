@@ -89,7 +89,7 @@ public class ComparateurImpl implements Comparateur {
             b = compareDeuxElements(racine1, racine2);
         }
         else {
-            System.out.println("cas non pris en compte");
+            //System.out.println("cas non pris en compte");
         }
         //System.out.println(b);
         return b;

@@ -1,6 +1,16 @@
 package main;
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+import net.sf.json.JSONObject;
 
 
 import jsontoxml.jsonParser.JsonParserImpl;
@@ -33,6 +43,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 
+		
+		/*
 		String ext=getFileExtension(args[0]);
 		
 		try{
@@ -55,7 +67,57 @@ public class Main {
 		     }
 		catch(Exception e){
 				System.out.println("fichier inexistant");
-				 }		
+				 }		*/
+		
+		
+		// XML TO JSON
+		  
+	    
+	    JFrame frame = new JFrame("projetDCLL_MoodleXML_Json");	    
+	    frame.setLayout(new FlowLayout());	    
+	    frame.setBounds(10,10,10,10); 
+	    frame.setLocationRelativeTo(null);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+	    
+	    JButton xmlToJson = new JButton("xmlToJson");
+	    xmlToJson.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent ae) {
+	        JFileChooser fileChooser = new JFileChooser();
+	        int returnValue = fileChooser.showOpenDialog(null);
+	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	          File selectedFile = fileChooser.getSelectedFile();
+	          System.out.println(selectedFile.getName());
+	          XmlParserImpl xmlparser1 = new XmlParserImpl();
+			  ToJson tj = new ToJson(getFileName(selectedFile.getName()));
+			  tj.toJson(xmlparser1.parser(selectedFile.getName()));
+	        }
+	      }
+	    });
+	    frame.add(xmlToJson);
+	    
+	    
+	    // JSON TO XML
+	    
+	    JButton jsonToXml = new JButton("jsonToXml");
+	    jsonToXml.setBounds(10,10,10,10); 
+	    jsonToXml.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent ae) {
+	        JFileChooser fileChooser = new JFileChooser();
+	        int returnValue = fileChooser.showOpenDialog(null);
+	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	          File selectedFile = fileChooser.getSelectedFile();
+	          System.out.println(selectedFile.getName());
+	          JsonParserImpl i = new JsonParserImpl();
+			    i.parser(selectedFile.getName());
+	        }
+	      }
+	    });
+	    
+	    frame.add(jsonToXml);
+	    
+	    frame.pack();
+	    frame.setVisible(true);
 	}
 
 }
