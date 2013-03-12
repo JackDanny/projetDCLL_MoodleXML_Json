@@ -179,12 +179,12 @@
   "answer":   [
       {
     "fraction": "-100",
-    "text": "\nUne architecture MVC\n        ",
+    "text": "Une architecture MVC        ",
     "feedback": {"text": "\nUne application  non distribuée peut implémentée MVC.\n          "}
    },
       {
     "fraction": "100",
-    "text": "\nUne architecture N tiers ou N vaut 3\n        ",
+    "text": "Une architecture N tiers ou N vaut 3        ",
     "feedback": {"text": "\n\n          "}
    }
   ]
@@ -214,22 +214,22 @@
   "answer":   [
       {
     "fraction": "0",
-    "text": "\nUne architecture N-tiers est uniquement une architecture à base de Web Services\n        ",
+    "text": "Une architecture N-tiers est uniquement une architecture à base de Web Services        ",
     "feedback": {"text": "\nUne architecture distribuée peut reposer par exemple sur RMI\n          "}
    },
       {
     "fraction": "33.333",
-    "text": "\nUne architecture client serveur est une architecture N-tiers\n        ",
+    "text": "Une architecture client serveur est une architecture N-tiers        ",
     "feedback": {"text": "\n\n          "}
    },
       {
     "fraction": "33.333",
-    "text": "\nUne architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques\n        ",
+    "text": "Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques        ",
     "feedback": {"text": "\n\n          "}
    },
       {
     "fraction": "33.333",
-    "text": "\nUne application web est une application reposant sur une architecture N Tiers\n        ",
+    "text": "Une application web est une application reposant sur une architecture N Tiers        ",
     "feedback": {"text": "\n\n          "}
    }
   ]
@@ -271,12 +271,12 @@
   "answer":   [
       {
     "fraction": "100",
-    "text": "\nModel View Controller\n      ",
+    "text": "Model View Controller      ",
     "feedback": {"text": "\n\n        "}
    },
       {
     "fraction": "100",
-    "text": "\nModèle vue contrôleur\n      ",
+    "text": "Modèle vue contrôleur      ",
     "feedback": {"text": "\n\n        "}
    }
   ]
@@ -298,12 +298,12 @@
   "answer":   [
       {
     "fraction": "100",
-    "text": "\nSimula 66\n      ",
+    "text": "Simula 66      ",
     "feedback": {"text": "\nParfait !\n        "}
    },
       {
     "fraction": "75",
-    "text": "\nSimula\n      ",
+    "text": "Simula      ",
     "feedback": {"text": "\nOui, plus précisément Simula 66\n        "}
    }
   ]

@@ -18,12 +18,12 @@
  "answer":  [
     {
    "fraction": "-100",
-   "text": "\nUne architecture MVC\n        ",
-   "feedback": {"text": "\nUne application  non distribuée peut implémentée MVC.\n          "}
+   "text": "Une architecture MVC        ",
+   "feedback": {"text": "Une application  non distribuée peut implémentée MVC.          "}
   },
     {
    "fraction": "100",
-   "text": "\nUne architecture N tiers ou N vaut 3\n        "
+   "text": "Une architecture N tiers ou N vaut 3        "
   }
  ]
 }}}
