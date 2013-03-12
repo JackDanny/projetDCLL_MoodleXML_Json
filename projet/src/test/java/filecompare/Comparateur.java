@@ -1,26 +1,19 @@
 package filecompare;
 
 /**
- * 
- * comparateur interface
- * 
+ * comparateur interface.
+ *
  *
  */
 
-
 public interface Comparateur {
 
-	
-	/**
-	* @param filename1 , filename2 the XML or json file names
-	 * @return a boolean:
-	 * true if the two files are the same
-	 * else false
-	 * 
-	 * */
-	public boolean compare(String filename1,String filename2);
-
-
-
+/**
+* @param filename1 XML or json file names
+* @param filename2 XML or json file names
+* @return a boolean: true if the two files are the same else false
+*
+*/
+   boolean compare(final String filename1, final String filename2);
 
 }
