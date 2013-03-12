@@ -113,10 +113,10 @@ public class ToJson {
             // i : compteur elem courant
             int i = 0;
             for (Element children : childrens) {
-                if (children.getName().equals("answer")) {
-                    System.out.println("Debug");
-                    // Point arret debug
-                }
+//                if (children.getName().equals("answer")) {
+//                    System.out.println("Debug");
+//                    // Point arret debug
+//                }
 
                 if (!isDone.contains(children.getName())) { //non traité si deja fait
                     //CARE les fils identiques a gerer en Array doivent se suivre.
@@ -130,6 +130,7 @@ public class ToJson {
                             courante.put(children.getName(), toJson(children));
                         } else {
                             String text = children.getValue();
+                            text = text.replaceAll("[\n]+", "");//*************
                             if (!text.equals("")) {
                                 courante.put(children.getName(), text);
                             }  else { courante.put(children.getName(), null); }
@@ -140,6 +141,7 @@ public class ToJson {
             }
         } else {
             String text = element.getValue();
+            text = text.replaceAll("[\n]+", "");//*************
             if (!text.equals("")) {
                 courante.put(element.getName(), text);
             }  else { courante.put(element.getName(), null); }
@@ -180,6 +182,7 @@ public class ToJson {
                     courante.put(children.getName(), toJson(children));
                 } else {
                     String text = children.getValue();
+                    text = text.replaceAll("[\n]+", "");//*************
                     if (!text.equals("")) {
                         courante.put(children.getName(), text);
                     }  else { courante.put(children.getName(), null); }
@@ -188,6 +191,7 @@ public class ToJson {
             }
         } else {
             String text = element.getValue();
+            text = text.replaceAll("[\n]+", "");//*****************
             if (!text.equals("")) {
                 courante.put(text, null);
             }  //else { courante.put(element.getName(), null); }
@@ -290,7 +294,7 @@ public class ToJson {
         
         ToJson tj3 = new ToJson("src/test/resources/USE_TestLimite_AUTOGEN.json");
         tj3.toJson("src/test/resources/USE_TestLimite_RSC.xml");
-//        
+        
         ToJson tj4 = new ToJson("src/test/resources/USE_XmlWriterTest_AUTOGEN.json");
         tj4.toJson("src/test/resources/USE_XmlWriterTest_RSC.xml");
     }
