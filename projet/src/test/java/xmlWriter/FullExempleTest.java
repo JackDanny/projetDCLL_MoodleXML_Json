@@ -11,11 +11,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import filecompare.Comparateur;
+import filecompare.ComparateurImpl;
+
 public class FullExempleTest extends TestCase {
 
 
         private JSONArray fullQuestion;      
         private XmlWriter xmlWriter;
+        private Comparateur comparator;
+
         
         /**
          * Constructor
@@ -31,6 +36,7 @@ public class FullExempleTest extends TestCase {
         protected void setUp() throws Exception {
             super.setUp();
             this.xmlWriter = new XmlWriterImpl();
+            comparator = new ComparateurImpl();
             Reader reader= null;
             JSONObject o2 = null;
             JSONObject tbis= null;
@@ -52,6 +58,7 @@ public class FullExempleTest extends TestCase {
             super.tearDown();
             xmlWriter = null;
             fullQuestion = null;
+            comparator = null;
         }
         
         /**
@@ -59,10 +66,7 @@ public class FullExempleTest extends TestCase {
          */
         public void testDiff(){
            xmlWriter.writeXmlToJson(fullQuestion, "src/test/resources/USE_exemple_AUTOGEN.xml");
-           
-           
-           
-          //  assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));    
+           assertTrue(comparator.compare("src/test/resources/USE_exemple_AUTOGEN.xml","src/test/resources/USE_exemple_RSC.xml"));
         }
         
           

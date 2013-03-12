@@ -10,10 +10,14 @@ import junit.framework.TestCase;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import filecompare.Comparateur;
+import filecompare.ComparateurImpl;
+
 public class TruefalseTests extends TestCase {
 
     private JSONObject trueFalseQuestion;      
     private XmlWriter xmlWriter;
+    private Comparateur comparator;
     
     /**
      * Constructor
@@ -29,6 +33,7 @@ public class TruefalseTests extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         this.xmlWriter = new XmlWriterImpl();
+        comparator = new ComparateurImpl();
         Reader reader= null;
         JSONObject o2 = null;
         JSONObject tbis= null;
@@ -50,6 +55,7 @@ public class TruefalseTests extends TestCase {
         super.tearDown();
         xmlWriter = null;
         trueFalseQuestion = null;
+        comparator = null;
     }
     
     /**
@@ -57,10 +63,7 @@ public class TruefalseTests extends TestCase {
      */
     public void testDiff(){
        xmlWriter.writeXmlToJson(trueFalseQuestion, "src/test/resources/USE_TruefalseOne_AUTOGEN.xml");
-       
-       
-       
-      //  assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));    
+       assertTrue(comparator.compare("src/test/resources/USE_TruefalseOne_AUTOGEN.xml","src/test/resources/USE_TruefalseOne_RSC.xml"));
     }
     
       

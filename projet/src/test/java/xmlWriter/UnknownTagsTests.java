@@ -10,16 +10,21 @@ import junit.framework.TestCase;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-public class unknownTagsTests extends TestCase {
+import filecompare.Comparateur;
+import filecompare.ComparateurImpl;
+
+public class UnknownTagsTests extends TestCase {
 
     private JSONObject unknownTags;      
     private XmlWriter xmlWriter;
+    private Comparateur comparator;
+
     
     /**
      * Constructor
      * @param name
      */
-    public unknownTagsTests(String name) {
+    public UnknownTagsTests(String name) {
         super(name);
     }
 
@@ -29,6 +34,7 @@ public class unknownTagsTests extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         this.xmlWriter = new XmlWriterImpl();
+        comparator = new ComparateurImpl();
         Reader reader= null;
         JSONObject o2 = null;
         JSONObject tbis= null;
@@ -50,6 +56,7 @@ public class unknownTagsTests extends TestCase {
         super.tearDown();
         xmlWriter = null;
         unknownTags = null;
+        comparator = null;
     }
     
     /**
@@ -57,10 +64,7 @@ public class unknownTagsTests extends TestCase {
      */
     public void testDiff(){
        xmlWriter.writeXmlToJson(unknownTags, "src/test/resources/USE_unknownTagsOne_AUTOGEN.xml");
-       
-       
-       
-      //  assertNotNull("Erreur parser : resultat null",xmlParser.parser("src/test/resources/shortTest.xml"));    
+       assertTrue(comparator.compare("src/test/resources/USE_unknownTagsOne_AUTOGEN.xml","src/test/resources/USE_unknownTagsOne_RSC.xml"));
     }
     
       

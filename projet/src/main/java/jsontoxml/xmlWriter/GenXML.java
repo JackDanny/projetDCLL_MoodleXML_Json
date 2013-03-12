@@ -15,52 +15,52 @@ import org.json.JSONObject;
 import sun.nio.cs.Surrogate;
 
 public class GenXML {
-	
-	private Element quest;
-	private Set<String> simpleTags;
-	private Set<String> complexTags;
-	
-	public GenXML(){
-		quest = new Element("question");
-		simpleTags = new TreeSet<String>();
-		complexTags = new TreeSet<String>();
-		simpleTags.add("image");
-		simpleTags.add("image_base64");
-		simpleTags.add("penalty");
-		simpleTags.add("hidden");
-		simpleTags.add("defaultgrade");
-		simpleTags.add("single");
-		simpleTags.add("answernumbering");
-		simpleTags.add("shuffleanswers");
-		simpleTags.add("usecase");
-		
-		complexTags.add("generalfeedback");
-		complexTags.add("name");
-		complexTags.add("correctfeedback");
-		complexTags.add("partiallycorrectfeedback");
-		complexTags.add("incorrectfeedback");
-		complexTags.add("category");
-		
-	}
-		
-	public Element getCommonTags(){
-		return quest;
-	}
-
-	private void addElementToRoot(Content content){
-		quest.addContent(content);
+    
+    private Element quest;
+    private Set<String> simpleTags;
+    private Set<String> complexTags;
+    
+    public GenXML(){
+        quest = new Element("question");
+        simpleTags = new TreeSet<String>();
+        complexTags = new TreeSet<String>();
+        simpleTags.add("image");
+        simpleTags.add("image_base64");
+        simpleTags.add("penalty");
+        simpleTags.add("hidden");
+        simpleTags.add("defaultgrade");
+        simpleTags.add("single");
+        simpleTags.add("answernumbering");
+        simpleTags.add("shuffleanswers");
+        simpleTags.add("usecase");
+        
+        complexTags.add("generalfeedback");
+        complexTags.add("name");
+        complexTags.add("correctfeedback");
+        complexTags.add("partiallycorrectfeedback");
+        complexTags.add("incorrectfeedback");
+        complexTags.add("category");
+        
+    }
+        
+    public Element getQuestionElem(){
+        return quest;
     }
 
-	private  Element createSimpleTags(JSONObject jsonO, String name) throws JSONException{
-	    Element elemRet=null;
-	    elemRet = new Element(name);
-	    final String text;
-	    if(!jsonO.isNull(name)){
-	        text = new String("");
-	    }else{
-	        text = jsonO.getString(name);
-	    }
-	    Content cont = new Content(CType.Text) {
+    private void addElementToRoot(Content content){
+        quest.addContent(content);
+    }
+
+    private  Element createSimpleTags(JSONObject jsonO, String name) throws JSONException{
+        Element elemRet=null;
+        elemRet = new Element(name);
+        final String text;
+        if(jsonO.isNull(name)){
+            text = new String("");
+        }else{
+            text = jsonO.getString(name);
+        }
+        Content cont = new Content(CType.Text) {
             
             @Override
             public String getValue() {
@@ -68,49 +68,51 @@ public class GenXML {
                 return text;
             }
         };
-	    
-	    //elemRet.setText(text);
+        
+        //elemRet.setText(text);
         elemRet.addContent(cont);
-	    return elemRet;
-	}
+        return elemRet;
+    }
 
-	private Element createComplexTags(JSONObject jsonO, String name) throws JSONException{
+    private Element createComplexTags(JSONObject jsonO, String name) throws JSONException{
         Element gfElem = new Element(name);
         Element textElem = createSimpleTags(jsonO, "text");
         gfElem.addContent(textElem);
-	    return gfElem;
-	}
-	
-	
-	private void addComplexTags(JSONObject jsonO, String name) throws JSONException{
-	    addElementToRoot(createComplexTags(jsonO, name));
+        return gfElem;
+    }
+    
+    
+    private void addComplexTags(JSONObject jsonO, String name) throws JSONException{
+        addElementToRoot(createComplexTags(jsonO, name));
     }
 
 
-   private void addQuestiontext(JSONObject jsonO) throws JSONException{
-       String fomatValue = jsonO.getString("format");
-       Element questionText = new Element("questiontext");
-       Element textquestionText  = createSimpleTags(jsonO, "text");
-       Attribute att = new Attribute("format", fomatValue);
-       questionText.setAttribute(att);
-       questionText.addContent(textquestionText);
-       addElementToRoot(questionText);
-	}
-	
+    private void addQuestiontext(final JSONObject jsonO) throws JSONException {
+        String fomatValue = jsonO.getString("format");
+        Element questionText = new Element("questiontext");
+        Element textquestionText  = createSimpleTags(jsonO, "text");
+        Attribute att = new Attribute("format", fomatValue);
+        questionText.setAttribute(att);
+        questionText.addContent(textquestionText);
+        addElementToRoot(questionText);
+    }
 
-   private void addSubquestion(JSONArray jsonA) throws JSONException {
-       for(int i = 0 ; i < jsonA.length() ; ++i){
-           System.out.println("là");
-           JSONObject jsonO = jsonA.getJSONObject(i);
-           Element complexElem = createComplexTags(jsonO, "subquestion");
-           Element answer = createSimpleAnswer(jsonO.getJSONObject("answer"));
-           complexElem.addContent(answer);
-           addElementToRoot(complexElem);
-       }
-   }
-           
-    private Element createSimpleAnswer(JSONObject answerO) throws JSONException{
-        Element answer1 = new Element("answer");/*create answer Jdom element*/
+
+    private void addSubquestion(final JSONArray jsonA) throws JSONException {
+        for (int i = 0; i < jsonA.length(); ++i) {
+            JSONObject jsonO = jsonA.getJSONObject(i);
+            Element complexElem = createComplexTags(jsonO, "subquestion");
+            Element answer = createSimpleAnswer(jsonO.getJSONObject("answer"));
+            complexElem.addContent(answer);
+            addElementToRoot(complexElem);
+        }
+    }
+    
+
+
+    private Element createSimpleAnswer(final JSONObject answerO)
+            throws JSONException {
+        Element answer1 = new Element("answer");
         Element textElem = createSimpleTags(answerO, "text");
         answer1.addContent(textElem);
         return answer1;
@@ -119,8 +121,11 @@ public class GenXML {
     /**
      * "Answer" simple que avec text
      * */
-    private Element createFeedBack(JSONObject answerO ) throws JSONException{
-        JSONObject fbO = answerO.getJSONObject("feedback");/*get the feedback object*/
+
+    private Element createFeedBack(final JSONObject answerO)
+            throws JSONException {
+        /*get the feedback object*/
+        JSONObject fbO = answerO.getJSONObject("feedback");
         Element feedElem = new Element("feedback");
         Element textElemFB = createSimpleTags(fbO, "text");
         feedElem.addContent(textElemFB);
@@ -152,14 +157,18 @@ public class GenXML {
      * "Answer" complete avec attribut fraction + feedback + text
      * @throws JSONException 
      * */
-    private void addAnswers(JSONArray answerA) throws JSONException{
-        for(int i=0; i<answerA.length() ;++i){/*for 2 answers*/
-            JSONObject answerO = answerA.getJSONObject(i);/*get the iéme JSON oject*/
+    private void addAnswers(final JSONArray answerA)
+            throws JSONException {
+        for (int i = 0; i < answerA.length(); ++i) { /*for 2 answers*/
+            /*get the iéme JSON oject*/
+            JSONObject answerO = answerA.getJSONObject(i);
             addAnswer(answerO);
         }
     }
-    
-    
+
+    /**
+     * @param jsonO
+     * */
     protected void addElments(JSONObject jsonO){
         Iterator<String> it = jsonO.keys();
         String currentField;
@@ -182,8 +191,8 @@ public class GenXML {
                     addComplexTags(jsonO.getJSONObject(currentField),currentField) ;         
                 }else if(simpleTags.contains(currentField)){
                     addElementToRoot((createSimpleTags(jsonO,currentField)));
-                }else{//balise inconnue (non repertoriée)
-                 // TODO   warning();
+                }else if(!currentField.equals("type")){//balise inconnue (non repertoriée)
+                     warning();
                     genBaseComplexElem(jsonO, currentField);
                 }
             }
@@ -220,8 +229,9 @@ public class GenXML {
      * Ajoute récursivement les éléments à un élément racine XML à partir d'un object JSON.
      * @param jsonO
      * */
-    private void genRecComplexElem(JSONObject jsonO, String name, Element root) throws JSONException {
-        Element child =null;
+    private void genRecComplexElem(final JSONObject jsonO
+             ,String name, Element root) throws JSONException {
+        Element child = null;
         @SuppressWarnings("unchecked")
         Iterator<String> it = jsonO.keys();
         while(it.hasNext()){
@@ -245,8 +255,7 @@ public class GenXML {
     }
 
     private void genRecComplexElemArray(JSONArray jsonA, String name,
-            Element root) throws JSONException {
-       
+            final Element root) throws JSONException {
         Element child;
         for(int i= 0 ; jsonA.length()>i ; ++i){
             child = new Element(name);
