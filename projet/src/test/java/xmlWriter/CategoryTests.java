@@ -72,10 +72,11 @@ public class CategoryTests extends TestCase {
     }
 
     /**
-     * Tests sur la méthode parser : non null résultat 
+     * Tests sur la méthode parser : non null résultat.
      */
     public void testDiff(){
-       xmlWriter.writeXmlToJson(categoryQuestion, "src/test/resources/USE_categoryOne_AUTOGEN.xml");
+       xmlWriter.writeXmlToJson(categoryQuestion
+               , "src/test/resources/USE_categoryOne_AUTOGEN.xml");
        assertTrue(comparator.compare("src/test/resources/USE_categoryOne_AUTOGEN.xml", "src/test/resources/USE_categoryOne_RSC.xml"));
     }
 

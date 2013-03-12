@@ -143,7 +143,7 @@ public class GenXML {
     /**
      * "Answer" simple que avec text.
      * */
-    private Element createFeedBack(JSONObject answerO )
+    private Element createFeedBack(JSONObject answerO)
             throws JSONException {
         /*get the feedback object*/
         JSONObject fbO = answerO.getJSONObject("feedback");
@@ -256,9 +256,8 @@ public class GenXML {
      * Ajoute récursivement les éléments à un élément racine XML à partir d'un object JSON.
      * @param jsonO
      * */
-    private void genRecComplexElem(JSONObject jsonO, String name, Element root) throws JSONException {
+    private void genRecComplexElem(final JSONObject jsonO, String name, Element root) throws JSONException {
         Element child = null;
-        @SuppressWarnings("unchecked")
         Iterator<String> it = jsonO.keys();
         while (it.hasNext()) {
             String key = it.next();
@@ -280,7 +279,7 @@ public class GenXML {
         }
     }
 
-    
+
     private void genRecComplexElemArray(JSONArray jsonA, String name,
             Element root) throws JSONException {
         Element child;
