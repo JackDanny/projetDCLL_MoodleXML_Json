@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import sun.nio.cs.Surrogate;
+
 public class GenXML {
 	
 	private Element quest;
@@ -58,7 +60,17 @@ public class GenXML {
 	    }else{
 	        text = jsonO.getString(name);
 	    }
-	    elemRet.setText(text);
+	    Content cont = new Content(CType.Text) {
+            
+            @Override
+            public String getValue() {
+                // TODO Auto-generated method stub
+                return text;
+            }
+        };
+	    
+	    //elemRet.setText(text);
+        elemRet.addContent(cont);
 	    return elemRet;
 	}
 
@@ -159,7 +171,7 @@ public class GenXML {
                     Attribute att = new Attribute("type", jsonO.getString("type") );       //<question type="category">
                     quest.setAttribute(att);
                 }if(currentField.equals("name")){
-                    addComplexTags((JSONObject) jsonO.get(currentField),currentField) ;
+                    addComplexTags(jsonO.getJSONObject(currentField),currentField) ;
                 }else if(currentField.equals("questiontext")){
                     addQuestiontext( jsonO.getJSONObject("questiontext"));
                 }else if(currentField.equals("answer")){
@@ -167,9 +179,12 @@ public class GenXML {
                 }else if(currentField.equals("subquestion")){
                     addSubquestion( jsonO.getJSONArray("subquestion") );
                 }else if(complexTags.contains(currentField)){
-                    addComplexTags((JSONObject) jsonO.get(currentField),currentField) ;         
+                    addComplexTags(jsonO.getJSONObject(currentField),currentField) ;         
                 }else if(simpleTags.contains(currentField)){
                     addElementToRoot((createSimpleTags(jsonO,currentField)));
+                }else{//balise inconnue (non repertoriée)
+                 // TODO   warning();
+                    genBaseComplexElem(jsonO, currentField);
                 }
             }
         }catch(Exception e){
@@ -177,7 +192,82 @@ public class GenXML {
         }
     }
 
- 
+    /**
+     * Génére les touts les éléments XML d'un JSONObject.
+     * N'est utilisé que pour les balises (clé) inconnues.
+     * @param jsonO : l'objet JSON de la question Moodle en cours
+     * @param key : le nom de la clé inconnue
+     * */
+    private void genBaseComplexElem(JSONObject jsonO, String key) throws JSONException{
+        if(null != jsonO.optJSONArray(key)){//si tableau
+            genRecComplexElemArray(jsonO.getJSONArray(key), key, quest);
+        }else{//sinon
+            Element root = new Element(key);//création de l'élément racine 
+            if (null != jsonO.optJSONObject(key)){//si objet complexe
+                genRecComplexElem(jsonO.getJSONObject(key), key, root); //contruction de l'objet 
+            }else{//sinon simple
+                if(! jsonO.isNull(key)){//si valeur non null
+                    root.addContent(jsonO.getString(key));//ajout de la valeur
+                }else{
+                    root.addContent(new String(""));//sinon ajout vide
+                }
+            }
+            addElementToRoot(root);//si pas tableau ajout à la racine
+        }
+    }
+    
+    /**
+     * Ajoute récursivement les éléments à un élément racine XML à partir d'un object JSON.
+     * @param jsonO
+     * */
+    private void genRecComplexElem(JSONObject jsonO, String name, Element root) throws JSONException {
+        Element child =null;
+        @SuppressWarnings("unchecked")
+        Iterator<String> it = jsonO.keys();
+        while(it.hasNext()){
+            String key = it.next();
+            child = new Element(key);
+            if(null != jsonO.optJSONArray(key)){//si tableau
+                genRecComplexElemArray(jsonO.getJSONArray(key), key, root);
+            }else{
+                if (null != jsonO.optJSONObject(key)){//si objet
+                    genRecComplexElem(jsonO.getJSONObject(key), key, child);
+                }else{//sinon simple
+                    if(! jsonO.isNull(key)){
+                        child.addContent(jsonO.getString(key));
+                    }else{
+                        child.addContent(new String(""));
+                    }
+                }
+                root.addContent(child);
+            }
+        }
+    }
+
+    private void genRecComplexElemArray(JSONArray jsonA, String name,
+            Element root) throws JSONException {
+       
+        Element child;
+        for(int i= 0 ; jsonA.length()>i ; ++i){
+            child = new Element(name);
+            if(null != jsonA.optJSONArray(i)){//si tableau
+                genRecComplexElemArray(jsonA.getJSONArray(i), name, child);
+            }else if (null != jsonA.optJSONObject(i)){//si objet
+                genRecComplexElem(jsonA.getJSONObject(i), name, child);
+            }else{//sinon simple
+                if(! jsonA.isNull(i)){
+                    child.addContent(jsonA.getString(i));
+                }else{
+                    child.addContent(new String(""));
+                }
+            }
+           root.addContent(child);
+        }
+    }
+
+    private void warning(){
+        System.out.println("WARNING :\nUne balise non répertorié a été trouvée.\n La conversion continue mais aucun attribut ne peut être créé pour cette balise.");
+    }
 
 
 
