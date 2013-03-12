@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-	<question type="category">
-	    <category>
-	        <text>$course$/Défaut pour 1SA3GL1</text>
-	    </category>
-	</question>
+  <question type="category">
+    <category>
+      <text>$course$/Défaut pour 1SA3GL1</text>
+    </category>
+  </question>
 </quiz>

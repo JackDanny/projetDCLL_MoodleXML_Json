@@ -89,8 +89,8 @@ public class Main {
               File selectedFile = fileChooser.getSelectedFile();
               System.out.println(selectedFile.getName());
               XmlParserImpl xmlparser1 = new XmlParserImpl();            
-            ToJson tj = new ToJson(getFileName(path+selectedFile.getName()));
-              tj.toJson(xmlparser1.parser(path+selectedFile.getName()));
+            ToJson tj = new ToJson(getFileName(selectedFile.getPath())+".json");
+              tj.toJson(xmlparser1.parser(selectedFile.getPath()));
             }
           }
         });
@@ -110,7 +110,7 @@ public class Main {
               File selectedFile = fileChooser.getSelectedFile();
               System.out.println(path+selectedFile.getName());
               JsonParserImpl i = new JsonParserImpl();
-                i.parser(path+selectedFile.getName());
+                i.parser(selectedFile.getPath());
             }
           }
         });
