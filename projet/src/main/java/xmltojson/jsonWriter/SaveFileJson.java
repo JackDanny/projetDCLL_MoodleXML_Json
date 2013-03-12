@@ -10,6 +10,7 @@ import java.io.IOException;
  * 
  * @author nawal
  *
+ *	 cette classe permet la sauvegarde physique d'un fichier 
  */
 public class SaveFileJson {
     
