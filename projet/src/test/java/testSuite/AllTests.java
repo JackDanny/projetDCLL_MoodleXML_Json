@@ -22,7 +22,6 @@ public class AllTests {
     public static Test suite() {
         TestSuite suite = new TestSuite("Suite de test générale");
         //$JUnit-BEGIN$
-
         suite.addTest(new TestSuite(XmlParserTest.class));
         suite.addTest(new TestSuite(ToJsonTest.class));
         suite.addTest(new xmlWriter.AllTests().suite());

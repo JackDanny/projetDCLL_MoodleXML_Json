@@ -13,15 +13,16 @@ import org.json.JSONObject;
 
 /**
  * Génère le code XML associé à un objet JSON Moodle question.
+ * @author florent
  * */
 public class GenXML {
 
     /**Element question de l'arbre JDom.*/
-    private Element quest;
+    transient final private Element quest;
     /**Ensemble de balises simple connues.*/
-    private Set<String> simpleTags;
+    transient final private Set<String> simpleTags;
     /**Ensemble de balises complexes connues.*/
-    private Set<String> complexTags;
+    transient final private Set<String> complexTags;
 
     /**Constructeur.*/
     public GenXML() {
@@ -91,7 +92,7 @@ public class GenXML {
      * @param name  : le nom de la balise contenant
      * la sous-balise "text"
      * @return Element : le nouvel élément.
-     * @throws JSONException : des éxecptions Json.
+     * @throws JSONException : des exception Json.
      * */
     private Element createComplexTags(final JSONObject jsonO, final String name)
             throws JSONException {
@@ -102,25 +103,48 @@ public class GenXML {
     }
 
 /**
- * Ajoute une balise complexe : name + sous balise "text"
+ * Ajoute une balise complexe : name + sous balise "text".
+ * @param jsonO l'élément json.
+ * @param name le nom de l'élément.
+ * @throws JSONException exception JSON
  * */
     private void addComplexTags(final JSONObject jsonO, final String name)
             throws JSONException {
         addElementToRoot(createComplexTags(jsonO, name));
     }
 
-
+    /**
+     * Ajoute l'élément est les sous-éléments "questiontext".
+     * @param jsonO l'élément json "questiontext"
+     * @throws JSONException les exception JSON
+     * */
     private void addQuestiontext(final JSONObject jsonO) throws JSONException {
-        final String fomatValue = jsonO.getString("format");
         final Element questionText = new Element("questiontext");
         final Element textquestionText  = createSimpleTags(jsonO, "text");
-        Attribute att = new Attribute("format", fomatValue);
-        questionText.setAttribute(att);
+        addFormatAttribute(jsonO, questionText);
         questionText.addContent(textquestionText);
         addElementToRoot(questionText);
     }
 
+    /**
+     * Ajout, s'il existe dans le json l'attribut, "format"
+     * dans l'élément questionText.
+     * @param jsonO : l'élément json qui peut contenir l'attribut
+     * @param questionText l'élément où ajouté l'attribut
+     * @throws JSONException exception JSON
+     * */
+    private void addFormatAttribute(final JSONObject jsonO
+            , final Element questionText) throws JSONException {
+        if (jsonO.has("format")) {
+            final String fomatValue = jsonO.getString("format");
+            Attribute att = new Attribute("format", fomatValue);
+            questionText.setAttribute(att);
+        }
+    }
 
+    /**
+     * @throws JSONException exception JSON
+     */
     private void addSubquestion(final JSONArray jsonA) throws JSONException {
         for (int i = 0; i < jsonA.length(); ++i) {
             JSONObject jsonO = jsonA.getJSONObject(i);
@@ -131,6 +155,14 @@ public class GenXML {
         }
     }
 
+    /**
+     * Créé une des éléments XML correspondant
+     * à une "simple answer".
+     * @param answerO : l'objet Json contenant
+     * "answer".
+     * @return le nouvelle élément "answer"
+     * @throws JSONException exception JSON
+     * */
     private Element createSimpleAnswer(final JSONObject answerO)
             throws JSONException {
         /*create answer Jdom element*/
@@ -141,7 +173,10 @@ public class GenXML {
     }
 
     /**
-     * "Answer" simple que avec text.
+     * Créé les éléments feedback.
+     * @param answerO : l'object Json contenant feedback
+     * @return le nouvel élément.
+     * @throws JSONException exception JSON
      * */
     private Element createFeedBack(final JSONObject answerO)
             throws JSONException {
@@ -153,7 +188,14 @@ public class GenXML {
         return feedElem;
     }
 
-    private void preAddAnswer(JSONObject jsonO) throws JSONException {
+    /**
+     * Détermine s'il faut ajouté un tableau
+     * answer ou juste un objet.
+     * @param jsonO : l'objet Json contenant
+     * la clé "answer"
+     * @throws JSONException exception JSON
+     */
+    private void preAddAnswer(final JSONObject jsonO) throws JSONException {
         if (jsonO.optJSONArray("answer") != null) {
             addAnswers(jsonO.getJSONArray("answer"));
         } else {
@@ -162,7 +204,13 @@ public class GenXML {
 
     }
 
-    private void addAnswer(final JSONObject answerO) throws JSONException {
+    /**
+     * Ajout un ojbet "answer".
+     * @param answerO : l'object answer
+     * @throws JSONException exception JSON
+     * */
+    private void addAnswer(final JSONObject answerO)
+            throws JSONException {
         Element answerElem = createSimpleAnswer(answerO);
         Attribute att = new Attribute("fraction",
                 answerO.getString("fraction")); /*create a new attribute*/
@@ -178,7 +226,8 @@ public class GenXML {
 
     /**
      * "Answer" complete avec attribut fraction + feedback + text.
-     * @throws JSONException 
+     * @param answerA : la liste "d'answer"
+     * @throws JSONException exception JSON
      * */
     private void addAnswers(final JSONArray answerA)
             throws JSONException {
@@ -190,9 +239,11 @@ public class GenXML {
     }
 
     /**
-     * @param jsonO
+     * Ajoute tout les éléments XML
+     * d'un élément Json.
+     * @param jsonO : l'élément Json
      * */
-    protected void addElments(JSONObject jsonO) {
+    protected void addElments(final JSONObject jsonO) {
         Iterator<String> itera = jsonO.keys();
         String currentField;
         try {
@@ -232,8 +283,10 @@ public class GenXML {
      * N'est utilisé que pour les balises (clé) inconnues.
      * @param jsonO : l'objet JSON de la question Moodle en cours
      * @param key : le nom de la clé inconnue
+     * @throws JSONException exception JSON
      * */
-    private void genBaseComplexElem(final JSONObject jsonO, final String key) throws JSONException {
+    private void genBaseComplexElem(final JSONObject jsonO
+            , final String key) throws JSONException {
         if (null != jsonO.optJSONArray(key)) { //si tableau
             genRecComplexElemArray(jsonO.getJSONArray(key), key, quest);
         } else { //sinon
@@ -253,11 +306,15 @@ public class GenXML {
     }
 
     /**
-     * Ajoute récursivement les éléments à un élément racine XML à partir d'un object JSON.
-     * @param jsonO
+     * Ajoute récursivement les éléments à un élément
+     * racine XML à partir d'un object JSON.
+     * @param jsonO : l'élément Json à convertir en XML
+     * @param name : le nom de l'élément Json
+     * @param root : la racine d'élément.
+     * @throws JSONException exception JSON
      * */
     private void genRecComplexElem(final JSONObject jsonO
-             ,String name, Element root) throws JSONException {
+             , final String name, final Element root) throws JSONException {
         Element child = null;
         Iterator<String> it = jsonO.keys();
         while (it.hasNext()) {
@@ -280,9 +337,18 @@ public class GenXML {
         }
     }
 
-
-    private void genRecComplexElemArray(final JSONArray jsonA, final String name,
-            final Element root) throws JSONException {
+    /**
+     * Ajoute récursivemen les éléments correspondant
+     * à un tableau Json.
+     * @param jsonA : le tableau Json
+     * @param name : le nom du tableau
+     * @param root : la racine où placé
+     * les nouveaux éléments.
+    * @throws JSONException exception JSON
+    */
+    private void genRecComplexElemArray(final JSONArray jsonA
+            , final String name, final Element root)
+                    throws JSONException {
         Element child;
         for (int i = 0; jsonA.length() > i; ++i) {
             child = new Element(name);
