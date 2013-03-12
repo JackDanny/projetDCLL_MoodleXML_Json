@@ -28,15 +28,6 @@
 		</dependency>
 
 
-
-
-		<!-- Début ajouté par nawal -->
-<!--  		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.12</version>
-		</dependency> -->
- 
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -46,35 +37,7 @@
 			<scope>compile</scope>
 		</dependency>
 
-
-		<!-- <dependency> <groupId>com.googlecode.json-simple</groupId> <artifactId>json-simple</artifactId> 
-			<version>1.1</version> </dependency> -->
-
-		<!-- Finjouté par nawal -->
-		<!-- <dependency> <groupId>org.json</groupId> <artifactId>org.json</artifactId> 
-			<version>chargebee-1.0</version> </dependency> -->
-
 	</dependencies>
-
-
-
-	<!-- jcr -->
-	<!-- <dependency> <groupId>javax.jcr</groupId> <artifactId>jcr</artifactId> 
-		<version>2.0</version> </dependency> -->
-
-	<!-- pmd -->
-	<!-- <dependency> <groupId>pmd</groupId> <artifactId>pmd</artifactId> <version>4.3</version> 
-		</dependency> --><!-- <dependency> <groupId>maven</groupId> <artifactId>maven-pmd-plugin</artifactId> 
-		<version>1.10</version> </dependency> -->
-
-	<!-- checkstyle -->
-	<!-- <dependency> <groupId>checkstyle</groupId> <artifactId>checkstyle</artifactId> 
-		<version>5.0</version> </dependency> --><!-- <dependency> <groupId>maven</groupId> <artifactId>maven-checkstyle-plugin</artifactId> 
-		<version>3.0.1</version> </dependency> -->
-
-
-
-
 
 	<build>
 		<plugins>
@@ -114,9 +77,6 @@
 				</configuration>
 			</plugin>
 
-
-
-
 		</plugins>
 	</build>
 	<reporting>
@@ -130,20 +90,6 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<!--  <properties>
-		
-	</properties>
-	-->
-
-
-
-	<!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
-		<artifactId>maven-jxr-plugin</artifactId> <version>2.3</version> </plugin> 
-		<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
-		<version>3.0</version> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
-		<artifactId>maven-checkstyle-plugin</artifactId> <version>2.9.1</version> 
-		</plugin> </plugins> </build> -->
-
 
 </project>
 
