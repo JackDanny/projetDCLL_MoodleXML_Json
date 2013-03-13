@@ -107,6 +107,9 @@ public class ComparateurImpl implements Comparateur {
             final Element elem2) {
         boolean b = true;
         if (!elem1.getName().equals(elem2.getName())) {
+            System.out.println("la balise " + elem1.getName());
+            System.out.println("est différente de " + elem2.getName());
+
             return false;
         }
         //ici, si elem1 n'a pas de fils, on va comparer
@@ -117,13 +120,22 @@ public class ComparateurImpl implements Comparateur {
         //ainsi, on restreint ce problème aux balises
         //n'ayant pas de fils
         if (elem1.getChildren().toString().equals("[]")) {
-            if (!elem1.getChildren().toString().equals("[]")) {
+            if (!elem2.getChildren().toString().equals("[]")) {
+                System.out.println("la balise " + elem1.getName()
+                        + " du fichier 1 n'a pas d'enfant mais la balise "
+                        + elem2.getName() + " du fichier 2 en a");
                 return false;
             }
             String s1 = elem1.getValue().toString();
             String s2 = elem2.getValue().toString();
 
             if (!s1.equals(s2)) {
+                System.out.println("le contenu de la balise "
+            + elem1.getName() + "du fichier 1");
+                System.out.println("est différent du contenu de la balise " + elem2.getName() + "du fichier 2:");
+                System.out.println(elem1.getValue().toString());
+                System.out.println("est différent de "+ elem2.getValue().toString());
+                
                 return false;
             }
         }
@@ -141,11 +153,15 @@ public class ComparateurImpl implements Comparateur {
                 Attribute aCourant1 = (Attribute) ia1.next();
                 Attribute aCourant2 = (Attribute) ia2.next();
                 if (!aCourant1.toString().equals(aCourant2.toString())) {
+                    System.out.println("l'attribut" + aCourant1.toString() + " de la balise " + elem1.getName() + "du fichier 1");
+                    System.out.println("est different de l'attribut" + aCourant2.toString() + " de la balise " + elem2.getName() + "du fichier 1");
                     return false;
                 }
 
             }
             if (ia1.hasNext() || ia2.hasNext()) {
+                System.out.println("La balise"+ elem1.getName() + "n'a pas le même nombre d'attributs dans les deux fichiers");
+                
                 return false;
             }
 
@@ -163,11 +179,13 @@ public class ComparateurImpl implements Comparateur {
 
                 if (!compareDeuxElements(courant1, courant2)) {
                     // System.out.println(b);
+                    
                     return false;
                 }
 
             }
             if (i1.hasNext() || i2.hasNext()) {
+                System.out.println("le nombre d'enfants de la balise "+ elem1.getName() + "est différent dans un des deux fichiers");
                 return false;
             }
 
