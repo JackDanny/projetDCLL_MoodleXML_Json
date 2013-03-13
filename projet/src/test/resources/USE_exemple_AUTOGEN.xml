@@ -22,6 +22,10 @@
     <shuffleanswers>0</shuffleanswers>
     <answer fraction="100">
       <text>3.14 * {R}*{R}</text>
+      <tolerance>0.01</tolerance>
+      <tolerancetype>1</tolerancetype>
+      <correctanswerformat>1</correctanswerformat>
+      <correctanswerlength>1</correctanswerlength>
       <feedback>
         <text />
       </feedback>
@@ -132,7 +136,6 @@
     <hidden>0</hidden>
     <shuffleanswers>0</shuffleanswers>
     <answer fraction="0">
-      <text />
       <feedback>
         <text />
       </feedback>
@@ -205,6 +208,31 @@
     <defaultgrade>1</defaultgrade>
     <penalty>0.1</penalty>
     <hidden>0</hidden>
+    <shuffleanswers>1</shuffleanswers>
+    <shuffleanswers>true</shuffleanswers>
+    <single>true</single>
+    <correctfeedback>
+      <text />
+    </correctfeedback>
+    <partiallycorrectfeedback>
+      <text />
+    </partiallycorrectfeedback>
+    <incorrectfeedback>
+      <text />
+    </incorrectfeedback>
+    <answernumbering>none</answernumbering>
+    <answer fraction="-100">
+      <text>Une architecture MVC</text>
+      <feedback>
+        <text>Une application  non distribuée peut implémentée MVC.</text>
+      </feedback>
+    </answer>
+    <answer fraction="100">
+      <text>Une architecture N tiers ou N vaut 3</text>
+      <feedback>
+        <text />
+      </feedback>
+    </answer>
   </question>
   <question type="multichoice">
     <name>
@@ -221,6 +249,43 @@
     <defaultgrade>1</defaultgrade>
     <penalty>0.1</penalty>
     <hidden>0</hidden>
+    <shuffleanswers>1</shuffleanswers>
+    <shuffleanswers>true</shuffleanswers>
+    <single>false</single>
+    <correctfeedback>
+      <text>OK</text>
+    </correctfeedback>
+    <partiallycorrectfeedback>
+      <text />
+    </partiallycorrectfeedback>
+    <incorrectfeedback>
+      <text>KO</text>
+    </incorrectfeedback>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0">
+      <text>Une architecture N-tiers est uniquement une architecture à base de Web Services</text>
+      <feedback>
+        <text>Une architecture distribuée peut reposer par exemple sur RMI</text>
+      </feedback>
+    </answer>
+    <answer fraction="33.333">
+      <text>Une architecture client serveur est une architecture N-tiers</text>
+      <feedback>
+        <text />
+      </feedback>
+    </answer>
+    <answer fraction="33.333">
+      <text>Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques</text>
+      <feedback>
+        <text />
+      </feedback>
+    </answer>
+    <answer fraction="33.333">
+      <text>Une application web est une application reposant sur une architecture N Tiers</text>
+      <feedback>
+        <text />
+      </feedback>
+    </answer>
   </question>
   <question type="numerical">
     <name>
@@ -239,6 +304,7 @@
     <shuffleanswers>0</shuffleanswers>
     <answer fraction="100">
       <text>1996</text>
+      <tolerance>0</tolerance>
       <feedback>
         <text />
       </feedback>

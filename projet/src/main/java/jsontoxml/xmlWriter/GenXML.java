@@ -36,7 +36,7 @@ public class GenXML {
         simpleTags.add("defaultgrade");
         simpleTags.add("single");
         simpleTags.add("answernumbering");
-        simpleTags.add("shuffleanswers");
+//        simpleTags.add("shuffleanswers");
         simpleTags.add("usecase");
 
         complexTags.add("generalfeedback");
@@ -173,22 +173,6 @@ public class GenXML {
     }
 
     /**
-     * Créé les éléments feedback.
-     * @param answerO : l'object Json contenant feedback
-     * @return le nouvel élément.
-     * @throws JSONException exception JSON
-     * */
-    private Element createFeedBack(final JSONObject answerO)
-            throws JSONException {
-        /*get the feedback object*/
-        JSONObject fbO = answerO.getJSONObject("feedback");
-        Element feedElem = new Element("feedback");
-        Element textElemFB = createSimpleTags(fbO, "text");
-        feedElem.addContent(textElemFB);
-        return feedElem;
-    }
-
-    /**
      * Détermine s'il faut ajouté un tableau
      * answer ou juste un objet.
      * @param jsonO : l'objet Json contenant
@@ -211,18 +195,20 @@ public class GenXML {
      * */
     private void addAnswer(final JSONObject answerO)
             throws JSONException {
-        Element answerElem = createSimpleAnswer(answerO);
+        Element answerElem = new Element("answer");
         Attribute att = new Attribute("fraction",
                 answerO.getString("fraction")); /*create a new attribute*/
         answerElem.setAttribute(att);
-        if (answerO.has("feedback")) {
-            answerElem.addContent(createFeedBack(answerO));
+        answerO.remove("fraction");
+        Iterator <String> itKey = answerO.keys();
+        while(itKey.hasNext()){
+            String key = itKey.next();
+            genBaseComplexElem(answerO, key, answerElem  );
         }
         /*add the answer element to the questionRoot*/
         addElementToRoot(answerElem);
     }
-
-
+    
 
     /**
      * "Answer" complete avec attribut fraction + feedback + text.
@@ -267,15 +253,36 @@ public class GenXML {
                             currentField);
                 } else if (simpleTags.contains(currentField)) {
                     addElementToRoot((createSimpleTags(jsonO, currentField)));
+                } else if (currentField.equals("shuffleanswers")) {
+                    addShuffleanswers(jsonO);                   
                 } else if (!currentField.equals("type")) {
-                    //balise inconnue (non repertoriée)
-                    warning();
-                    genBaseComplexElem(jsonO, currentField);
+                    warning(); //balise inconnue (non repertoriée)
+                    genBaseComplexElem(jsonO, currentField, quest);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void addShuffleanswers(final JSONObject jsonO) throws JSONException {
+        if(null != jsonO.optJSONArray("shuffleanswers")) {
+            JSONArray jsonA = jsonO.getJSONArray("shuffleanswers");
+            for(int i = 0 ; i < jsonA.length() ; ++i){
+                Iterator<String> it= jsonA.getJSONObject(i).keys();
+                while(it.hasNext() ){
+                  Element shuffleElem = new Element("shuffleanswers");
+                  shuffleElem.addContent(it.next());
+                  addElementToRoot(shuffleElem);
+                }
+                
+            }
+        } else {
+            addElementToRoot((createSimpleTags(
+                    jsonO
+                    , "shuffleanswers")));
+        }
+        
     }
 
     /**
@@ -286,9 +293,9 @@ public class GenXML {
      * @throws JSONException exception JSON
      * */
     private void genBaseComplexElem(final JSONObject jsonO
-            , final String key) throws JSONException {
+            , final String key, Element rootBase) throws JSONException {
         if (null != jsonO.optJSONArray(key)) { //si tableau
-            genRecComplexElemArray(jsonO.getJSONArray(key), key, quest);
+            genRecComplexElemArray(jsonO.getJSONArray(key), key, rootBase);
         } else { //sinon
             Element root = new Element(key); //création de l'élément racine
             if (null != jsonO.optJSONObject(key)) { //si objet complexe
@@ -301,7 +308,7 @@ public class GenXML {
                     root.addContent(""); //sinon ajout vide
                 }
             }
-            addElementToRoot(root); //si pas tableau ajout à la racine
+            rootBase.addContent(root);
         }
     }
 
