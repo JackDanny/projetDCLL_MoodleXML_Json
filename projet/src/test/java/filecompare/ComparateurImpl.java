@@ -109,7 +109,7 @@ public class ComparateurImpl implements Comparateur {
         if (!elem1.getName().equals(elem2.getName())) {
             System.out.println("la balise " + elem1.getName());
             System.out.println("est différente de " + elem2.getName());
-
+            
             return false;
         }
         //ici, si elem1 n'a pas de fils, on va comparer
@@ -134,7 +134,8 @@ public class ComparateurImpl implements Comparateur {
             + elem1.getName() + "du fichier 1");
                 System.out.println("est différent du contenu de la balise " + elem2.getName() + "du fichier 2:");
                 System.out.println(elem1.getValue().toString());
-                System.out.println("est différent de "+ elem2.getValue().toString());
+                System.out.println("est différent de ");
+                System.out.println(elem2.getValue().toString());
                 
                 return false;
             }
