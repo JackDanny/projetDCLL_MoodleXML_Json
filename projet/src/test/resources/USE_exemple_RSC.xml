@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-	<!-- question: 0  -->
 	<question type="category">
 		<category>
 			<text>$course$/Défaut pour 1SA3GL1</text>
 		</category>
 	</question>
-	<!-- question: 37095  -->
 	<question type="calculated">
 		<name>
 			<text>Aire du cercle</text>
@@ -106,7 +104,6 @@
 			</dataset_definition>
 		</dataset_definitions>
 	</question>
-	<!-- question: 37096  -->
 	<question type="description">
 		<name>
 			<text>Consigne dispositif électronique</text>
@@ -123,7 +120,6 @@
 		<hidden>0</hidden>
 		<shuffleanswers>0</shuffleanswers>
 	</question>
-	<!-- question: 37097  -->
 	<question type="essay">
 		<name>
 			<text>Question ouverte</text>
@@ -145,7 +141,6 @@
 			</feedback>
 		</answer>
 	</question>
-	<!-- question: 37098  -->
 	<question type="matching">
 		<name>
 			<text>Serveur d'application / éditeurs</text>
@@ -186,7 +181,6 @@
 			</answer>
 		</subquestion>
 	</question>
-	<!-- question: 37099  -->
 	<question type="cloze">
 		<name>
 			<text>Question "Cloze" (composite ?)</text>
@@ -203,7 +197,6 @@ b) Quelle note désirez-vous? {3:NUMERICAL:=3:2}</text>
 		</generalfeedback>
 		<shuffleanswers>0</shuffleanswers>
 	</question>
-	<!-- question: 37093  -->
 	<question type="multichoice">
 		<name>
 			<text>Architecture à 3 niveaux ?</text>
@@ -256,7 +249,6 @@ Une architecture N tiers ou N vaut 3
 			</feedback>
 		</answer>
 	</question>
-	<!-- question: 37092  -->
 	<question type="multichoice">
 		<name>
 			<text>Architectures N tiers</text>
@@ -329,7 +321,6 @@ Une application web est une application reposant sur une architecture N Tiers
 			</feedback>
 		</answer>
 	</question>
-	<!-- question: 37106  -->
 	<question type="numerical">
 		<name>
 			<text>HTTP 1er protocole de l'Internet</text>
@@ -353,7 +344,6 @@ Une application web est une application reposant sur une architecture N Tiers
 			</feedback>
 		</answer>
 	</question>
-	<!-- question: 37107  -->
 	<question type="shortanswer">
 		<name>
 			<text>MVC</text>
@@ -391,7 +381,6 @@ Modèle vue contrôleur
 			</feedback>
 		</answer>
 	</question>
-	<!-- question: 37105  -->
 	<question type="shortanswer">
 		<name>
 			<text>Premier langage Orienté Objet</text>
@@ -429,7 +418,6 @@ Oui, plus précisément Simula 66
 			</feedback>
 		</answer>
 	</question>
-	<!-- question: 37094  -->
 	<question type="truefalse">
 		<name>
 			<text>Tomcat et JEE</text>

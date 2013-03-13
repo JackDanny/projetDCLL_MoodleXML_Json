@@ -36,7 +36,6 @@ public class GenXML {
         simpleTags.add("defaultgrade");
         simpleTags.add("single");
         simpleTags.add("answernumbering");
-//        simpleTags.add("shuffleanswers");
         simpleTags.add("usecase");
 
         complexTags.add("generalfeedback");
@@ -94,24 +93,24 @@ public class GenXML {
      * @return Element : le nouvel élément.
      * @throws JSONException : des exception Json.
      * */
-    private Element createComplexTags(final JSONObject jsonO, final String name)
-            throws JSONException {
-        Element gfElem = new Element(name);
-        Element textElem = createSimpleTags(jsonO, "text");
-        gfElem.addContent(textElem);
-        return gfElem;
-    }
+//    private Element createComplexTags(final JSONObject jsonO, final String name)
+//            throws JSONException {
+//        Element gfElem = new Element(name);
+//        Element textElem = createSimpleTags(jsonO, "text");
+//        gfElem.addContent(textElem);
+//        return gfElem;
+//    }
 
 /**
  * Ajoute une balise complexe : name + sous balise "text".
  * @param jsonO l'élément json.
  * @param name le nom de l'élément.
  * @throws JSONException exception JSON
- * */
-    private void addComplexTags(final JSONObject jsonO, final String name)
-            throws JSONException {
-        addElementToRoot(createComplexTags(jsonO, name));
-    }
+// * */
+//    private void addComplexTags(final JSONObject jsonO, final String name)
+//            throws JSONException {
+//        addElementToRoot(createComplexTags(jsonO, name));
+//    }
 
     /**
      * Ajoute l'élément est les sous-éléments "questiontext".
@@ -145,15 +144,15 @@ public class GenXML {
     /**
      * @throws JSONException exception JSON
      */
-    private void addSubquestion(final JSONArray jsonA) throws JSONException {
-        for (int i = 0; i < jsonA.length(); ++i) {
-            JSONObject jsonO = jsonA.getJSONObject(i);
-            Element complexElem = createComplexTags(jsonO, "subquestion");
-            Element answer = createSimpleAnswer(jsonO.getJSONObject("answer"));
-            complexElem.addContent(answer);
-            addElementToRoot(complexElem);
-        }
-    }
+//    private void addSubquestion(final JSONArray jsonA) throws JSONException {
+//        for (int i = 0; i < jsonA.length(); ++i) {
+//            JSONObject jsonO = jsonA.getJSONObject(i);
+//            Element complexElem = createComplexTags(jsonO, "subquestion");
+//            Element answer = createSimpleAnswer(jsonO.getJSONObject("answer"));
+//            complexElem.addContent(answer);
+//            addElementToRoot(complexElem);
+//        }
+//    }
 
     /**
      * Créé une des éléments XML correspondant
@@ -163,14 +162,14 @@ public class GenXML {
      * @return le nouvelle élément "answer"
      * @throws JSONException exception JSON
      * */
-    private Element createSimpleAnswer(final JSONObject answerO)
-            throws JSONException {
-        /*create answer Jdom element*/
-        Element answer1 = new Element("answer");
-        Element textElem = createSimpleTags(answerO, "text");
-        answer1.addContent(textElem);
-        return answer1;
-    }
+//    private Element createSimpleAnswer(final JSONObject answerO)
+//            throws JSONException {
+//        /*create answer Jdom element*/
+//        Element answer1 = new Element("answer");
+//        Element textElem = createSimpleTags(answerO, "text");
+//        answer1.addContent(textElem);
+//        return answer1;
+//    }
 
     /**
      * Détermine s'il faut ajouté un tableau
@@ -240,19 +239,26 @@ public class GenXML {
                             jsonO.getString("type"));
                     quest.setAttribute(att);
                 } else if (currentField.equals("name")) {
-                    addComplexTags(jsonO.getJSONObject(currentField),
-                            currentField);
+                    genBaseComplexElem(jsonO, currentField, quest);
+
+//                    addComplexTags(jsonO.getJSONObject(currentField),
+ //                           currentField);
                 } else if (currentField.equals("questiontext")) {
                     addQuestiontext(jsonO.getJSONObject("questiontext"));
                 } else if (currentField.equals("answer")) {
                     preAddAnswer(jsonO); /*get the answers*/
                 } else if (currentField.equals("subquestion")) {
-                    addSubquestion(jsonO.getJSONArray("subquestion"));
+                    genBaseComplexElem(jsonO, currentField, quest);
+
+//                    addSubquestion(jsonO.getJSONArray("subquestion"));
                 } else if (complexTags.contains(currentField)) {
-                    addComplexTags(jsonO.getJSONObject(currentField),
-                            currentField);
+//                    addComplexTags(jsonO.getJSONObject(currentField),
+  //                          currentField);
+                    genBaseComplexElem(jsonO, currentField, quest);
+
                 } else if (simpleTags.contains(currentField)) {
-                    addElementToRoot((createSimpleTags(jsonO, currentField)));
+                    genBaseComplexElem(jsonO, currentField, quest);
+//                    addElementToRoot((createSimpleTags(jsonO, currentField)));
                 } else if (currentField.equals("shuffleanswers")) {
                     addShuffleanswers(jsonO);                   
                 } else if (!currentField.equals("type")) {
