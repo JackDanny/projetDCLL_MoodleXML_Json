@@ -20,31 +20,43 @@ public class GenXML {
     /**Element question de l'arbre JDom.*/
     transient final private Element quest;
     /**Ensemble de balises simple connues.*/
-    transient final private Set<String> simpleTags;
-    /**Ensemble de balises complexes connues.*/
-    transient final private Set<String> complexTags;
+    transient final private Set<String> knownTags;
 
     /**Constructeur.*/
     public GenXML() {
         quest = new Element("question");
-        simpleTags = new TreeSet<String>();
-        complexTags = new TreeSet<String>();
-        simpleTags.add("image");
-        simpleTags.add("image_base64");
-        simpleTags.add("penalty");
-        simpleTags.add("hidden");
-        simpleTags.add("defaultgrade");
-        simpleTags.add("single");
-        simpleTags.add("answernumbering");
-        simpleTags.add("usecase");
-
-        complexTags.add("generalfeedback");
-        complexTags.add("name");
-        complexTags.add("correctfeedback");
-        complexTags.add("partiallycorrectfeedback");
-        complexTags.add("incorrectfeedback");
-        complexTags.add("category");
-
+        knownTags = new TreeSet<String>();
+        knownTags.add("image");
+        knownTags.add("image_base64");
+        knownTags.add("penalty");
+        knownTags.add("hidden");
+        knownTags.add("defaultgrade");
+        knownTags.add("single");
+        knownTags.add("answernumbering");
+        knownTags.add("usecase");
+        knownTags.add("generalfeedback");
+        knownTags.add("name");
+        knownTags.add("correctfeedback");
+        knownTags.add("partiallycorrectfeedback");
+        knownTags.add("incorrectfeedback");
+        knownTags.add("category");
+        knownTags.add("subquestion");
+        knownTags.add("name");
+        knownTags.add("dataset_item");
+        knownTags.add("dataset_items");
+        knownTags.add("decimals");
+        knownTags.add("maximum");
+        knownTags.add("minimum");
+        knownTags.add("itemcount");
+        knownTags.add("value");
+        knownTags.add("number_of_items");
+        knownTags.add("dataset_definition");
+        knownTags.add("dataset_definitions");
+        knownTags.add("distribution");
+        knownTags.add("status");
+        knownTags.add("units");
+        knownTags.add("type");
+        
     }
 
     /**Retourne un élement JDom contenant les balises
@@ -85,34 +97,6 @@ public class GenXML {
     }
 
     /**
-     * Créé un élément complexe :
-     * une balise "name" contenant une sous-balise "text".
-     * @param jsonO : l'élément json contenat la clé name
-     * @param name  : le nom de la balise contenant
-     * la sous-balise "text"
-     * @return Element : le nouvel élément.
-     * @throws JSONException : des exception Json.
-     * */
-//    private Element createComplexTags(final JSONObject jsonO, final String name)
-//            throws JSONException {
-//        Element gfElem = new Element(name);
-//        Element textElem = createSimpleTags(jsonO, "text");
-//        gfElem.addContent(textElem);
-//        return gfElem;
-//    }
-
-/**
- * Ajoute une balise complexe : name + sous balise "text".
- * @param jsonO l'élément json.
- * @param name le nom de l'élément.
- * @throws JSONException exception JSON
-// * */
-//    private void addComplexTags(final JSONObject jsonO, final String name)
-//            throws JSONException {
-//        addElementToRoot(createComplexTags(jsonO, name));
-//    }
-
-    /**
      * Ajoute l'élément est les sous-éléments "questiontext".
      * @param jsonO l'élément json "questiontext"
      * @throws JSONException les exception JSON
@@ -141,35 +125,6 @@ public class GenXML {
         }
     }
 
-    /**
-     * @throws JSONException exception JSON
-     */
-//    private void addSubquestion(final JSONArray jsonA) throws JSONException {
-//        for (int i = 0; i < jsonA.length(); ++i) {
-//            JSONObject jsonO = jsonA.getJSONObject(i);
-//            Element complexElem = createComplexTags(jsonO, "subquestion");
-//            Element answer = createSimpleAnswer(jsonO.getJSONObject("answer"));
-//            complexElem.addContent(answer);
-//            addElementToRoot(complexElem);
-//        }
-//    }
-
-    /**
-     * Créé une des éléments XML correspondant
-     * à une "simple answer".
-     * @param answerO : l'objet Json contenant
-     * "answer".
-     * @return le nouvelle élément "answer"
-     * @throws JSONException exception JSON
-     * */
-//    private Element createSimpleAnswer(final JSONObject answerO)
-//            throws JSONException {
-//        /*create answer Jdom element*/
-//        Element answer1 = new Element("answer");
-//        Element textElem = createSimpleTags(answerO, "text");
-//        answer1.addContent(textElem);
-//        return answer1;
-//    }
 
     /**
      * Détermine s'il faut ajouté un tableau
@@ -238,31 +193,16 @@ public class GenXML {
                     Attribute att = new Attribute("type",
                             jsonO.getString("type"));
                     quest.setAttribute(att);
-                } else if (currentField.equals("name")) {
-                    genBaseComplexElem(jsonO, currentField, quest);
-
-//                    addComplexTags(jsonO.getJSONObject(currentField),
- //                           currentField);
                 } else if (currentField.equals("questiontext")) {
                     addQuestiontext(jsonO.getJSONObject("questiontext"));
                 } else if (currentField.equals("answer")) {
                     preAddAnswer(jsonO); /*get the answers*/
-                } else if (currentField.equals("subquestion")) {
+                } else if (knownTags.contains(currentField)) {
                     genBaseComplexElem(jsonO, currentField, quest);
-
-//                    addSubquestion(jsonO.getJSONArray("subquestion"));
-                } else if (complexTags.contains(currentField)) {
-//                    addComplexTags(jsonO.getJSONObject(currentField),
-  //                          currentField);
-                    genBaseComplexElem(jsonO, currentField, quest);
-
-                } else if (simpleTags.contains(currentField)) {
-                    genBaseComplexElem(jsonO, currentField, quest);
-//                    addElementToRoot((createSimpleTags(jsonO, currentField)));
                 } else if (currentField.equals("shuffleanswers")) {
                     addShuffleanswers(jsonO);                   
-                } else if (!currentField.equals("type")) {
-                    warning(); //balise inconnue (non repertoriée)
+                } else  {
+                    warning(currentField); //balise inconnue (non repertoriée)
                     genBaseComplexElem(jsonO, currentField, quest);
                 }
             }
@@ -385,9 +325,9 @@ public class GenXML {
      * Affiche un warning sur la sortie standard si une
      * balise inconnue est trouvé.
      * */
-    private void warning() {
+    private void warning(String currentField) {
         System.out.println("WARNING : ");
-        System.out.println("Une balise non répertorié a été trouvée.");
+        System.out.println("La balise "+ currentField + " est non répertoriée.");
         System.out.println("La conversion continue mais aucun attribut");
         System.out.println("ne peut être créé pour cette balise.");
     }
